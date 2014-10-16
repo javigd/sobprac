@@ -1,4 +1,4 @@
-<jsp:useBean id="user" class="cat.urv.deim.sob.User" scope="request" />
+<jsp:useBean id="user" class="cat.urv.deim.sob.models.SOBUser" scope="request" />
 <html>
     <head>
         <title>User details</title>

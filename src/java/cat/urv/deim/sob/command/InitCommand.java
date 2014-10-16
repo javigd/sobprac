@@ -1,6 +1,6 @@
 package cat.urv.deim.sob.command;
 
-import cat.urv.deim.sob.User;
+import cat.urv.deim.sob.models.SOBUser;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
@@ -16,8 +16,9 @@ public class InitCommand implements Command {
             throws ServletException, IOException {
 
         // 1. process the request
-        request.setAttribute("user", new User());
-
+        //TODO: Remove attribute management of users below, store in DB instead        
+        request.setAttribute("user", new SOBUser());
+        
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
         context.getRequestDispatcher("/view.jsp").forward(request, response);
