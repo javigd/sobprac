@@ -11,8 +11,10 @@ import cat.urv.deim.sob.models.SOBUser;
  *
  * @author javigd
  */
-public interface SOBHandler {
+public interface PersistenceHandler {
 
     public void newUser (SOBUser user);
+    
+    public Integer numberUsers();
     
 }

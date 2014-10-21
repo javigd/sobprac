@@ -11,10 +11,10 @@ import javax.persistence.EntityManagerFactory;
  *
  * @author javigd
  */
-public class SOBDAO {
+public class SOBPersistence {
     protected EntityManagerFactory factory;
 
-    public SOBDAO(EntityManagerFactory emf) {
+    public SOBPersistence(EntityManagerFactory emf) {
         this.factory = emf;
     }
 }

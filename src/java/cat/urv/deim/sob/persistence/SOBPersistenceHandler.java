@@ -11,23 +11,21 @@ import cat.urv.deim.sob.exceptions.DAOException;
 import cat.urv.deim.sob.models.SOBUser;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
 
 /**
  *
  * @author javigd
  */
-public class DatabaseSOBHandler implements SOBHandler {
+public class SOBPersistenceHandler implements PersistenceHandler {
 
-    private static final Logger logger = Logger.getLogger(DatabaseSOBHandler.class.getName());
+    private static final Logger logger = Logger.getLogger(SOBPersistenceHandler.class.getName());
     private static final String PERSISTENCE_UNIT_NAME = "test";
-    private EntityManagerFactory factory;
-    private UserDAO userDAO;
+    private final EntityManagerFactory factory;
+    private final UserDAO userDAO;
 
-    public DatabaseSOBHandler() {
+    public SOBPersistenceHandler() {
         factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         userDAO = new SOBUserDAO(factory);
     }
@@ -40,6 +38,20 @@ public class DatabaseSOBHandler implements SOBHandler {
         } catch (DAOException ex) {
             logger.log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public Integer numberUsers() {
+        int nusers = 0;
+        
+        try {
+            // Save user in DB:
+            nusers = this.userDAO.getNUsers();
+        } catch (DAOException ex) {
+            logger.log(Level.SEVERE, null, ex);
+        }
+        
+        return nusers;
     }
 
 }

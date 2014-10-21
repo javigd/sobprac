@@ -15,7 +15,7 @@ import javax.persistence.Query;
  *
  * @author javigd
  */
-public class SOBUserDAO extends SOBDAO implements UserDAO {
+public class SOBUserDAO extends SOBPersistence implements UserDAO {
 
     public SOBUserDAO(EntityManagerFactory emf) {
         super(emf);
@@ -32,6 +32,7 @@ public class SOBUserDAO extends SOBDAO implements UserDAO {
             // Trigger DAOException USER_NOT_FOUND if no user has been found with the given id 
             throw new DAOException(DAOError.USER_NOT_FOUND);
         }
+        em.close();
         return u;
     }
 

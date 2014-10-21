@@ -7,7 +7,6 @@ package cat.urv.deim.sob.db;
 
 import cat.urv.deim.sob.models.SOBUser;
 import cat.urv.deim.sob.exceptions.DAOException;
-import java.util.List;
 
 /**
  *

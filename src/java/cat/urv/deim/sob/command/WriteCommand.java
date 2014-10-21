@@ -1,7 +1,7 @@
 package cat.urv.deim.sob.command;
 
 import cat.urv.deim.sob.models.SOBUser;
-import cat.urv.deim.sob.persistence.DatabaseSOBHandler;
+import cat.urv.deim.sob.persistence.SOBPersistenceHandler;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
@@ -9,7 +9,7 @@ import javax.servlet.ServletContext;
 import java.io.IOException;
 
 public class WriteCommand implements Command {
-    DatabaseSOBHandler db = new DatabaseSOBHandler();
+    SOBPersistenceHandler db = new SOBPersistenceHandler();
     
     @Override
     public void execute(
@@ -30,6 +30,9 @@ public class WriteCommand implements Command {
 
         // 1.1 Save user to Database
         db.newUser(user);
+        
+        // Make sure user has been added properly
+        //int nUsers = db.numberUsers();
         
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
