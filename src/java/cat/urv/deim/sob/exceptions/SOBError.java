@@ -3,26 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cat.urv.deim.sob.db;
+package cat.urv.deim.sob.exceptions;
 
 /**
  *
  * @author javigd
  */
-public enum DAOError {
+public enum SOBError {
 
-    // DAOErrors Relate triggered errors to HTTP codes
+    /* DAO Errors Relate triggered errors to HTTP codes */
     // users
     USER_NOT_FOUND(400, "User not found."),
     USER_ALREADY_EXISTS(409, "Internal Conflict. User already exists"),
     
     // server
-    INTERNAL_SERVER_ERROR(500, "Internal Server Error");
+    INTERNAL_SERVER_ERROR(500, "Internal Server Error"),
 
+    /* Utils Errors */
+    BASE_NOT_SUPPORTED(512, "Base not Supported");
+    
     private final int code;
     private final String message;
 
-    DAOError(int code, String message) {
+    SOBError(int code, String message) {
         this.code = code;
         this.message = message;
     }

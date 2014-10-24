@@ -6,7 +6,7 @@
 package cat.urv.deim.sob.db;
 
 import cat.urv.deim.sob.models.SOBUser;
-import cat.urv.deim.sob.exceptions.DAOException;
+import cat.urv.deim.sob.exceptions.SOBException;
 
 /**
  *
@@ -14,10 +14,10 @@ import cat.urv.deim.sob.exceptions.DAOException;
  */
 public interface UserDAO {
     
-    public SOBUser get(String id) throws DAOException;
+    public SOBUser get(String id) throws SOBException;
     
-    public void add(SOBUser user) throws DAOException;
+    public void add(SOBUser user) throws SOBException;
     
-    public Integer getNUsers() throws DAOException;
+    public Integer getNUsers() throws SOBException;
     
 }

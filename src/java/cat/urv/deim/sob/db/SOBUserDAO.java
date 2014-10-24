@@ -5,7 +5,8 @@
  */
 package cat.urv.deim.sob.db;
 
-import cat.urv.deim.sob.exceptions.DAOException;
+import cat.urv.deim.sob.exceptions.SOBError;
+import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.models.SOBUser;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -22,7 +23,7 @@ public class SOBUserDAO extends SOBPersistence implements UserDAO {
     }
 
     @Override
-    public SOBUser get(String id) throws DAOException {
+    public SOBUser get(String id) throws SOBException {
         EntityManager em = factory.createEntityManager();
         // Simple query to get a user from the DB given his ID
         Query q = em.createQuery("SELECT u FROM SOBUser u WHERE u.id = :id");
@@ -30,14 +31,14 @@ public class SOBUserDAO extends SOBPersistence implements UserDAO {
         SOBUser u = (SOBUser) q.getSingleResult();
         if (u == null) {
             // Trigger DAOException USER_NOT_FOUND if no user has been found with the given id 
-            throw new DAOException(DAOError.USER_NOT_FOUND);
+            throw new SOBException(SOBError.USER_NOT_FOUND);
         }
         em.close();
         return u;
     }
 
     @Override
-    public void add(SOBUser user) throws DAOException {
+    public void add(SOBUser user) throws SOBException {
         // Create a new EntityManager
         EntityManager em = factory.createEntityManager();
         // Execute a query to make sure that the new user has not signed up already
@@ -55,12 +56,12 @@ public class SOBUserDAO extends SOBPersistence implements UserDAO {
             em.close();
         } else {
             // Throw new DAOException otherwise
-            throw new DAOException(DAOError.USER_ALREADY_EXISTS);
+            throw new SOBException(SOBError.USER_ALREADY_EXISTS);
         }
     }
 
     @Override
-    public Integer getNUsers() throws DAOException {
+    public Integer getNUsers() throws SOBException {
         EntityManager em = factory.createEntityManager();
         // Perform a simple query for all the SOBUser entities
         Query q = em.createQuery("select u from SOBUser u");

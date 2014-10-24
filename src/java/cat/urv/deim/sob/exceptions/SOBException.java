@@ -5,37 +5,35 @@
  */
 package cat.urv.deim.sob.exceptions;
 
-import cat.urv.deim.sob.db.DAOError;
-
 /**
  *
  * @author javigd
  */
-public class DAOException extends Exception {
+public class SOBException extends Exception {
 
     private static final long serialVersionUID = 1L;
-    private DAOError error;
+    private SOBError error;
 
     /**
-     * Construct a DAOException with a detail message provided by a given DAOError
+     * Construct a SOBException with a detail message provided by a given Error
      *
      * @param error
      */
-    public DAOException(DAOError error) {
+    public SOBException(SOBError error) {
         super(error.getMessage());
         this.error = error;
     }
 
-    public DAOException(Exception e, DAOError error) {
+    public SOBException(Exception e, SOBError error) {
         super(e);
         this.error = error;
     }
 
-    public DAOException(String message) {
+    public SOBException(String message) {
         super(message);
     }
 
-    public DAOError getError() {
+    public SOBError getError() {
         return this.error;
     }
 

@@ -7,7 +7,7 @@ package cat.urv.deim.sob.persistence;
 
 import cat.urv.deim.sob.db.SOBUserDAO;
 import cat.urv.deim.sob.db.UserDAO;
-import cat.urv.deim.sob.exceptions.DAOException;
+import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.models.SOBUser;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +35,7 @@ public class SOBPersistenceHandler implements PersistenceHandler {
         try {
             // Save user in DB:
             this.userDAO.add(user);
-        } catch (DAOException ex) {
+        } catch (SOBException ex) {
             logger.log(Level.SEVERE, null, ex);
         }
     }
@@ -47,7 +47,7 @@ public class SOBPersistenceHandler implements PersistenceHandler {
         try {
             // Save user in DB:
             nusers = this.userDAO.getNUsers();
-        } catch (DAOException ex) {
+        } catch (SOBException ex) {
             logger.log(Level.SEVERE, null, ex);
         }
         
