@@ -6,7 +6,7 @@
 package cat.urv.deim.sob.test;
 
 import cat.urv.deim.sob.models.SOBUser;
-import cat.urv.deim.sob.persistence.SOBPersistenceHandler;
+import cat.urv.deim.sob.persistence.SOBUserPersistenceAdapter;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -43,8 +43,8 @@ public class PersistenceTest {
      */
     @Test
     public void simpleDatabaseTestScenario() {
-        SOBPersistenceHandler dbHandler = new SOBPersistenceHandler();
-        SOBUser testUser = new SOBUser(null, "Javier", "Garcia", "javi@urv.cat", "123456789");
+        SOBUserPersistenceAdapter dbHandler = new SOBUserPersistenceAdapter();
+        SOBUser testUser = new SOBUser(null, "username", "javi@urv.cat", "password");
         dbHandler.newUser(testUser);
     }
 }

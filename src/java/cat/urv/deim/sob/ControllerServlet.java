@@ -1,8 +1,8 @@
 package cat.urv.deim.sob;
 
 import cat.urv.deim.sob.command.Command;
-import cat.urv.deim.sob.command.WriteCommand;
-import cat.urv.deim.sob.command.InitCommand;
+import cat.urv.deim.sob.command.SigninCommand;
+import cat.urv.deim.sob.command.SignCommand;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;
@@ -16,8 +16,8 @@ public class ControllerServlet extends HttpServlet {
     @Override
     public void init() {
         // list of commands
-        this.commands.put("init", new InitCommand());
-        this.commands.put("write", new WriteCommand());
+        this.commands.put("sign", new SignCommand());
+        this.commands.put("signin", new SigninCommand());
     }
 
     protected void processCommand(
@@ -29,7 +29,7 @@ public class ControllerServlet extends HttpServlet {
         String formAction = request.getParameter("form_action");
 
         if (null == formAction) {
-            formAction = "init";
+            formAction = "sign";
         }
 
         // 2. choose related command

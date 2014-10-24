@@ -5,15 +5,16 @@
  */
 package cat.urv.deim.sob.persistence;
 
+import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.models.SOBUser;
 
 /**
  *
  * @author javigd
  */
-public interface PersistenceHandler {
+public interface SOBUserAdapter {
 
-    public void newUser (SOBUser user);
+    public void newUser(SOBUser user) throws SOBException;
     
     public Integer numberUsers();
     

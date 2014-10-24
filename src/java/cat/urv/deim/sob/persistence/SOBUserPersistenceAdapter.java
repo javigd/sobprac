@@ -18,39 +18,35 @@ import javax.persistence.Persistence;
  *
  * @author javigd
  */
-public class SOBPersistenceHandler implements PersistenceHandler {
+public class SOBUserPersistenceAdapter implements SOBUserAdapter {
 
-    private static final Logger logger = Logger.getLogger(SOBPersistenceHandler.class.getName());
+    private static final Logger logger = Logger.getLogger(SOBUserPersistenceAdapter.class.getName());
     private static final String PERSISTENCE_UNIT_NAME = "test";
     private final EntityManagerFactory factory;
     private final UserDAO userDAO;
 
-    public SOBPersistenceHandler() {
+    public SOBUserPersistenceAdapter() {
         factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         userDAO = new SOBUserDAO(factory);
     }
 
     @Override
-    public void newUser(SOBUser user) {
-        try {
-            // Save user in DB:
-            this.userDAO.add(user);
-        } catch (SOBException ex) {
-            logger.log(Level.SEVERE, null, ex);
-        }
+    public void newUser(SOBUser user) throws SOBException {
+        // Save user in DB:
+        this.userDAO.add(user);
     }
 
     @Override
     public Integer numberUsers() {
         int nusers = 0;
-        
+
         try {
             // Save user in DB:
             nusers = this.userDAO.getNUsers();
         } catch (SOBException ex) {
             logger.log(Level.SEVERE, null, ex);
         }
-        
+
         return nusers;
     }
 

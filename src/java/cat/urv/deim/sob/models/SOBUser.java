@@ -12,76 +12,72 @@ public class SOBUser implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstName;
-    private String lastName;
+    private String username;
     private String email;
-    private String phone;
-    
+    private String password;
+
     public SOBUser() {
         super();
     }
-    
-    public SOBUser(Long ID, String firstName, String lastName, String email, String phone) {
+
+    public SOBUser(Long ID, String username, String email, String password) {
         this.id = ID;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
         this.email = email;
-        this.phone = phone;
     }
-    
-    public Long getID() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setID(Long ID) {
-        this.id = ID;
-    }
-    
-    public String getFirstName() {
-        return fixNull(this.firstName);
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public String getUsername() {
+        return fixNull(username);
     }
 
-    public String getLastName() {
-        return fixNull(this.lastName);
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
-        return fixNull(this.email);
+        return fixNull(email);
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getPhone() {
-        return fixNull(this.phone);
+    public String getPassword() {
+        return fixNull(password);
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getMessage() {
+        return toString();
+    }
+
+    @Override
+    public String toString() {
+
+        return "\nID:\t\t" + getId() + "\n"
+                + "username:\t" + getUsername() + "\n"
+                + "email:\t\t" + getEmail() + "\n"
+                + "password:\t" + getPassword() + "\n";
+    }
+
+    public boolean isValid() {
+        return !(username == null || email == null || password == null);
     }
 
     private String fixNull(String in) {
         return (in == null) ? "" : in;
     }
 
-    public String getMessage() {
-
-        return "\nFirst Name: " + getFirstName() + "\n"
-                + "Last Name:  " + getLastName() + "\n"
-                + "Email:      " + getEmail() + "\n"
-                + "Phone:      " + getPhone() + "\n";
-    }
-    
-    public boolean isValid () {
-        return !(firstName == null || lastName == null || email == null || phone == null);
-    }
 }

@@ -14,7 +14,8 @@ public enum SOBError {
     /* DAO Errors Relate triggered errors to HTTP codes */
     // users
     USER_NOT_FOUND(400, "User not found."),
-    USER_ALREADY_EXISTS(409, "Internal Conflict. User already exists"),
+    USER_ALREADY_EXISTS(409, "User already exists!"),
+    USER_NOT_VALID(410, "User not valid. Please check required fields."),
     
     // server
     INTERNAL_SERVER_ERROR(500, "Internal Server Error"),

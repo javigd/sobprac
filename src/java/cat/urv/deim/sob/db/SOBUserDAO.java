@@ -39,16 +39,17 @@ public class SOBUserDAO extends SOBPersistence implements UserDAO {
 
     @Override
     public void add(SOBUser user) throws SOBException {
+        if(!user.isValid()) {
+            throw new SOBException(SOBError.USER_NOT_VALID);
+        }
         // Create a new EntityManager
         EntityManager em = factory.createEntityManager();
         // Execute a query to make sure that the new user has not signed up already
-        //Query q = em.createQuery("SELECT u FROM SOBUser u WHERE u.email = :email");
+        Query q = em.createQuery("SELECT u FROM SOBUser u WHERE u.email = :email");
         // Users will be referenced by email
-        //q.setParameter("email", user.getEmail());
-        SOBUser u = null; //(SOBUser) q.getSingleResult();
-        //TODO: Previous line throws weird same-class cast exception [review]
+        q.setParameter("email", user.getEmail());
         // Email does not exist in DB
-        if (u == null) {
+        if (q.getResultList().isEmpty()) {
             // Add new user to database
             em.getTransaction().begin();
             em.persist(user);

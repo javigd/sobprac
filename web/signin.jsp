@@ -1,36 +1,26 @@
 <jsp:useBean id="user" class="cat.urv.deim.sob.models.SOBUser" scope="request" />
 <html>
     <head>
-        <title>User details</title>
+        <title>GoShort!</title>
     </head>
     <body>
-        <h2>User details</h2>  
+        <h2>Sign in</h2>  
         <form method="post" action="controller.do">
-            <input type="hidden" name="form_action" value="write" />
+            <input type="hidden" name="form_action" value="signin" />
             <table>
                 <tr>
                     <td>
-                        First Name:
+                        username
                     </td>
                     <td>
                         <input type="text" 
-                               name="first_name" 
-                               value="<jsp:getProperty name="user" property="firstName" />" />
+                               name="username" 
+                               value="<jsp:getProperty name="user" property="username" />" />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        Last Name:
-                    </td>
-                    <td>
-                        <input type="text" 
-                               name="last_name" 
-                               value="<jsp:getProperty name="user" property="lastName" />" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Email:
+                        e-mail
                     </td>
                     <td>
                         <input type="text" 
@@ -40,12 +30,22 @@
                 </tr>
                 <tr>
                     <td>
-                        Phone:
+                        password
                     </td>
                     <td>
-                        <input type="text" 
-                               name="phone"
-                               value="<jsp:getProperty name="user" property="phone" />" />
+                        <input type="password" 
+                               name="password"
+                               value="<jsp:getProperty name="user" property="password" />" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        repeat your password
+                    </td>
+                    <td>
+                        <input type="password" 
+                               name="password"
+                               value="<jsp:getProperty name="user" property="password" />" />
                     </td>
                 </tr>
                 <tr>
@@ -57,6 +57,10 @@
                 </tr>
             </table>
         </form>
+        <%if (request.getParameter("error") != null) {%>
+        <%= request.getParameter("error") %>
+        <%}%>
+        <br>
         <pre>
             <jsp:getProperty name="user" property="message" />
         </pre>

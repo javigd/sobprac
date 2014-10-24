@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletContext;
 import java.io.IOException;
 
-public class InitCommand implements Command {
+public class SignCommand implements Command {
 
     @Override
     public void execute(
@@ -19,8 +19,10 @@ public class InitCommand implements Command {
         //TODO: Remove attribute management of users below, store in DB instead        
         request.setAttribute("user", new SOBUser());
         
+        request.setAttribute("error", "");
+        
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
-        context.getRequestDispatcher("/view.jsp").forward(request, response);
+        context.getRequestDispatcher("/signin.jsp").forward(request, response);
     }
 }
