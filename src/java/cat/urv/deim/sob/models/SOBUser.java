@@ -18,6 +18,7 @@ public class SOBUser implements Serializable {
     private String phone;
     
     public SOBUser() {
+        super();
     }
     
     public SOBUser(Long ID, String firstName, String lastName, String email, String phone) {

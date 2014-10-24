@@ -5,7 +5,7 @@
         <class>cat.urv.deim.sob.models.SOBUser</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:derby:C:\Users\javigd\Documents\NetBeansProjects\SOB1415BASE\database\test;create=true"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby:/home/javigd/NetBeansProjects/sobprac/database/test;create=true"/>
             <property name="javax.persistence.jdbc.user" value="test"/>
             <property name="javax.persistence.jdbc.password" value="test"/>
             <property name="javax.persistence.schema-generation.database.action" value="create"/>
