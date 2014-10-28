@@ -24,7 +24,7 @@ public class SOBUrlDAO extends SOBPersistence implements UrlDAO {
     }
 
     @Override
-    public SOBUrl get(String id) throws SOBException {
+    public SOBUrl get(String id) throws SOBException { 
         EntityManager em = factory.createEntityManager();
         //Simple query to get a URL from de DB given his ID
         Query q = em.createQuery("SELECT url FROM SOBUrl url WHERE url.id = :id");
