@@ -16,6 +16,7 @@ public class URLConverter {
 
     public static final String CHARACTERS = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     
+    // TODO: Fix 0 case
     /**
      * Convert the given long value to an equivalent String representing the value in base 36 or 62.
      * @param base
@@ -23,7 +24,7 @@ public class URLConverter {
      * @return
      * @throws SOBException 
      */
-    public static String converter(int base, long decimalNumber) throws SOBException {
+    public static String convert(int base, long decimalNumber) throws SOBException {
         String tempVal = decimalNumber == 0 ? "0" : "";
         long mod;
 
