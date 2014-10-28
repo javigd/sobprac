@@ -16,6 +16,6 @@ public interface SOBUserAdapter {
 
     public void newUser(SOBUser user) throws SOBException;
     
-    public Integer numberUsers();
+    public Integer numberUsers() throws SOBException;
     
 }

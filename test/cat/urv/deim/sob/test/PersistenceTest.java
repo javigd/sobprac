@@ -5,8 +5,11 @@
  */
 package cat.urv.deim.sob.test;
 
+import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.models.SOBUser;
 import cat.urv.deim.sob.persistence.SOBUserPersistenceAdapter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -45,6 +48,10 @@ public class PersistenceTest {
     public void simpleDatabaseTestScenario() {
         SOBUserPersistenceAdapter dbHandler = new SOBUserPersistenceAdapter();
         SOBUser testUser = new SOBUser(null, "username", "javi@urv.cat", "password");
-        dbHandler.newUser(testUser);
+        try {
+            dbHandler.newUser(testUser);
+        } catch (SOBException ex) {
+            Logger.getLogger(PersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
