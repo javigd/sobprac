@@ -85,11 +85,5 @@ public class SOBUrl implements Serializable {
     public boolean isValid() {
         return !(longUrl == null || shortUrl == null || user == null || useremail == null);
         
-    }
-  
-    
-    
-    
-     
-  
+    }  
 }
