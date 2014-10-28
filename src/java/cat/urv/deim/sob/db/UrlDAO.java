@@ -14,7 +14,7 @@ import cat.urv.deim.sob.models.SOBUrl;
  */
 public interface UrlDAO {
     
-    public SOBUrl get (String id) throws SOBException;
+    public SOBUrl get (String url) throws SOBException;
     
     public void add (SOBUrl url) throws SOBException;
        
