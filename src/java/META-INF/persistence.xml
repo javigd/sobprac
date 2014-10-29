@@ -3,6 +3,7 @@
     <persistence-unit name="test" transaction-type="JTA">
         <jta-data-source>jdbc/sample</jta-data-source>
         <class>cat.urv.deim.sob.models.SOBUser</class>
+        <class>cat.urv.deim.sob.models.SOBUrl</class>
         <properties>            
             <!-- EclipseLink should create the database schema automatically -->
             <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>

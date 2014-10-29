@@ -19,6 +19,11 @@ public enum SOBError {
     
     // server
     INTERNAL_SERVER_ERROR(500, "Internal Server Error"),
+    
+    //URL
+    URL_NOT_FOUND (1, "URL not found."),
+    URL_NOT_VALID (2, "URL already exists!"),
+    URL_ALREADY_SHORTERED (3, "You have already shortened this URL"),
 
     /* Utils Errors */
     BASE_NOT_SUPPORTED(512, "Base not Supported"),
