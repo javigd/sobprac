@@ -1,7 +1,7 @@
 package cat.urv.deim.sob;
 
 import cat.urv.deim.sob.command.Command;
-import cat.urv.deim.sob.command.SigninCommand;
+import cat.urv.deim.sob.command.SignupCommand;
 import cat.urv.deim.sob.command.SignCommand;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -17,7 +17,7 @@ public class ControllerServlet extends HttpServlet {
     public void init() {
         // list of commands
         this.commands.put("sign", new SignCommand());
-        this.commands.put("signin", new SigninCommand());
+        this.commands.put("signup", new SignupCommand());
     }
 
     protected void processCommand(

@@ -1,51 +1,50 @@
-<jsp:useBean id="user" class="cat.urv.deim.sob.models.SOBUser" scope="request" />
+<%@page import="cat.urv.deim.sob.exceptions.SOBException"%>
+<jsp:useBean id="formHandler" class="cat.urv.deim.sob.handlers.FormHandler" scope="request" />
+<jsp:setProperty name="formHandler" property="*" />
+
 <html>
     <head>
         <title>GoShort!</title>
     </head>
     <body>
-        <h2>Sign in</h2>  
+        <h2>Sign up</h2>
         <form method="post" action="controller.do">
-            <input type="hidden" name="form_action" value="signin" />
+            <input type="hidden" name="form_action" value="signup" />
             <table>
                 <tr>
                     <td>
-                        username
+                        username:
                     </td>
                     <td>
                         <input type="text" 
-                               name="username" 
-                               value="<jsp:getProperty name="user" property="username" />" />
+                               name="username" />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        e-mail
+                        e-mail:
                     </td>
                     <td>
                         <input type="text" 
-                               name="email" 
-                               value="<jsp:getProperty name="user" property="email" />" />
+                               name="email" />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        password
+                        password:
                     </td>
                     <td>
                         <input type="password" 
-                               name="password"
-                               value="<jsp:getProperty name="user" property="password" />" />
+                               name="password" />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        repeat your password
+                        repeat your password:
                     </td>
                     <td>
                         <input type="password" 
-                               name="password"
-                               value="<jsp:getProperty name="user" property="password" />" />
+                               name="passwordRepeat" />
                     </td>
                 </tr>
                 <tr>
@@ -57,12 +56,17 @@
                 </tr>
             </table>
         </form>
-        <%if (request.getParameter("error") != null) {%>
-        <%= request.getParameter("error") %>
-        <%}%>
+        <%
+//            if (request.getAttribute("errorMessage") != null) {
+//                out.print(request.getAttribute("errorMessage"));
+//            }
+//            
+//            try {
+//                formHandler.validate();
+//            } catch (SOBException e) {
+//                request.setAttribute("error", e.getError());
+//            }
+        %>
         <br>
-        <pre>
-            <jsp:getProperty name="user" property="message" />
-        </pre>
     </body>
 </html>

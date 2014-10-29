@@ -14,15 +14,11 @@ public class SignCommand implements Command {
             HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-
-        // 1. process the request
-        //TODO: Remove attribute management of users below, store in DB instead        
-        request.setAttribute("user", new SOBUser());
         
-        request.setAttribute("error", "");
+        request.setAttribute("error", null);
         
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
-        context.getRequestDispatcher("/signin.jsp").forward(request, response);
+        context.getRequestDispatcher("/signup.jsp").forward(request, response);
     }
 }

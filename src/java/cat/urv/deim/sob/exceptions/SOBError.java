@@ -21,7 +21,11 @@ public enum SOBError {
     INTERNAL_SERVER_ERROR(500, "Internal Server Error"),
 
     /* Utils Errors */
-    BASE_NOT_SUPPORTED(512, "Base not Supported");
+    BASE_NOT_SUPPORTED(512, "Base not Supported"),
+    
+    /* Client-side feedback Errors */
+    REPEAT_PASSWORD(1, "The passwords you introduced do not match."),
+    INCOMPLETE_FIELDS(1, "Please make sure you fill all required fields.");
     
     private final int code;
     private final String message;
