@@ -23,6 +23,11 @@ public enum SOBError {
     /* Utils Errors */
     BASE_NOT_SUPPORTED(512, "Base not Supported"),
     
+    //URL
+    URL_NOT_FOUND (1, "URL not found."),
+    URL_NOT_VALID (2, "URL already exists!"),
+    URL_ALREADY_SHORTENED (3, "You have already shortened this URL"),
+    
     /* Client-side feedback Errors */
     REPEAT_PASSWORD(1, "The passwords you introduced do not match."),
     INCOMPLETE_FIELDS(1, "Please make sure you fill all required fields.");
