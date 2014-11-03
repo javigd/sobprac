@@ -1,8 +1,13 @@
 package cat.urv.deim.sob;
 
 import cat.urv.deim.sob.command.Command;
+import cat.urv.deim.sob.command.LoginCommand;
+import cat.urv.deim.sob.command.LoginInitCommand;
 import cat.urv.deim.sob.command.SignupCommand;
-import cat.urv.deim.sob.command.SignCommand;
+import cat.urv.deim.sob.command.SignupInitCommand;
+import cat.urv.deim.sob.persistence.ConnectionPool;
+import cat.urv.deim.sob.persistence.IUserHandler;
+import cat.urv.deim.sob.persistence.SOBUserHandler;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.*;
@@ -12,12 +17,24 @@ import java.util.HashMap;
 public class ControllerServlet extends HttpServlet {
 
     private Map commands = new HashMap();
+    private static ConnectionPool pool;
+    private static IUserHandler dbUsrHandler;
+    //private static IUrlHandler dbUrlHandler;
 
     @Override
     public void init() {
+        /* Initialize a new Connection pool */
+        pool = new ConnectionPool();
+        /* Get a new Database User Handler */
+        dbUsrHandler = new SOBUserHandler(pool);
+        /* Get a new Database URL Handler */
+        //dbUrlHandler = new SOBUrlHandler(pool);
+        
         // list of commands
-        this.commands.put("sign", new SignCommand());
-        this.commands.put("signup", new SignupCommand());
+        this.commands.put("signupinit", new SignupInitCommand());
+        this.commands.put("signup", new SignupCommand(dbUsrHandler));
+        this.commands.put("logininit", new LoginInitCommand());
+        this.commands.put("login", new LoginCommand(dbUsrHandler));
     }
 
     protected void processCommand(
@@ -27,9 +44,9 @@ public class ControllerServlet extends HttpServlet {
 
         // 1. choose action
         String formAction = request.getParameter("form_action");
-
+        
         if (null == formAction) {
-            formAction = "sign";
+            formAction = "signupinit";
         }
 
         // 2. choose related command
@@ -59,5 +76,10 @@ public class ControllerServlet extends HttpServlet {
             throws ServletException, IOException {
 
         processCommand(request, response);
+    }
+    
+    @Override
+    public void destroy() {
+        pool.closeConnectionFactory();
     }
 }

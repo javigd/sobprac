@@ -14,15 +14,15 @@ import cat.urv.deim.sob.models.SOBUrl;
  *
  * @author Max
  */
-public class SOBUrlPersistenceAdapter extends PersistenceAdapter implements SOBUrlAdapter {
+public class SOBUrlHandler implements IUrlHandler {
 
     private final UrlDAO urlDAO;
 
-    public SOBUrlPersistenceAdapter() {
+    public SOBUrlHandler(ConnectionPool pool) {
         super ();
-        urlDAO = new SOBUrlDAO (this.factory);
+        urlDAO = new SOBUrlDAO (pool);
     }
-              
+    
     @Override
     public String newUrl(SOBUrl url) throws SOBException {
         //TODO: Treat URL - compute ID - data in DB:

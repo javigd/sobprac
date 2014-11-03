@@ -7,7 +7,9 @@ package cat.urv.deim.sob.test;
 
 import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.models.SOBUser;
-import cat.urv.deim.sob.persistence.SOBUserPersistenceAdapter;
+import cat.urv.deim.sob.persistence.ConnectionPool;
+import cat.urv.deim.sob.persistence.IUserHandler;
+import cat.urv.deim.sob.persistence.SOBUserHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.After;
@@ -46,7 +48,8 @@ public class PersistenceTest {
      */
     @Test
     public void simpleDatabaseTestScenario() {
-        SOBUserPersistenceAdapter dbHandler = new SOBUserPersistenceAdapter();
+        ConnectionPool pool = new ConnectionPool();
+        IUserHandler dbHandler = new SOBUserHandler(pool);
         SOBUser testUser = new SOBUser(null, "username", "javi@urv.cat", "password");
         try {
             dbHandler.newUser(testUser);

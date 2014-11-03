@@ -7,6 +7,7 @@ package cat.urv.deim.sob.persistence;
 
 import cat.urv.deim.sob.db.SOBUserDAO;
 import cat.urv.deim.sob.db.UserDAO;
+import cat.urv.deim.sob.exceptions.SOBError;
 import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.models.SOBUser;
 
@@ -14,13 +15,13 @@ import cat.urv.deim.sob.models.SOBUser;
  *
  * @author javigd
  */
-public class SOBUserPersistenceAdapter extends PersistenceAdapter implements SOBUserAdapter {
+public class SOBUserHandler implements IUserHandler {
 
     private final UserDAO userDAO;
 
-    public SOBUserPersistenceAdapter() {
+    public SOBUserHandler(ConnectionPool pool) {
         super();
-        userDAO = new SOBUserDAO(this.factory);
+        userDAO = new SOBUserDAO(pool);
     }
 
     @Override
@@ -34,6 +35,14 @@ public class SOBUserPersistenceAdapter extends PersistenceAdapter implements SOB
         // Get Number users from DB:
         return this.userDAO.getNUsers();
 
+    }
+
+    @Override
+    public void login(SOBUser user) throws SOBException {
+        SOBUser signedUser = this.userDAO.get(user.getEmail());
+        if(signedUser.getPassword().equals(user.getPassword())) {
+            throw new SOBException(SOBError.USER_NOT_VALID);
+        }
     }
 
 }

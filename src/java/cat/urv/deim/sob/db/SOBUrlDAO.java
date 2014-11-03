@@ -8,9 +8,8 @@ package cat.urv.deim.sob.db;
 import cat.urv.deim.sob.exceptions.SOBError;
 import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.models.SOBUrl;
-import java.util.concurrent.atomic.LongAccumulator;
+import cat.urv.deim.sob.persistence.ConnectionPool;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
 /**
@@ -19,13 +18,13 @@ import javax.persistence.Query;
  */
 public class SOBUrlDAO extends SOBPersistence implements UrlDAO {
 
-    public SOBUrlDAO(EntityManagerFactory emf) {
-        super(emf);
+    public SOBUrlDAO(ConnectionPool pool) {
+        super(pool);
     }
 
     @Override
     public SOBUrl get(String id) throws SOBException { 
-        EntityManager em = factory.createEntityManager();
+        EntityManager em = pool.getConnection();
         //Simple query to get a URL from de DB given his ID
         Query q = em.createQuery("SELECT url FROM SOBUrl url WHERE url.id = :id");
         q.setParameter("id", id);
@@ -44,7 +43,7 @@ public class SOBUrlDAO extends SOBPersistence implements UrlDAO {
             throw new SOBException(SOBError.URL_NOT_VALID);
         }
         //Create a new Entity Manager
-        EntityManager em = factory.createEntityManager();
+        EntityManager em = pool.getConnection();
         //Execute a query to make sore that the new URL has not be saved already
         Query q = em.createQuery("SELECT url FROM SOBUrl url WHERE url.longUrl = :longUrl");
         q.setParameter("longUrl", url.getLongUrl());

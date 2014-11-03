@@ -34,7 +34,7 @@ public class FormHandler {
         this.password = password;
         this.passwordRepeat = passwordRepeat;
     }
-
+    
     public boolean validate() throws SOBException {
         if (!isValid()) {
             throw new SOBException(SOBError.INCOMPLETE_FIELDS);
@@ -45,7 +45,17 @@ public class FormHandler {
         return true;
     }
     
-    public void encryptPassword () {
+    public boolean validateLogin() throws SOBException { 
+        if (!isValidLogin()) {
+            throw new SOBException(SOBError.INCOMPLETE_FIELDS);
+        }
+        else if (!password.equals(passwordRepeat)) {
+            throw new SOBException(SOBError.REPEAT_PASSWORD);
+        }
+        return true;
+    }
+    
+    public byte[] encryptPassword () {
         MessageDigest md = null;
         
         try {
@@ -63,7 +73,7 @@ public class FormHandler {
         this.passwordRepeat = null;
         
         setEncryptedPassword(encpass);
-        
+        return encpass;
     }
 
     public String getUsername() {
@@ -110,5 +120,9 @@ public class FormHandler {
         return !(username == null || email == null || password == null
                 || username.equals("") || email.equals("") || password.equals(""));
     }
-
+    
+    public boolean isValidLogin() {
+        return !(email == null || password == null
+                || email.equals("") || password.equals(""));
+    }
 }

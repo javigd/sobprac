@@ -7,7 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletContext;
 import java.io.IOException;
 
-public class SignCommand implements Command {
+public class SignupInitCommand implements Command {
 
     @Override
     public void execute(

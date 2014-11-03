@@ -5,16 +5,16 @@
  */
 package cat.urv.deim.sob.db;
 
-import javax.persistence.EntityManagerFactory;
+import cat.urv.deim.sob.persistence.ConnectionPool;
 
 /**
  *
  * @author javigd
  */
 public class SOBPersistence {
-    protected EntityManagerFactory factory;
+    protected ConnectionPool pool;
 
-    public SOBPersistence(EntityManagerFactory emf) {
-        this.factory = emf;
+    public SOBPersistence(ConnectionPool pool) {
+        this.pool = pool;
     }
 }

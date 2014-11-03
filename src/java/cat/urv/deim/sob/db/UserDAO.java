@@ -14,7 +14,7 @@ import cat.urv.deim.sob.exceptions.SOBException;
  */
 public interface UserDAO {
     
-    public SOBUser get(String id) throws SOBException;
+    public SOBUser get(String email) throws SOBException;
     
     public void add(SOBUser user) throws SOBException;
     

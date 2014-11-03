@@ -20,23 +20,32 @@ public class SOBUrl implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String longUrl;
     private String shortUrl;
-    private Long user;
+    private Long userId;
     private String useremail;
 
     public SOBUrl() {
        super();
     }
 
-    public SOBUrl(String longUrl, String shortURL, Long user, String useremail) {
+    public SOBUrl(Long id, String longUrl, String shortURL, Long userId, String useremail) {
+        this.id = id;
         this.longUrl = longUrl;
         this.shortUrl = shortURL;
-        this.user = user;
+        this.userId = userId;
         this.useremail = useremail;
     }
 
-     
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getLongUrl() {
         return longUrl;
     }
@@ -53,12 +62,12 @@ public class SOBUrl implements Serializable {
         this.shortUrl = shortUrl;
     }
 
-    public Long getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(Long user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getUseremail() {
@@ -78,12 +87,12 @@ public class SOBUrl implements Serializable {
         
         return "\nLongUrl:\t\t" + getLongUrl() + "\n"
                 + "ShortUrl:" + getShortUrl() + "\n"
-                + "user:" + getUser() + "\n"
+                + "user:" + getUserId() + "\n"
                 + "useremail:" + getUseremail() + "\n";
     }
     
     public boolean isValid() {
-        return !(longUrl == null || shortUrl == null || user == null || useremail == null);
+        return !(longUrl == null || shortUrl == null || userId == null || useremail == null);
         
-    }  
+    }
 }

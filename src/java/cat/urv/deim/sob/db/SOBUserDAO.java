@@ -8,8 +8,9 @@ package cat.urv.deim.sob.db;
 import cat.urv.deim.sob.exceptions.SOBError;
 import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.models.SOBUser;
+import cat.urv.deim.sob.persistence.ConnectionPool;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 /**
@@ -18,32 +19,34 @@ import javax.persistence.Query;
  */
 public class SOBUserDAO extends SOBPersistence implements UserDAO {
 
-    public SOBUserDAO(EntityManagerFactory emf) {
-        super(emf);
+    public SOBUserDAO(ConnectionPool pool) {
+        super(pool);
     }
 
     @Override
-    public SOBUser get(String id) throws SOBException {
-        EntityManager em = factory.createEntityManager();
+    public SOBUser get(String email) throws SOBException, NoResultException {
+        // Get a new EntityManager (connection to database)
+        EntityManager em = pool.getConnection();
         // Simple query to get a user from the DB given his ID
-        Query q = em.createQuery("SELECT u FROM SOBUser u WHERE u.id = :id");
-        q.setParameter("id", id);
-        SOBUser u = (SOBUser) q.getSingleResult();
-        if (u == null) {
-            // Trigger DAOException USER_NOT_FOUND if no user has been found with the given id 
+        Query q = em.createQuery("SELECT u FROM SOBUser u WHERE u.email = :email");
+        q.setParameter("email", email);
+        try {
+            SOBUser u = (SOBUser) q.getSingleResult();
+            em.close();
+            return u;
+        } catch (NoResultException e) {
+            em.close();
             throw new SOBException(SOBError.USER_NOT_FOUND);
         }
-        em.close();
-        return u;
     }
 
     @Override
     public void add(SOBUser user) throws SOBException {
-        if(!user.isValid()) {
+        if (!user.isValid()) {
             throw new SOBException(SOBError.USER_NOT_VALID);
         }
         // Create a new EntityManager
-        EntityManager em = factory.createEntityManager();
+        EntityManager em = pool.getConnection();
         // Execute a query to make sure that the new user has not signed up already
         Query q = em.createQuery("SELECT u FROM SOBUser u WHERE u.email = :email");
         // Users will be referenced by email
@@ -63,7 +66,7 @@ public class SOBUserDAO extends SOBPersistence implements UserDAO {
 
     @Override
     public Integer getNUsers() throws SOBException {
-        EntityManager em = factory.createEntityManager();
+        EntityManager em = pool.getConnection();
         // Perform a simple query for all the SOBUser entities
         Query q = em.createQuery("select u from SOBUser u");
         // Get number of results produced by the query and return

@@ -12,7 +12,7 @@ import cat.urv.deim.sob.models.SOBUrl;
  *
  * @author Max
  */
-public interface SOBUrlAdapter {
+public interface IUrlHandler {
 
     public String newUrl(SOBUrl url) throws SOBException;
     

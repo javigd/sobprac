@@ -1,22 +1,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="formHandler" class="cat.urv.deim.sob.handlers.FormHandler" scope="request" />
-<jsp:setProperty name="formHandler" property="*" />
-
+<!DOCTYPE html>
 <html>
     <head>
         <title>GoShort!</title>
     </head>
     <body>
-        <h2>Sign up</h2>
-        <form id="signupform" method="post" action="controller.do">
-            <input type="hidden" name="form_action" value="signup" />
+        <h2>Login</h2>
+        <form id="loginform" method="post" action="controller.do">
+            <input type="hidden" name="form_action" value="login" />
             <table>
-                <tr>
-                    <td>username:</td>
-                    <td> 
-                        <input type="text" name="username" />
-                    </td>
-                </tr>
                 <tr>
                     <td>e-mail:</td>
                     <td>
