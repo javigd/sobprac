@@ -2,11 +2,20 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>GoShort!</title>
+        <title>GoShort! | Log in</title>
     </head>
     <body>
+        <br>
         <h2>Login</h2>
-        <form id="loginform" method="post" action="login/loginsubmit.do">
+        <pre>
+            <%
+                if (request.getAttribute("responseMessage") != null) {
+                    out.print(request.getAttribute("responseMessage"));
+                }
+            %>
+        </pre>
+        <br>
+        <form id="loginform" method="post" action="loginsubmit.do">
             <input type="hidden" name="form_action" value="login" />
             <table>
                 <tr>
@@ -38,13 +47,5 @@
                 </tr>
             </table>
         </form>
-        <pre>
-            <%
-                if (request.getAttribute("errorMessage") != null) {
-                    out.print(request.getAttribute("errorMessage"));
-                }
-            %>
-        </pre>
-        <br>
     </body>
 </html>

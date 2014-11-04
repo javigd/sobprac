@@ -6,10 +6,13 @@
 package cat.urv.deim.sob;
 
 import cat.urv.deim.sob.command.Command;
+import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.persistence.ConnectionPool;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,11 +23,12 @@ import javax.servlet.http.HttpServletResponse;
  * @author javigd
  */
 public abstract class SOBController extends HttpServlet {
+
     protected final Map commands = new HashMap();
     protected String DEFAULT_OPERATION;
     protected static ConnectionPool pool;
 
-    protected void setDefaultOperation (String DEFAULT_OPERATION) {
+    protected void setDefaultOperation(String DEFAULT_OPERATION) {
         this.DEFAULT_OPERATION = DEFAULT_OPERATION;
     }
 
@@ -35,7 +39,7 @@ public abstract class SOBController extends HttpServlet {
 
         // 1. choose action
         String formAction = request.getParameter("form_action");
-        
+
         if (null == formAction) {
             formAction = DEFAULT_OPERATION;
         }
@@ -51,7 +55,7 @@ public abstract class SOBController extends HttpServlet {
         // 3. run the command
         command.execute(request, response);
     }
-    
+
     @Override
     public void doPost(
             HttpServletRequest request,
@@ -68,10 +72,17 @@ public abstract class SOBController extends HttpServlet {
 
         processCommand(request, response);
     }
-    
+
     @Override
     public void destroy() {
-        pool.closeConnectionFactory();
+        if (pool.isOpen()) {
+            Logger.getLogger(SOBController.class.getName()).log(Level.INFO, "Attempting to close connection factory...");
+            try {
+                pool.closeConnectionFactory();
+            } catch (SOBException ex) {
+                Logger.getLogger(SOBController.class.getName()).log(Level.INFO, ex.getError().getMessage());
+            }
+            Logger.getLogger(SOBController.class.getName()).log(Level.INFO, "Persistence connection factory was successfully closed.");
+        }
     }
-    
 }

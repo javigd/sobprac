@@ -4,11 +4,20 @@
 
 <html>
     <head>
-        <title>GoShort!</title>
+        <title>GoShort! | Sign up</title>
     </head>
     <body>
+        <br>
         <h2>Sign up</h2>
-        <form id="signupform" method="post" action="signup/signupsubmit.do">
+        <pre>
+            <%
+                if (request.getAttribute("responseMessage") != null) {
+                    out.print(request.getAttribute("responseMessage"));
+                }
+            %>
+        </pre>
+        <br>
+        <form id="signupform" method="post" action="signupsubmit.do">
             <input type="hidden" name="form_action" value="signup" />
             <table>
                 <tr>
@@ -46,13 +55,5 @@
                 </tr>
             </table>
         </form>
-        <pre>
-            <%
-                if (request.getAttribute("errorMessage") != null) {
-                    out.print(request.getAttribute("errorMessage"));
-                }
-            %>
-        </pre>
-        <br>
     </body>
 </html>

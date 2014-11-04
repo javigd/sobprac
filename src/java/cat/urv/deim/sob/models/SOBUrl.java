@@ -29,17 +29,19 @@ public class SOBUrl implements Serializable {
     private String shortUrl;
     private Long userId;
     private String useremail;
+    private Long nvisits;
 
     public SOBUrl() {
        super();
     }
 
-    public SOBUrl(Long id, String longUrl, String shortURL, Long userId, String useremail) {
+    public SOBUrl(Long id, String longUrl, String shortURL, Long userId, String useremail, Long nvisits) {
         this.id = id;
         this.longUrl = longUrl;
         this.shortUrl = shortURL;
         this.userId = userId;
         this.useremail = useremail;
+        this.nvisits = nvisits;
     }
 
     public Long getId() {
@@ -85,7 +87,15 @@ public class SOBUrl implements Serializable {
     public String getMessage(){
         return toString();
     }
-    
+
+    public Long getNvisits() {
+        return nvisits;
+    }
+
+    public void setNvisits(Long nvisits) {
+        this.nvisits = nvisits;
+    }
+
     @Override
     public String toString() {
         

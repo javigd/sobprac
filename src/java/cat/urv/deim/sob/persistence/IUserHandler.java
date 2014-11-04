@@ -18,6 +18,6 @@ public interface IUserHandler {
     
     public Integer numberUsers() throws SOBException;
     
-    public void doLogin(SOBUser user) throws SOBException;
+    public SOBUser doLogin(SOBUser user) throws SOBException;
     
 }

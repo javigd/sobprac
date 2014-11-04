@@ -39,7 +39,6 @@ public class URLConverter {
             decimalNumber = decimalNumber / base;
         }
         
-        System.out.print(tempVal);
         return tempVal;
     }
 }

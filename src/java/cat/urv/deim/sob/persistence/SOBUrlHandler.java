@@ -7,8 +7,10 @@ package cat.urv.deim.sob.persistence;
 
 import cat.urv.deim.sob.db.SOBUrlDAO;
 import cat.urv.deim.sob.db.UrlDAO;
+import cat.urv.deim.sob.exceptions.SOBError;
 import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.models.SOBUrl;
+import cat.urv.deim.sob.util.Config;
 
 /**
  *
@@ -25,6 +27,10 @@ public class SOBUrlHandler implements IUrlHandler {
     
     @Override
     public String newUrl(SOBUrl url) throws SOBException {
+        /* Make sure URL is long enough, raise exception notifying user otherwise */
+        if (url.getLongUrl().length() < Config.DEFAULT_MIN_URL_LENGTH) {
+            throw new SOBException(SOBError.URL_TOO_SHORT);
+        }
         //Compute short URL and store it
         SOBUrl shortenedUrl = urlDAO.add(url);
         return shortenedUrl.getShortUrl();

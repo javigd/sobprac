@@ -13,21 +13,23 @@ public enum SOBError {
 
     /* DAO Errors Relate triggered errors to HTTP codes */
     // users
-    USER_NOT_FOUND(400, "User not found."),
-    USER_ALREADY_EXISTS(409, "User already exists!"),
+    USER_NOT_FOUND(400, "Sorry, the user could not be found. You must register first."),
+    USER_ALREADY_EXISTS(409, "Sorry, this user already exists."),
     USER_NOT_VALID(410, "User not valid. Please check required fields."),
     
     // server
     INTERNAL_SERVER_ERROR(500, "Internal Server Error"),
+    INTERNAL_PERSISTENCE_ERROR(500, "Attempt to close persistence factory failed."),
     
     //URL
     URL_NOT_FOUND (1, "URL not found."),
     URL_NOT_VALID (1, "URL already exists!"),
+    URL_TOO_SHORT (1, "Sorry, your URL is not long enough to be shortened!"),
     URL_UNVALID (1, "URL not valid. Please check required fields."),
     URL_ALREADY_SHORTENED (1, "You have already shortened this URL"),
 
     /* Utils Errors */
-    BASE_NOT_SUPPORTED(1, "Base not Supported"),
+    BASE_NOT_SUPPORTED(500, "Base not Supported"),
     
     /* Client-side feedback Errors */
     REPEAT_PASSWORD(1, "The passwords you introduced do not match."),

@@ -21,6 +21,10 @@ public class ConnectionPool {
     
     public ConnectionPool() {
         factory = Persistence.createEntityManagerFactory(Config.PERSISTENCE_UNIT_NAME);
+        // Open persistence provider
+        if(!factory.isOpen()) {
+            factory.createEntityManager();
+        }
     }
     
     public EntityManager getConnection() throws SOBException {
@@ -32,8 +36,16 @@ public class ConnectionPool {
         }
     }
     
-    public void closeConnectionFactory() {
-        factory.close();
+    public void closeConnectionFactory() throws SOBException {
+        try {
+            factory.close();
+        } catch (IllegalStateException e) {
+            throw new SOBException(SOBError.INTERNAL_PERSISTENCE_ERROR);
+        }
+    }
+    
+    public boolean isOpen () {
+        return factory.isOpen();
     }
     
 }

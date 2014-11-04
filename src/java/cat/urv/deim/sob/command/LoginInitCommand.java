@@ -23,7 +23,7 @@ public class LoginInitCommand implements Command {
             HttpServletResponse response)
             throws ServletException, IOException {
         
-        request.setAttribute("error", null);
+        request.setAttribute("responseMessage", null);
         
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();

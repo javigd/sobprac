@@ -13,11 +13,11 @@ import java.io.IOException;
 public class SignupCommand implements Command {
 
     private final IUserHandler dbUsrHandler;
-    
-    public SignupCommand (IUserHandler dbHandler) {
+
+    public SignupCommand(IUserHandler dbHandler) {
         dbUsrHandler = dbHandler;
     }
-    
+
     @Override
     public void execute(
             HttpServletRequest request,
@@ -40,8 +40,9 @@ public class SignupCommand implements Command {
             // 2. Save user to Database
             SOBUser user = new SOBUser(null, username, email, encryptedPassword);
             dbUsrHandler.doSignUp(user);
+            request.setAttribute("responseMessage", "Congratulations, " + user.getUsername() + "! You have been successfully signed up!");
         } catch (SOBException ex) {
-            request.setAttribute("errorMessage", ex.getError().getMessage());
+            request.setAttribute("responseMessage", ex.getError().getMessage());
         }
 
         // 3. produce the view with the web result

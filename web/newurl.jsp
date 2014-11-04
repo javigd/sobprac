@@ -4,11 +4,20 @@
 
 <html>
     <head>
-        <title>GoShort!</title>
+        <title>GoShort! | Your URLs</title>
     </head>
     <body>
-        <h2>Shorten your URL</h2>
-        <form id="urlform" method="post" action="url/urlsubmit.do">
+        <br>
+        <h2>Make your URL goShort!</h2>
+        <pre>
+            <%
+                if (request.getAttribute("resultMessage") != null) {
+                    out.print(request.getAttribute("resultMessage"));
+                }
+            %>
+        </pre>
+        <br>
+        <form id="urlform" method="post" action="urlsubmit.do">
             <input type="hidden" name="form_action" value="newurl" />
             <table>
                 <tr>
@@ -32,13 +41,5 @@
                 </tr>
             </table>
         </form>
-        <pre>
-            <%
-                if (request.getAttribute("resultMessage") != null) {
-                    out.print(request.getAttribute("resultMessage"));
-                }
-            %>
-        </pre>
-        <br>
     </body>
 </html>

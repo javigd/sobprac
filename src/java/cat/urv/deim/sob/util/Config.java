@@ -23,6 +23,10 @@ public class Config {
     /* Controller default values */
     public static final String DEFAULT_OP_LOGIN = "logininit";
     public static final String DEFAULT_OP_SIGNUP = "signupinit";
-    public static final String DEFAULT_OP_URL = "newurl";
+    public static final String DEFAULT_OP_URL = "newurlinit";
+    
+    /* Default miscellaneous APP configuration values */
+    public static final int DEFAULT_MIN_URL_LENGTH = 26;
+    public static final int DEFAULT_CONVERT_BASE = 62;
 
 }

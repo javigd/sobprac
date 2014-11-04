@@ -38,12 +38,13 @@ public class SOBUserHandler implements IUserHandler {
     }
 
     @Override
-    public void doLogin(SOBUser user) throws SOBException {
-        SOBUser signedUser = this.userDAO.get(user.getEmail());
+    public SOBUser doLogin(SOBUser user) throws SOBException {
+        SOBUser loggedUser = this.userDAO.get(user.getEmail());
         // Check that both password hash match
-        if(!signedUser.getPassword().equals(user.getPassword())) {
+        if(!loggedUser.getPassword().equals(user.getPassword())) {
             throw new SOBException(SOBError.USER_NOT_VALID);
         }
+        return loggedUser;
     }
 
 }
