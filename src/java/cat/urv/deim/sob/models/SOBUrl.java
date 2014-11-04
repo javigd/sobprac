@@ -5,11 +5,14 @@
  */
 package cat.urv.deim.sob.models;
 
+import cat.urv.deim.sob.exceptions.SOBError;
+import cat.urv.deim.sob.exceptions.SOBException;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 /**
  *
@@ -19,7 +22,8 @@ import javax.persistence.Id;
 public class SOBUrl implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator( name = "urlSeq", sequenceName = "APP_URL_SEQ", allocationSize = 1, initialValue = 10000000 )
+    @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "urlSeq" )
     private Long id;
     private String longUrl;
     private String shortUrl;
@@ -91,8 +95,13 @@ public class SOBUrl implements Serializable {
                 + "useremail:" + getUseremail() + "\n";
     }
     
+    public void validate() throws SOBException {
+        if(longUrl == null || useremail == null) {
+            throw new SOBException(SOBError.URL_UNVALID);
+        }
+    }
+    
     public boolean isValid() {
-        return !(longUrl == null || shortUrl == null || userId == null || useremail == null);
-        
+        return !(longUrl == null || shortUrl == null || userId == null || useremail == null);  
     }
 }

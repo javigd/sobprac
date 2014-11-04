@@ -17,4 +17,7 @@ public class Config {
     public static final String TRANSACTION_TYPE = "JPA";
     public static final String DATA_SOURCE = "jdbc/sample";
     
+    /* Server shortened-url prefix */
+    public static final String SERVER_PREFIX = "http://gosho.rt/";
+    
 }

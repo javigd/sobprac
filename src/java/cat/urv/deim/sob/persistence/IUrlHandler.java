@@ -15,7 +15,5 @@ import cat.urv.deim.sob.models.SOBUrl;
 public interface IUrlHandler {
 
     public String newUrl(SOBUrl url) throws SOBException;
-    
-    
 
 }

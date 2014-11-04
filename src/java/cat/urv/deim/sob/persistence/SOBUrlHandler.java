@@ -25,10 +25,9 @@ public class SOBUrlHandler implements IUrlHandler {
     
     @Override
     public String newUrl(SOBUrl url) throws SOBException {
-        //TODO: Treat URL - compute ID - data in DB:
-        urlDAO.add(url);
-        return ("");
-        
+        //Compute short URL and store it
+        SOBUrl shortenedUrl = urlDAO.add(url);
+        return shortenedUrl.getShortUrl();
     }
     
     

@@ -9,6 +9,7 @@ import cat.urv.deim.sob.exceptions.SOBError;
 import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.models.SOBUrl;
 import cat.urv.deim.sob.persistence.ConnectionPool;
+import cat.urv.deim.sob.util.URLConverter;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -23,7 +24,8 @@ public class SOBUrlDAO extends SOBPersistence implements UrlDAO {
     }
 
     @Override
-    public SOBUrl get(String id) throws SOBException { 
+    public SOBUrl get(String id) throws SOBException {
+        //Create a new Entity Manager
         EntityManager em = pool.getConnection();
         //Simple query to get a URL from de DB given his ID
         Query q = em.createQuery("SELECT url FROM SOBUrl url WHERE url.id = :id");
@@ -38,22 +40,24 @@ public class SOBUrlDAO extends SOBPersistence implements UrlDAO {
     }
 
     @Override
-    public void add(SOBUrl url) throws SOBException {
-        if (!url.isValid()) {
-            throw new SOBException(SOBError.URL_NOT_VALID);
-        }
+    public SOBUrl add(SOBUrl url) throws SOBException {
         //Create a new Entity Manager
         EntityManager em = pool.getConnection();
         //Execute a query to make sore that the new URL has not be saved already
-        Query q = em.createQuery("SELECT url FROM SOBUrl url WHERE url.longUrl = :longUrl");
+        Query q = em.createQuery("SELECT url FROM SOBUrl url WHERE url.longUrl = :longUrl "
+                + "AND url.useremail = :usremail");
         q.setParameter("longUrl", url.getLongUrl());
+        q.setParameter("usremail", url.getUseremail());
         // URL does not exist in DB
         if (q.getResultList().isEmpty()) {
             //Add new URL to the database
             em.getTransaction().begin();
             em.persist(url);
+            em.flush();
+            url.setShortUrl(URLConverter.convert(62, url.getId()));
             em.getTransaction().commit();
             em.close();
+            return url;
         } else {
             //Throw new DAOException otherwise
             throw new SOBException(SOBError.URL_ALREADY_SHORTENED);

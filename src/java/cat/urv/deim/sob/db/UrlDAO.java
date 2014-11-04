@@ -16,6 +16,6 @@ public interface UrlDAO {
     
     public SOBUrl get (String url) throws SOBException;
     
-    public void add (SOBUrl url) throws SOBException;
+    public SOBUrl add (SOBUrl url) throws SOBException;
        
 }
