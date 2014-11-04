@@ -20,4 +20,9 @@ public class Config {
     /* Server shortened-url prefix */
     public static final String SERVER_PREFIX = "http://gosho.rt/";
     
+    /* Controller default values */
+    public static final String DEFAULT_OP_LOGIN = "logininit";
+    public static final String DEFAULT_OP_SIGNUP = "signupinit";
+    public static final String DEFAULT_OP_URL = "newurl";
+
 }

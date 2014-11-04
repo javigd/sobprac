@@ -6,7 +6,7 @@
     </head>
     <body>
         <h2>Login</h2>
-        <form id="loginform" method="post" action="/login/loginsubmit.do">
+        <form id="loginform" method="post" action="login/loginsubmit.do">
             <input type="hidden" name="form_action" value="login" />
             <table>
                 <tr>

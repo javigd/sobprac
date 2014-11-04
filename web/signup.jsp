@@ -8,7 +8,7 @@
     </head>
     <body>
         <h2>Sign up</h2>
-        <form id="signupform" method="post" action="/signup/signupsubmit.do">
+        <form id="signupform" method="post" action="signup/signupsubmit.do">
             <input type="hidden" name="form_action" value="signup" />
             <table>
                 <tr>
