@@ -39,7 +39,7 @@ public class SignupCommand implements Command {
             String encryptedPassword = new String(fh.encryptPassword());
             // 2. Save user to Database
             SOBUser user = new SOBUser(null, username, email, encryptedPassword);
-            dbUsrHandler.newUser(user);
+            dbUsrHandler.doSignUp(user);
         } catch (SOBException ex) {
             request.setAttribute("errorMessage", ex.getError().getMessage());
         }

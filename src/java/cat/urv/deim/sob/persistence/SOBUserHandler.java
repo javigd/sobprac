@@ -25,7 +25,7 @@ public class SOBUserHandler implements IUserHandler {
     }
 
     @Override
-    public void newUser(SOBUser user) throws SOBException {
+    public void doSignUp(SOBUser user) throws SOBException {
         // Save user in DB:
         this.userDAO.add(user);
     }
@@ -38,9 +38,10 @@ public class SOBUserHandler implements IUserHandler {
     }
 
     @Override
-    public void login(SOBUser user) throws SOBException {
+    public void doLogin(SOBUser user) throws SOBException {
         SOBUser signedUser = this.userDAO.get(user.getEmail());
-        if(signedUser.getPassword().equals(user.getPassword())) {
+        // Check that both password hash match
+        if(!signedUser.getPassword().equals(user.getPassword())) {
             throw new SOBException(SOBError.USER_NOT_VALID);
         }
     }

@@ -52,7 +52,7 @@ public class PersistenceTest {
         IUserHandler dbHandler = new SOBUserHandler(pool);
         SOBUser testUser = new SOBUser(null, "username", "javi@urv.cat", "password");
         try {
-            dbHandler.newUser(testUser);
+            dbHandler.doSignUp(testUser);
         } catch (SOBException ex) {
             Logger.getLogger(PersistenceTest.class.getName()).log(Level.SEVERE, null, ex);
         }

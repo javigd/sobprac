@@ -47,7 +47,7 @@ public class LoginCommand implements Command {
             String encryptedPassword = new String(fh.encryptPassword());
             // 2. Check uer in database
             SOBUser user = new SOBUser(null, null, email, encryptedPassword);
-            dbUsrHandler.login(user);
+            dbUsrHandler.doLogin(user);
         } catch (SOBException ex) {
             request.setAttribute("errorMessage", ex.getError().getMessage());
         }

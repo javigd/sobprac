@@ -8,7 +8,7 @@
     </head>
     <body>
         <h2>Shorten your URL</h2>
-        <form id="urlform" method="post" action="controller.do">
+        <form id="urlform" method="post" action="/url/urlsubmit.do">
             <input type="hidden" name="form_action" value="newurl" />
             <table>
                 <tr>

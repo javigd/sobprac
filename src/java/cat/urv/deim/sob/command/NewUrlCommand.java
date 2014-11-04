@@ -2,7 +2,6 @@ package cat.urv.deim.sob.command;
 
 import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.models.SOBUrl;
-import cat.urv.deim.sob.models.SOBUser;
 import cat.urv.deim.sob.persistence.IUrlHandler;
 import cat.urv.deim.sob.util.Config;
 import javax.servlet.http.HttpServletRequest;

@@ -22,7 +22,7 @@ import javax.persistence.SequenceGenerator;
 public class SOBUrl implements Serializable {
 
     @Id
-    @SequenceGenerator( name = "urlSeq", sequenceName = "APP_URL_SEQ", allocationSize = 1, initialValue = 10000000 )
+    @SequenceGenerator( name = "urlSeq", allocationSize = 1, initialValue = 10000000 )
     @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "urlSeq" )
     private Long id;
     private String longUrl;

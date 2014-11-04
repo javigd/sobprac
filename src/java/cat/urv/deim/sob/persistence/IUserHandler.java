@@ -14,10 +14,10 @@ import cat.urv.deim.sob.models.SOBUser;
  */
 public interface IUserHandler {
 
-    public void newUser(SOBUser user) throws SOBException;
+    public void doSignUp(SOBUser user) throws SOBException;
     
     public Integer numberUsers() throws SOBException;
     
-    public void login(SOBUser user) throws SOBException;
+    public void doLogin(SOBUser user) throws SOBException;
     
 }
