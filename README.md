@@ -5,19 +5,19 @@ Sistemes Oberts URV 2014 First Assignment. URL Shortener
 
 GoShort! A handy way to shorten your URLs
 -------------------------------------------------------------
-a NetBeans web server project,
-based on Java Servlet apps,
-architecture lying on Model-View-Controller design pattern,
-supported by Glassfish server, and
-Embedded Derby as database, using JPA as persistence API,
-and eclipseLink as automated table management.
+ - a NetBeans web server project,
+ - based on Java Servlet apps,
+ - architecture lying on Model-View-Controller design pattern,
+ - supported by Glassfish server, and
+ - Embedded Derby as database, using JPA as persistence API,
+ - and eclipseLink as automated table generation.
 
 following at all stages the plain description given by professors
-Jordi Pujol and Marc Sánchez.
+ - Jordi Pujol and Marc Sánchez.
 
-//////////////////////////
-/ Setting up the project /
-//////////////////////////
+
+Setting up the project
+-------------------------------------------------------------
 
 In order to execute this project, just clone the project into your
 Workspace, open it using NetBeans (recommended) and build it.
@@ -40,6 +40,7 @@ Inner logic based on implemented design patterns:
  - Adapter
  - Factory
  - DAO
+
 And other design decisions such as:
  - Ease-of-use as a learning resource
  - Portability, robustness of the code
@@ -60,4 +61,4 @@ Main Activities
 ![alt tag](http://i.imgur.com/CJFiH73.png)
 
 
-more info coming soon...
+more info coming very soon...
