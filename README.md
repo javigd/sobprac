@@ -58,7 +58,7 @@ And other design decisions such as:
 Main Activities
 ======
 
-![alt tag](http://i.imgur.com/CJFiH73.png)
+![alt tag](http://i.imgur.com/CxJtd64.png)
 
 
 more info coming very soon...
