@@ -29,13 +29,14 @@ public class SOBUrlHandler implements IUrlHandler {
     }
     
     @Override
-    public String newUrl(SOBUrl url) throws SOBException {
+    public String newUrl(UrlBean url) throws SOBException {
         /* Make sure URL is long enough, raise exception notifying user otherwise */
         if (url.getLongUrl().length() < Config.DEFAULT_MIN_URL_LENGTH) {
             throw new SOBException(SOBError.URL_TOO_SHORT);
         }
+        SOBUrl newUrl = new SOBUrl(null, url.getLongUrl(), null, url.getUserId(), null);
         //Compute short URL and store it
-        SOBUrl shortenedUrl = urlDAO.add(url);
+        SOBUrl shortenedUrl = urlDAO.add(newUrl);
         return shortenedUrl.getShortUrl();
     }
 
@@ -46,7 +47,7 @@ public class SOBUrlHandler implements IUrlHandler {
         // Translate SOBUrl model objects to simple bean objects to be managed by the controller
         List<UrlBean> urlBeans = new ArrayList<UrlBean>();
         for(SOBUrl url : urls) {
-            urlBeans.add(new UrlBean(url.getLongUrl(), url.getShortUrl(), url.getNvisits()));
+            urlBeans.add(new UrlBean(url.getLongUrl(), url.getShortUrl(), null, url.getNvisits()));
         }
         return urlBeans;
     }

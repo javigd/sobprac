@@ -48,9 +48,9 @@ public class SOBUrlDAO extends SOBPersistence implements UrlDAO {
         EntityManager em = pool.getConnection();
         //Execute a query to make sore that the new URL has not be saved already
         Query q = em.createQuery("SELECT url FROM SOBUrl url WHERE url.longUrl = :longUrl "
-                + "AND url.useremail = :usremail");
+                + "AND url.userId = :userId");
         q.setParameter("longUrl", url.getLongUrl());
-        q.setParameter("usremail", url.getUseremail());
+        q.setParameter("userId", url.getUserId());
         // URL does not exist in DB
         if (q.getResultList().isEmpty()) {
             //Initialize visits counter

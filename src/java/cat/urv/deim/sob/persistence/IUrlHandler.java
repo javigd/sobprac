@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface IUrlHandler {
 
-    public String newUrl(SOBUrl url) throws SOBException;
+    public String newUrl(UrlBean url) throws SOBException;
     
     public List<UrlBean> getUserUrls(String userId) throws SOBException;
 

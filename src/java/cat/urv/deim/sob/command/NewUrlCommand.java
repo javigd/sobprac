@@ -1,5 +1,6 @@
 package cat.urv.deim.sob.command;
 
+import cat.urv.deim.sob.beans.UrlBean;
 import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.models.SOBUrl;
 import cat.urv.deim.sob.persistence.IUrlHandler;
@@ -24,15 +25,15 @@ public class NewUrlCommand implements Command {
             HttpServletResponse response)
             throws ServletException, IOException {
 
-        SOBUrl url = new SOBUrl();
+        UrlBean url = new UrlBean();
         
         // 1 process the request
         String longUrl = request.getParameter("longUrl");
-        String email = request.getParameter("useremail");
         
         // 1.1 Validate form
         url.setLongUrl(longUrl);
-        url.setUseremail(email);
+        Long usrId = Long.parseLong((String) request.getSession().getAttribute("userid"));
+        url.setUserId(usrId);
         
         try {
             url.validate();

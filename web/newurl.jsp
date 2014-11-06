@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="soburl" class="cat.urv.deim.sob.models.SOBUrl" scope="request" />
-<jsp:setProperty name="soburl" property="*" />
+<jsp:useBean id="urlbean" class="cat.urv.deim.sob.beans.UrlBean" scope="request" />
+<jsp:setProperty name="urlbean" property="*" />
 
 <html>
     <head>
@@ -24,12 +24,6 @@
                     <td>Your Long URL:</td>
                     <td> 
                         <input type="text" name="longUrl" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Your e-mail:</td>
-                    <td>
-                        <input type="text" name="useremail" />
                     </td>
                 </tr>
                 <tr>

@@ -28,19 +28,17 @@ public class SOBUrl implements Serializable {
     private String longUrl;
     private String shortUrl;
     private Long userId;
-    private String useremail;
     private Long nvisits;
 
     public SOBUrl() {
        super();
     }
 
-    public SOBUrl(Long id, String longUrl, String shortURL, Long userId, String useremail, Long nvisits) {
+    public SOBUrl(Long id, String longUrl, String shortURL, Long userId, Long nvisits) {
         this.id = id;
         this.longUrl = longUrl;
         this.shortUrl = shortURL;
         this.userId = userId;
-        this.useremail = useremail;
         this.nvisits = nvisits;
     }
 
@@ -76,14 +74,6 @@ public class SOBUrl implements Serializable {
         this.userId = userId;
     }
 
-    public String getUseremail() {
-        return useremail;
-    }
-
-    public void setUseremail(String useremail) {
-        this.useremail = useremail;
-    }
-
     public String getMessage(){
         return toString();
     }
@@ -101,17 +91,16 @@ public class SOBUrl implements Serializable {
         
         return "\nLongUrl:\t\t" + getLongUrl() + "\n"
                 + "ShortUrl:" + getShortUrl() + "\n"
-                + "user:" + getUserId() + "\n"
-                + "useremail:" + getUseremail() + "\n";
+                + "user:" + getUserId() + "\n";
     }
     
     public void validate() throws SOBException {
-        if(longUrl == null || useremail == null) {
+        if(longUrl == null || userId == null) {
             throw new SOBException(SOBError.URL_UNVALID);
         }
     }
     
     public boolean isValid() {
-        return !(longUrl == null || shortUrl == null || userId == null || useremail == null);  
+        return !(longUrl == null || shortUrl == null || userId == null);  
     }
 }
