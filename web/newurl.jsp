@@ -4,7 +4,7 @@
 
 <html>
     <head>
-        <title>GoShort! | Your URLs</title>
+        <title>GoShort! | New URL</title>
     </head>
     <body>
         <br>

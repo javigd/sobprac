@@ -51,4 +51,10 @@ public class SOBUrlHandler implements IUrlHandler {
         }
         return urlBeans;
     }
+
+    @Override
+    public String getShortenedUrl(UrlBean url) throws SOBException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

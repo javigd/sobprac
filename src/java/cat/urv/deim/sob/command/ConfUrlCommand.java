@@ -1,20 +1,29 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package cat.urv.deim.sob.command;
 
 import cat.urv.deim.sob.beans.UrlBean;
 import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.persistence.IUrlHandler;
 import cat.urv.deim.sob.util.Config;
+import java.io.IOException;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.ServletException;
-import javax.servlet.ServletContext;
-import java.io.IOException;
 
-public class NewUrlCommand implements Command {
+/**
+ *
+ * @author javigd
+ */
+public class ConfUrlCommand implements Command {
 
     private final IUrlHandler dbUrlHandler;
 
-    public NewUrlCommand(IUrlHandler dbHandler) {
+    public ConfUrlCommand(IUrlHandler dbHandler) {
         dbUrlHandler = dbHandler;
     }
 

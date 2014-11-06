@@ -18,7 +18,7 @@ public class Config {
     public static final String DATA_SOURCE = "jdbc/sample";
 
     /* Server shortened-url prefix */
-    public static final String SERVER_PREFIX = "goshort/";
+    public static final String SERVER_PREFIX = "http://goshort/";
 
     /* Controller default values */
     public static final String DEFAULT_OP_LOGIN = "logininit";
@@ -29,7 +29,8 @@ public class Config {
 
     /* Default miscellaneous APP configuration values */
     public static final int DEFAULT_MIN_URL_LENGTH = 26;
+    public static final int TRIM_BYTEARRAY_SIZE = 25;
     public static final int DEFAULT_CONVERT_BASE = 62;
-    public static final int SESSION_MAX_TIME = 30*60;
+    public static final int SESSION_MAX_TIME = 30 * 60;
 
 }

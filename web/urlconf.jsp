@@ -4,7 +4,7 @@
 
 <html>
     <head>
-        <title>GoShort! | Your URLs</title>
+        <title>GoShort! | New URL</title>
     </head>
     <body>
         <br>
@@ -29,7 +29,7 @@
                 <tr>
                     <td>Your proposed short URL:</td>
                     <td>
-                        gosho.rt/<input type="text" name="longUrl" value="<%=request.getAttribute("shortUrl")%>" />
+                        <%=request.getAttribute("prefix")%><input type="text" name="shortUrl" value="<%=request.getAttribute("shortUrl")%>" />
                     </td>
                 </tr>
                 <tr>

@@ -41,6 +41,11 @@
         <a href="newurl.jsp">Shorten a new URL!</a>
         <br />
         <table>
+            <tr>
+                <th>Long URL</th>
+                <th>goShort! URL</th>
+                <th>Visits</th>
+            </tr>
             <%
                 if (request.getAttribute("responseMessage") != null) {
                     out.print(request.getAttribute("responseMessage"));
