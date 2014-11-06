@@ -9,6 +9,7 @@ import cat.urv.deim.sob.beans.UrlBean;
 import cat.urv.deim.sob.exceptions.SOBError;
 import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.persistence.IUrlHandler;
+import cat.urv.deim.sob.util.Config;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletContext;
@@ -39,11 +40,14 @@ public class IndexCommand implements Command {
 
         request.setAttribute("responseMessage", null);
         
-        try {
-            List<UrlBean> urls = dbUrlHandler.getUserUrls(userId);
-            request.setAttribute("loadedUrls", urls);
-        } catch (SOBException ex) {
-            request.setAttribute("responseMessage", SOBError.URLS_NOT_LOADED.getMessage());
+        if(userId != null) {
+            try {
+                List<UrlBean> urls = dbUrlHandler.getUserUrls(userId);
+                request.setAttribute("loadedUrls", urls);
+                request.setAttribute("prefix", Config.SERVER_PREFIX);
+            } catch (SOBException ex) {
+                request.setAttribute("responseMessage", SOBError.URLS_NOT_LOADED.getMessage());
+            }
         }
         
         // 3. produce the view with the web result

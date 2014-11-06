@@ -65,7 +65,7 @@ public class UrlBean {
     }
     
     public void validate() throws SOBException {
-        if(longUrl == null || userId == null) {
+        if(longUrl == null || userId == null || longUrl.equals("")) {
             throw new SOBException(SOBError.URL_UNVALID);
         }
     }

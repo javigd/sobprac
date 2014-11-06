@@ -32,5 +32,7 @@ public class Config {
     public static final int TRIM_BYTEARRAY_SIZE = 25;
     public static final int DEFAULT_CONVERT_BASE = 62;
     public static final int SESSION_MAX_TIME = 30 * 60;
+    public static final int MIN_SHORTENED_URL_LENGTH = 3;
+    public static final int MAX_SHORTENED_URL_LENGTH = 12;
 
 }

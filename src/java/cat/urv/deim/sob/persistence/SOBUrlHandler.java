@@ -12,6 +12,7 @@ import cat.urv.deim.sob.exceptions.SOBError;
 import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.models.SOBUrl;
 import cat.urv.deim.sob.util.Config;
+import cat.urv.deim.sob.util.URLConverter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,29 +25,31 @@ public class SOBUrlHandler implements IUrlHandler {
     private final UrlDAO urlDAO;
 
     public SOBUrlHandler(ConnectionPool pool) {
-        super ();
-        urlDAO = new SOBUrlDAO (pool);
+        super();
+        urlDAO = new SOBUrlDAO(pool);
     }
-    
+
     @Override
     public String newUrl(UrlBean url) throws SOBException {
         /* Make sure URL is long enough, raise exception notifying user otherwise */
         if (url.getLongUrl().length() < Config.DEFAULT_MIN_URL_LENGTH) {
             throw new SOBException(SOBError.URL_TOO_SHORT);
         }
-        SOBUrl newUrl = new SOBUrl(null, url.getLongUrl(), null, url.getUserId(), null);
+        SOBUrl newUrl = new SOBUrl(null, url.getLongUrl(), url.getShortUrl(), url.getUserId(), 0L);
+        // Validate this URL
+        newUrl.validate();
         //Compute short URL and store it
         SOBUrl shortenedUrl = urlDAO.add(newUrl);
         return shortenedUrl.getShortUrl();
     }
 
     @Override
-    public List<UrlBean> getUserUrls(String userId) throws SOBException {      
+    public List<UrlBean> getUserUrls(String userId) throws SOBException {
         Long id = Long.parseLong(userId);
         List<SOBUrl> urls = urlDAO.getUrlsByUserId(id);
         // Translate SOBUrl model objects to simple bean objects to be managed by the controller
         List<UrlBean> urlBeans = new ArrayList<UrlBean>();
-        for(SOBUrl url : urls) {
+        for (SOBUrl url : urls) {
             urlBeans.add(new UrlBean(url.getLongUrl(), url.getShortUrl(), null, url.getNvisits()));
         }
         return urlBeans;
@@ -54,7 +57,19 @@ public class SOBUrlHandler implements IUrlHandler {
 
     @Override
     public String getShortenedUrl(UrlBean url) throws SOBException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String longUrl = url.getLongUrl();
+        String userId = url.getUserId().toString();
+        
+        /* Make sure URL is long enough, raise exception notifying user otherwise */
+        if (url.getLongUrl().length() < Config.DEFAULT_MIN_URL_LENGTH) {
+            throw new SOBException(SOBError.URL_TOO_SHORT);
+        }
+
+        /* Get a Long value resulting from a combined hash between long URL and user ID */
+        Long combinedHashVal = URLConverter.getCombinedHashValue(longUrl, userId);
+        String shortenedUrl = URLConverter.convert(Config.DEFAULT_CONVERT_BASE, combinedHashVal);
+
+        return shortenedUrl;
     }
 
 }

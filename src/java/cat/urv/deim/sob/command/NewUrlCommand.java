@@ -39,7 +39,7 @@ public class NewUrlCommand implements Command {
         try {
             url.validate();
             // 2. Shorten and Save url to Database
-            String shortenedURL = dbUrlHandler.newUrl(url);
+            String shortenedURL = dbUrlHandler.getShortenedUrl(url);
             request.setAttribute("longUrl", longUrl);
             request.setAttribute("shortUrl", shortenedURL);
             request.setAttribute("prefix", Config.SERVER_PREFIX);

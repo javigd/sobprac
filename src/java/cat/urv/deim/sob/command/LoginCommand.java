@@ -61,10 +61,9 @@ public class LoginCommand implements Command {
             response.sendRedirect("index.do");
         } catch (SOBException ex) {
             request.setAttribute("responseMessage", ex.getError().getMessage());
+            // 3. produce the view with the web result
+            ServletContext context = request.getSession().getServletContext();
+            context.getRequestDispatcher("/login.jsp").forward(request, response);
         }
-
-        // 3. produce the view with the web result
-        ServletContext context = request.getSession().getServletContext();
-        context.getRequestDispatcher("/login.jsp").forward(request, response);
     }
 }

@@ -57,12 +57,16 @@
                     for (UrlBean urlBean : myurls) {
                         out.print("<tr>");
                         out.print("<td>" + urlBean.getLongUrl() + "</td>");
-                        out.print("<td>" + urlBean.getShortUrl() + "</td>");
+                        out.print("<td>" + request.getAttribute("prefix") + urlBean.getShortUrl() + "</td>");
                         out.print("<td>" + urlBean.getNvisits() + "</td>");
                         out.print("</tr>");
                     }
                 }
             %>
         </table>
+        <form id="logoutServlet" method="post" action="logout.do">
+            <input type="hidden" name="form_action" value="logout" />
+            <input type="submit" value="Logout" >
+        </form>
     </body>
 </html>

@@ -6,8 +6,10 @@
 package cat.urv.deim.sob;
 
 import cat.urv.deim.sob.command.Command;
+import cat.urv.deim.sob.command.ConfUrlCommand;
 import cat.urv.deim.sob.command.IndexCommand;
 import cat.urv.deim.sob.command.LoginCommand;
+import cat.urv.deim.sob.command.LogoutCommand;
 import cat.urv.deim.sob.command.NewUrlCommand;
 import cat.urv.deim.sob.command.SignupCommand;
 import cat.urv.deim.sob.exceptions.SOBException;
@@ -50,7 +52,9 @@ public class SOBController extends HttpServlet {
         this.commands.put("login", new LoginCommand(dbUsrHandler));
         this.commands.put("signup", new SignupCommand(dbUsrHandler));
         this.commands.put("newurl", new NewUrlCommand(dbUrlHandler));
+        this.commands.put("urlconf", new ConfUrlCommand(dbUrlHandler));
         this.commands.put("index", new IndexCommand(dbUrlHandler));
+        this.commands.put("logout", new LogoutCommand());
     }
 
     protected void processCommand(
@@ -60,11 +64,11 @@ public class SOBController extends HttpServlet {
 
         // 1. choose action
         String action = request.getParameter("action");
-                
+
         // Execute the corresponding form_action if no action has been defined
         // trigger the default action otherwise
         if (null == action) {
-            if(request.getParameter("form_action") != null) {
+            if (request.getParameter("form_action") != null) {
                 action = request.getParameter("form_action");
             } else {
                 action = Config.DEFAULT_ACTION;

@@ -7,6 +7,15 @@
         <title>GoShort! | New URL</title>
     </head>
     <body>
+        <%
+            //allow access only if session exists
+            String user = null;
+            if (session.getAttribute("user") == null) {
+                response.sendRedirect("login.jsp");
+            } else {
+                user = (String) session.getAttribute("user");
+            }
+        %>
         <br>
         <h2>Make your URL goShort!</h2>
         <pre>
