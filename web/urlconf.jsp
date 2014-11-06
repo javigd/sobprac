@@ -23,7 +23,13 @@
                 <tr>
                     <td>Your Long URL:</td>
                     <td> 
-                        <input type="text" name="longUrl" />
+                        <input type="text" name="longUrl" value="<%=request.getAttribute("longUrl")%>" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Your proposed short URL:</td>
+                    <td>
+                        gosho.rt/<input type="text" name="longUrl" value="<%=request.getAttribute("shortUrl")%>" />
                     </td>
                 </tr>
                 <tr>

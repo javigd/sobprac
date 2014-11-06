@@ -47,8 +47,8 @@
                 }
             %>
             <%
-                if (request.getAttribute("urls") != null) {
-                    List<UrlBean> myurls = (List<UrlBean>) request.getAttribute("urls");
+                if (request.getAttribute("loadedUrls") != null) {
+                    List<UrlBean> myurls = (List<UrlBean>) request.getAttribute("loadedUrls");
                     for (UrlBean urlBean : myurls) {
                         out.print("<tr>");
                         out.print("<td>" + urlBean.getLongUrl() + "</td>");
