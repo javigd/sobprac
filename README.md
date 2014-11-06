@@ -22,15 +22,17 @@ Setting up the project
 In order to execute this project, just clone the project into your
 Workspace, open it using NetBeans (recommended) and build it.
 
-Then simply execute the web application it should be deployed without
+Then simply execute the web application. It should be deployed without
 any inconvenient.
 
 NOTE that JPA, JTA and EclipseLink will generate automatically the
 required database resources within the "sample" database provided by
 default on NetBeans, using the parameters set on META-INF/persistence.xml.
 
-If you experience any issue please check that your system parameters
-match the ones specified by persistence.xml.
+If you experience any issue, check that your system parameters
+match the ones specified in persistence.xml and please let us know about it.
+
+Contact us: javigd.dtk@gmail.com gonzalezcorvini@gmail.com
 
 ----------------------------------------------------------
 
