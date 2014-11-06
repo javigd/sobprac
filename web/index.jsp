@@ -14,11 +14,10 @@
             //allow access only if session exists
             String user = null;
             if (session.getAttribute("user") == null) {
-                response.sendRedirect("logininit.do");
+                response.sendRedirect("login.jsp");
             } else {
                 user = (String) session.getAttribute("user");
             }
-            request.setAttribute("action", "newurlinit");
             String userName = null;
             String sessionID = null;
             Cookie[] cookies = request.getCookies();
@@ -39,7 +38,7 @@
         <h2>GoShort! The handy way to shorten your URLs</h2>
         <br />
         <h3>Your URLs:</h3>
-        <a href="newurlinit.do">Shorten a new URL!</a>
+        <a href="newurl.jsp">Shorten a new URL!</a>
         <br />
         <table>
             <%

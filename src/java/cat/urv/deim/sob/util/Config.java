@@ -24,8 +24,8 @@ public class Config {
     public static final String DEFAULT_OP_LOGIN = "logininit";
     public static final String DEFAULT_OP_SIGNUP = "signupinit";
     public static final String DEFAULT_OP_URL = "newurlinit";
-    public static final String DEFAULT_OP_INDEX = "indexinit";
-    public static final String DEFAULT_ACTION = DEFAULT_OP_LOGIN;
+    public static final String DEFAULT_OP_INDEX = "index";
+    public static final String DEFAULT_ACTION = DEFAULT_OP_INDEX;
 
     /* Default miscellaneous APP configuration values */
     public static final int DEFAULT_MIN_URL_LENGTH = 26;

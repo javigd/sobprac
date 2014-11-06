@@ -46,6 +46,6 @@
             </table>
         </form>
         <br>
-        <a href="signupinit.do">Register</a>
+        <a href="signup.jsp">Register</a>
     </body>
 </html>

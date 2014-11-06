@@ -54,7 +54,7 @@ public class LoginCommand implements Command {
             //set session attributes
             HttpSession session = request.getSession(true);
             session.setAttribute("user", userName);
-            session.setAttribute("userid", loggedUser.getId());
+            session.setAttribute("userid", loggedUser.getId().toString());
             session.setMaxInactiveInterval(Config.SESSION_MAX_TIME);
             Cookie userCookie = new SOBCookie("user", userName);
             response.addCookie(userCookie);

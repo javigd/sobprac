@@ -28,6 +28,8 @@ public class SignupCommand implements Command {
             HttpServletResponse response)
             throws ServletException, IOException {
 
+        String fw = "/signup.jsp";
+
         // 1 process the request
         String username = request.getParameter("username");
         String email = request.getParameter("email");
@@ -46,18 +48,19 @@ public class SignupCommand implements Command {
             SOBUser signedUser = dbUsrHandler.doSignUp(user);
             //set session attributes
             HttpSession session = request.getSession(true);
-            session.setAttribute("user", username);
-            session.setAttribute("userid", signedUser.getId());
             session.setMaxInactiveInterval(Config.SESSION_MAX_TIME);
+            session.setAttribute("user", username);
+            session.setAttribute("userid", signedUser.getId().toString());
             Cookie userCookie = new SOBCookie("user", username);
             response.addCookie(userCookie);
+            request.setAttribute("form_action", null);
+            request.setAttribute("action", null);
             response.sendRedirect("index.do");
         } catch (SOBException ex) {
             request.setAttribute("responseMessage", ex.getError().getMessage());
+            // 3. produce the view with the web result
+            ServletContext context = request.getSession().getServletContext();
+            context.getRequestDispatcher(fw).forward(request, response);
         }
-
-        // 3. produce the view with the web result
-        ServletContext context = request.getSession().getServletContext();
-        context.getRequestDispatcher("/signup.jsp").forward(request, response);
     }
 }

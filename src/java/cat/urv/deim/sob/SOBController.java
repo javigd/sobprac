@@ -6,12 +6,10 @@
 package cat.urv.deim.sob;
 
 import cat.urv.deim.sob.command.Command;
+import cat.urv.deim.sob.command.IndexCommand;
 import cat.urv.deim.sob.command.LoginCommand;
-import cat.urv.deim.sob.command.LoginInitCommand;
 import cat.urv.deim.sob.command.NewUrlCommand;
-import cat.urv.deim.sob.command.NewUrlInitCommand;
 import cat.urv.deim.sob.command.SignupCommand;
-import cat.urv.deim.sob.command.SignupInitCommand;
 import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.persistence.ConnectionPool;
 import cat.urv.deim.sob.persistence.IUrlHandler;
@@ -49,12 +47,10 @@ public class SOBController extends HttpServlet {
         /* Get a new URL Handler for URL management */
         dbUrlHandler = new SOBUrlHandler(pool);
         // list of commands
-        this.commands.put("logininit", new LoginInitCommand());
         this.commands.put("login", new LoginCommand(dbUsrHandler));
-        this.commands.put("signupinit", new SignupInitCommand());
         this.commands.put("signup", new SignupCommand(dbUsrHandler));
-        this.commands.put("newurlinit", new NewUrlInitCommand());
         this.commands.put("newurl", new NewUrlCommand(dbUrlHandler));
+        this.commands.put("index", new IndexCommand(dbUrlHandler));
     }
 
     protected void processCommand(
@@ -64,12 +60,7 @@ public class SOBController extends HttpServlet {
 
         // 1. choose action
         String action = request.getParameter("action");
-        
-        // Is there any other way to do this??
-//        String context = request.getRequestURI();
-//        String ops[] = context.split("/");
-//        String op = ops[ops.length - 1].split(".")[0];
-        
+                
         // Execute the corresponding form_action if no action has been defined
         // trigger the default action otherwise
         if (null == action) {

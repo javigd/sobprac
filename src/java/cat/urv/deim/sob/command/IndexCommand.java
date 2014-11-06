@@ -35,7 +35,7 @@ public class IndexCommand implements Command {
             throws ServletException, IOException {
 
         // 1 process the request
-        String userId = request.getParameter("userid");
+        String userId = (String) request.getSession().getAttribute("userid");
 
         request.setAttribute("responseMessage", null);
         
