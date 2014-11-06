@@ -24,7 +24,7 @@ public class LoginInitCommand implements Command {
             throws ServletException, IOException {
         
         request.setAttribute("responseMessage", null);
-        
+
         // 2. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
         context.getRequestDispatcher("/login.jsp").forward(request, response);

@@ -1,4 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="formHandler" class="cat.urv.deim.sob.beans.FormHandler" scope="request" />
+<jsp:setProperty name="formHandler" property="*" />
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,6 +12,7 @@
         <h2>Login</h2>
         <pre>
             <%
+                request.setAttribute("action", "signupinit");
                 if (request.getAttribute("responseMessage") != null) {
                     out.print(request.getAttribute("responseMessage"));
                 }
@@ -33,12 +37,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>repeat your password:</td>
-                    <td>
-                        <input type="password" name="passwordRepeat" />
-                    </td>
-                </tr>
-                <tr>
                     <td>
                         <input type="submit" name="enter_button" value="Enter" />
                     </td>
@@ -47,5 +45,7 @@
                 </tr>
             </table>
         </form>
+        <br>
+        <a href="signupinit.do">Register</a>
     </body>
 </html>

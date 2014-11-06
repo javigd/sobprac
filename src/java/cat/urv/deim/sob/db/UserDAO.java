@@ -16,7 +16,7 @@ public interface UserDAO {
     
     public SOBUser get(String email) throws SOBException;
     
-    public void add(SOBUser user) throws SOBException;
+    public SOBUser add(SOBUser user) throws SOBException;
     
     public Integer getNUsers() throws SOBException;
     

@@ -27,6 +27,7 @@ public enum SOBError {
     URL_TOO_SHORT (1, "Sorry, your URL is not long enough to be shortened!"),
     URL_UNVALID (1, "URL not valid. Please check required fields."),
     URL_ALREADY_SHORTENED (1, "You have already shortened this URL"),
+    URLS_NOT_LOADED(1, "Sorry, no URLs could be loaded. Try adding a new one!"),
 
     /* Utils Errors */
     BASE_NOT_SUPPORTED(500, "Base not Supported"),

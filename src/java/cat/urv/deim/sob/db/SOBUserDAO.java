@@ -41,7 +41,7 @@ public class SOBUserDAO extends SOBPersistence implements UserDAO {
     }
 
     @Override
-    public void add(SOBUser user) throws SOBException {
+    public SOBUser add(SOBUser user) throws SOBException {
         if (!user.isValid()) {
             throw new SOBException(SOBError.USER_NOT_VALID);
         }
@@ -62,6 +62,7 @@ public class SOBUserDAO extends SOBPersistence implements UserDAO {
             // Throw new DAOException otherwise
             throw new SOBException(SOBError.USER_ALREADY_EXISTS);
         }
+        return user;
     }
 
     @Override

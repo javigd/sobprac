@@ -7,7 +7,7 @@ package cat.urv.deim.sob.test;
 
 import cat.urv.deim.sob.exceptions.SOBError;
 import cat.urv.deim.sob.exceptions.SOBException;
-import cat.urv.deim.sob.handlers.FormHandler;
+import cat.urv.deim.sob.beans.FormHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.After;

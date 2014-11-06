@@ -5,12 +5,15 @@
  */
 package cat.urv.deim.sob.persistence;
 
+import cat.urv.deim.sob.beans.UrlBean;
 import cat.urv.deim.sob.db.SOBUrlDAO;
 import cat.urv.deim.sob.db.UrlDAO;
 import cat.urv.deim.sob.exceptions.SOBError;
 import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.models.SOBUrl;
 import cat.urv.deim.sob.util.Config;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -35,6 +38,16 @@ public class SOBUrlHandler implements IUrlHandler {
         SOBUrl shortenedUrl = urlDAO.add(url);
         return shortenedUrl.getShortUrl();
     }
-    
-    
+
+    @Override
+    public List<UrlBean> getUserUrls(String userId) throws SOBException {      
+        Long id = Long.parseLong(userId);
+        List<SOBUrl> urls = urlDAO.getUrlsByUserId(id);
+        // Translate SOBUrl model objects to simple bean objects to be managed by the controller
+        List<UrlBean> urlBeans = new ArrayList<UrlBean>();
+        for(SOBUrl url : urls) {
+            urlBeans.add(new UrlBean(url.getLongUrl(), url.getShortUrl(), url.getNvisits()));
+        }
+        return urlBeans;
+    }
 }

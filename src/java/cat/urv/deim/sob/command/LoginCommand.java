@@ -6,14 +6,18 @@
 package cat.urv.deim.sob.command;
 
 import cat.urv.deim.sob.exceptions.SOBException;
-import cat.urv.deim.sob.handlers.FormHandler;
+import cat.urv.deim.sob.beans.FormHandler;
 import cat.urv.deim.sob.models.SOBUser;
 import cat.urv.deim.sob.persistence.IUserHandler;
+import cat.urv.deim.sob.session.SOBCookie;
+import cat.urv.deim.sob.util.Config;
 import java.io.IOException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -22,8 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginCommand implements Command {
 
     private final IUserHandler dbUsrHandler;
-    
-    public LoginCommand (IUserHandler dbHandler) {
+
+    public LoginCommand(IUserHandler dbHandler) {
         dbUsrHandler = dbHandler;
     }
 
@@ -36,19 +40,25 @@ public class LoginCommand implements Command {
         // 1 process the request
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        String passwordRepeat = request.getParameter("passwordRepeat");
 
         // 1.1 Validate form
-        FormHandler fh = new FormHandler(null, email, password, passwordRepeat);
+        FormHandler fh = new FormHandler(null, email, password, null);
 
         try {
             fh.validateLogin();
-            // TODO: Encrypt password on the client-side!
             String encryptedPassword = new String(fh.encryptPassword());
             // 2. Check uer in database
             SOBUser user = new SOBUser(null, null, email, encryptedPassword);
             SOBUser loggedUser = dbUsrHandler.doLogin(user);
-            request.setAttribute("responseMessage", "Welcome back, " + loggedUser.getUsername() + "!");
+            String userName = loggedUser.getUsername();
+            //set session attributes
+            HttpSession session = request.getSession(true);
+            session.setAttribute("user", userName);
+            session.setAttribute("userid", loggedUser.getId());
+            session.setMaxInactiveInterval(Config.SESSION_MAX_TIME);
+            Cookie userCookie = new SOBCookie("user", userName);
+            response.addCookie(userCookie);
+            response.sendRedirect("index.do");
         } catch (SOBException ex) {
             request.setAttribute("responseMessage", ex.getError().getMessage());
         }

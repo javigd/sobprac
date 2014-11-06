@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cat.urv.deim.sob.handlers;
+package cat.urv.deim.sob.beans;
 
 import cat.urv.deim.sob.exceptions.SOBError;
 import cat.urv.deim.sob.exceptions.SOBException;
@@ -48,9 +48,6 @@ public class FormHandler {
     public boolean validateLogin() throws SOBException { 
         if (!isValidLogin()) {
             throw new SOBException(SOBError.INCOMPLETE_FIELDS);
-        }
-        else if (!password.equals(passwordRepeat)) {
-            throw new SOBException(SOBError.REPEAT_PASSWORD);
         }
         return true;
     }
