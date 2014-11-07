@@ -1,9 +1,10 @@
-sobprac
-=======
-
 Sistemes Oberts URV 2014 First Assignment. URL Shortener
 
 GoShort! A handy way to shorten your URLs
+=======
+
+
+Description
 -------------------------------------------------------------
  - a NetBeans web server project,
  - based on Java Servlet apps,
@@ -22,15 +23,16 @@ Setting up the project
 In order to execute this project, just clone the project into your
 Workspace, open it using NetBeans (recommended) and build it.
 
-Then simply execute the web application it should be deployed without
+Then simply execute the web application. It should be deployed without
 any inconvenient.
 
 NOTE that JPA, JTA and EclipseLink will generate automatically the
 required database resources within the "sample" database provided by
 default on NetBeans, using the parameters set on META-INF/persistence.xml.
 
-If you experience any issue please check that your system parameters
-match the ones specified by persistence.xml.
+If you experience any issue, check that your system parameters
+match the ones specified in persistence.xml and please let us know about it.
+
 
 ----------------------------------------------------------
 
@@ -55,10 +57,26 @@ And other design decisions such as:
 
 ----------------------------------------------------------
 
-Main Activities
+Main View States
 ======
 
-![alt tag](http://i.imgur.com/CJFiH73.png)
+![alt tag](http://i.imgur.com/CxJtd64.png)
 
 
-more info coming very soon...
+
+Architecture Overview
+======
+
+![alt tag](http://i.imgur.com/0hQJICx.png)
+
+
+
+UML Plain Class Diagram
+======
+
+![alt tag](http://i.imgur.com/g8DKZVu.png)
+
+
+Contact us: 
+ - Javi Garcia:          javigd.dtk@gmail.com
+ - Maximiliano González: gonzalezcorvini@gmail.com
