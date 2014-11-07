@@ -18,14 +18,16 @@ public class Config {
     public static final String DATA_SOURCE = "jdbc/sample";
 
     /* Server shortened-url prefix */
-    public static final String SERVER_PREFIX = "http://goshort/";
+    public static final String SERVER_PREFIX = "http://gosho/rt/";
 
     /* Controller default values */
-    public static final String DEFAULT_OP_LOGIN = "logininit";
-    public static final String DEFAULT_OP_SIGNUP = "signupinit";
-    public static final String DEFAULT_OP_URL = "newurlinit";
+    public static final String DEFAULT_OP_LOGIN = "login";
+    public static final String DEFAULT_OP_SIGNUP = "signup";
+    public static final String DEFAULT_OP_URL = "newurl";
     public static final String DEFAULT_OP_INDEX = "index";
+    public static final String DEFAULT_OP_REDIRECT = "redir";
     public static final String DEFAULT_ACTION = DEFAULT_OP_INDEX;
+
 
     /* Default miscellaneous APP configuration values */
     public static final int DEFAULT_MIN_URL_LENGTH = 26;
@@ -33,6 +35,6 @@ public class Config {
     public static final int DEFAULT_CONVERT_BASE = 62;
     public static final int SESSION_MAX_TIME = 30 * 60;
     public static final int MIN_SHORTENED_URL_LENGTH = 3;
-    public static final int MAX_SHORTENED_URL_LENGTH = 12;
+    public static final int MAX_SHORTENED_URL_LENGTH = 6;
 
 }

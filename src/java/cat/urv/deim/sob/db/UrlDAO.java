@@ -18,8 +18,10 @@ public interface UrlDAO {
     public SOBUrl get(Long urlId) throws SOBException;
 
     public SOBUrl add(SOBUrl url) throws SOBException;
+    
+    public SOBUrl updateVisits(SOBUrl url) throws SOBException;
 
-    public void addVisit(Long urlId) throws SOBException;
+    public SOBUrl getUrlFromShort(String urlId) throws SOBException;
     
     public List<SOBUrl> getUrlsByUserId(Long userId) throws SOBException;
        

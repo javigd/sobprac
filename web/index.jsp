@@ -57,7 +57,7 @@
                     for (UrlBean urlBean : myurls) {
                         out.print("<tr>");
                         out.print("<td>" + urlBean.getLongUrl() + "</td>");
-                        out.print("<td>" + request.getAttribute("prefix") + urlBean.getShortUrl() + "</td>");
+                        out.print("<td><a href=\"rt/" + urlBean.getShortUrl() + "\">" + request.getAttribute("prefix") + urlBean.getShortUrl() + "</a></td>");
                         out.print("<td>" + urlBean.getNvisits() + "</td>");
                         out.print("</tr>");
                     }

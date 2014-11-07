@@ -11,6 +11,7 @@ import cat.urv.deim.sob.command.IndexCommand;
 import cat.urv.deim.sob.command.LoginCommand;
 import cat.urv.deim.sob.command.LogoutCommand;
 import cat.urv.deim.sob.command.NewUrlCommand;
+import cat.urv.deim.sob.command.RedirectCommand;
 import cat.urv.deim.sob.command.SignupCommand;
 import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.persistence.ConnectionPool;
@@ -24,6 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -55,6 +57,7 @@ public class SOBController extends HttpServlet {
         this.commands.put("urlconf", new ConfUrlCommand(dbUrlHandler));
         this.commands.put("index", new IndexCommand(dbUrlHandler));
         this.commands.put("logout", new LogoutCommand());
+        this.commands.put("redir", new RedirectCommand(dbUrlHandler));
     }
 
     protected void processCommand(
@@ -64,12 +67,16 @@ public class SOBController extends HttpServlet {
 
         // 1. choose action
         String action = request.getParameter("action");
-
+//        String res = request.getPathInfo();
+        
         // Execute the corresponding form_action if no action has been defined
         // trigger the default action otherwise
         if (null == action) {
             if (request.getParameter("form_action") != null) {
                 action = request.getParameter("form_action");
+//            } else if (!res.contains(".")) {
+//                //FIXME: MAKE THIS SAFER
+//                action = Config.DEFAULT_OP_REDIRECT;
             } else {
                 action = Config.DEFAULT_ACTION;
             }

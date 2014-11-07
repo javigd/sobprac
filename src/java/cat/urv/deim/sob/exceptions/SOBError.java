@@ -29,6 +29,7 @@ public enum SOBError {
     URL_UNVALID(1, "URL not valid. Please check required fields."),
     URL_ALREADY_SHORTENED(1, "Sorry, this goShort! URL already exists, try with a new one please."),
     URLS_NOT_LOADED(1, "Sorry, no URLs could be loaded. Try adding a new one!"),
+    BAD_GOSHORT_URL(1, "Sorry, the goShort! URL you tried to reach is either not available or no longer exists!"),
     /* Utils Errors */
     BASE_NOT_SUPPORTED(500, "Base not Supported"),
     /* Client-side feedback Errors */
