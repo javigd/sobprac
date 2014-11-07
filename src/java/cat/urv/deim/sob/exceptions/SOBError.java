@@ -15,26 +15,26 @@ public enum SOBError {
     // users
     USER_NOT_FOUND(400, "Sorry, the user could not be found. You must register first."),
     USER_ALREADY_EXISTS(409, "Sorry, this user already exists."),
-    USER_NOT_VALID(410, "User not valid. Please check required fields."),
-    
+    USER_NOT_VALID(410, "User or password incorrect. Please check required fields."),
     // server
     INTERNAL_SERVER_ERROR(500, "Internal Server Error"),
     INTERNAL_PERSISTENCE_ERROR(500, "Attempt to close persistence factory failed."),
-    
     //URL
-    URL_NOT_FOUND (1, "URL not found."),
-    URL_NOT_VALID (1, "URL already exists!"),
-    URL_TOO_SHORT (1, "Sorry, your URL is not long enough to be shortened!"),
-    URL_UNVALID (1, "URL not valid. Please check required fields."),
-    URL_ALREADY_SHORTENED (1, "You have already shortened this URL"),
-
+    URL_NOT_FOUND(1, "URL not found."),
+    URL_NOT_VALID(1, "URL already exists!"),
+    URL_TOO_SHORT(1, "Sorry, your URL is not long enough to be shortened!"),
+    SHORT_URL_TOO_SHORT(1, "Sorry, your short URL cannot be shorter than 3 characters."),
+    SHORT_URL_TOO_LONG(1, "Sorry, your short URL cannot be longer than 12 characters."),
+    SHORT_URL_BAD_CHARS(1, "Sorry, your short URL should only contain characters combining a-z, A-Z and 0-9!"),
+    URL_UNVALID(1, "URL not valid. Please check required fields."),
+    URL_ALREADY_SHORTENED(1, "Sorry, this goShort! URL already exists, try with a new one please."),
+    URLS_NOT_LOADED(1, "Sorry, no URLs could be loaded. Try adding a new one!"),
     /* Utils Errors */
     BASE_NOT_SUPPORTED(500, "Base not Supported"),
-    
     /* Client-side feedback Errors */
     REPEAT_PASSWORD(1, "The passwords you introduced do not match."),
     INCOMPLETE_FIELDS(1, "Please make sure you fill all required fields.");
-    
+
     private final int code;
     private final String message;
 

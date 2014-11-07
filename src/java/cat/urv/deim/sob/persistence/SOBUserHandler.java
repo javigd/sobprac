@@ -25,9 +25,9 @@ public class SOBUserHandler implements IUserHandler {
     }
 
     @Override
-    public void doSignUp(SOBUser user) throws SOBException {
+    public SOBUser doSignUp(SOBUser user) throws SOBException {
         // Save user in DB:
-        this.userDAO.add(user);
+        return this.userDAO.add(user);
     }
 
     @Override

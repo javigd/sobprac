@@ -26,13 +26,19 @@
             %>
         </pre>
         <br>
-        <form id="urlform" method="post" action="urlsubmit.do">
-            <input type="hidden" name="form_action" value="newurl" />
+        <form id="urlform" method="post" action="urlconf.do">
+            <input type="hidden" name="form_action" value="urlconf" />
             <table>
                 <tr>
                     <td>Your Long URL:</td>
                     <td> 
-                        <input type="text" name="longUrl" />
+                        <input type="text" name="longUrl" value="<%=request.getAttribute("longUrl")%>" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Your proposed short URL:</td>
+                    <td>
+                        <%=request.getAttribute("prefix")%><input type="text" name="shortUrl" value="<%=request.getAttribute("shortUrl")%>" />
                     </td>
                 </tr>
                 <tr>

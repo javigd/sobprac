@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="formHandler" class="cat.urv.deim.sob.handlers.FormHandler" scope="request" />
+<jsp:useBean id="formHandler" class="cat.urv.deim.sob.beans.FormHandler" scope="request" />
 <jsp:setProperty name="formHandler" property="*" />
 
 <html>

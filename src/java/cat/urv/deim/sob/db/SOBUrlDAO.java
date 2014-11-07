@@ -47,20 +47,13 @@ public class SOBUrlDAO extends SOBPersistence implements UrlDAO {
         //Create a new Entity Manager
         EntityManager em = pool.getConnection();
         //Execute a query to make sore that the new URL has not be saved already
-        Query q = em.createQuery("SELECT url FROM SOBUrl url WHERE url.longUrl = :longUrl "
-                + "AND url.useremail = :usremail");
-        q.setParameter("longUrl", url.getLongUrl());
-        q.setParameter("usremail", url.getUseremail());
+        Query q = em.createQuery("SELECT url FROM SOBUrl url WHERE url.shortUrl = :shortUrl");
+        q.setParameter("shortUrl", url.getShortUrl());
         // URL does not exist in DB
         if (q.getResultList().isEmpty()) {
-            //Initialize visits counter
-            url.setNvisits(0L);
             //Add new URL to the database
             em.getTransaction().begin();
             em.persist(url);
-            em.flush();
-            // Shorten long URL using its unique ID assigned
-            url.setShortUrl(URLConverter.convert(Config.DEFAULT_CONVERT_BASE, url.getId()));
             em.getTransaction().commit();
             em.close();
             return url;
