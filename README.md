@@ -57,10 +57,22 @@ And other design decisions such as:
 
 ----------------------------------------------------------
 
-Main Activities
+Main View States
 ======
 
 ![alt tag](http://i.imgur.com/CxJtd64.png)
+
+
+Architecture Overview
+======
+
+
+
+UML Plain Class Diagram
+======
+
+![alt tag](http://i.imgur.com/g8DKZVu.png)
+
 
 
 more info coming very soon...
