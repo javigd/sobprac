@@ -34,13 +34,11 @@
             }
         %>
 
-        Welcome back, <%=userName%>
-        <br />
-        <h2>GoShort! The handy way to shorten your URLs</h2>
-        <br />
-        <h3>Your URLs:</h3>
-        <a href="newurl.jsp">Shorten a new URL!</a>
-        <br />
+        <p>Welcome back, <%=userName%></p>
+        <h6>The handy way to shorten your URLs</h6>
+        <h2>GoShort!</h2>
+        <hr>
+        <h3>Your URLs</h3>
         <table>
             <tr>
                 <th>Long URL</th>
@@ -58,13 +56,15 @@
                     for (UrlBean urlBean : myurls) {
                         out.print("<tr>");
                         out.print("<td>" + urlBean.getLongUrl() + "</td>");
-                        out.print("<td>" + request.getAttribute("prefix") + urlBean.getShortUrl() + "</td>");
+                        out.print("<td><a href=\"rt/" + urlBean.getShortUrl() + "\">" + request.getAttribute("prefix") + urlBean.getShortUrl() + "</a></td>");
                         out.print("<td>" + urlBean.getNvisits() + "</td>");
                         out.print("</tr>");
                     }
                 }
             %>
         </table>
+        <a href="newurl.jsp">Shorten a new URL!</a>
+        <br>
         <form id="logoutServlet" method="post" action="logout.do">
             <input type="hidden" name="form_action" value="logout" />
             <input type="submit" value="Logout" >

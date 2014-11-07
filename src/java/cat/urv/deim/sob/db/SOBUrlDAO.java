@@ -9,11 +9,10 @@ import cat.urv.deim.sob.exceptions.SOBError;
 import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.models.SOBUrl;
 import cat.urv.deim.sob.persistence.ConnectionPool;
-import cat.urv.deim.sob.util.Config;
-import cat.urv.deim.sob.util.URLConverter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 /**
@@ -65,12 +64,6 @@ public class SOBUrlDAO extends SOBPersistence implements UrlDAO {
     }
 
     @Override
-    public void addVisit(Long urlId) throws SOBException {
-        //TODO: Add +1 to nvisits field of a given url
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public List<SOBUrl> getUrlsByUserId(Long userId) throws SOBException {
         List<SOBUrl> urlList = new ArrayList<SOBUrl>();
         //Create a new Entity Manager
@@ -88,5 +81,36 @@ public class SOBUrlDAO extends SOBPersistence implements UrlDAO {
         }
         em.close();
         return (urlList);
+    }
+
+    @Override
+    public SOBUrl getUrlFromShort(String shortUrlId) throws SOBException {
+        //Create a new Entity Manager
+        EntityManager em = pool.getConnection();
+        //Simple query to get a URL from de DB given his ID
+        Query q = em.createQuery("SELECT url FROM SOBUrl url WHERE url.shortUrl = :urlId");
+        q.setParameter("urlId", shortUrlId);
+        try {
+            SOBUrl url = (SOBUrl) q.getSingleResult();
+            em.close();
+            return (url);
+        } catch (NoResultException e) {
+            em.close();
+            throw new SOBException(SOBError.BAD_GOSHORT_URL);
+        }
+    }
+
+    @Override
+    public SOBUrl updateVisits(SOBUrl url) throws SOBException {
+        //Create a new Entity Manager
+        EntityManager em = pool.getConnection();
+        // Look for the table object and update it
+        SOBUrl myUrl = (SOBUrl) em.find(SOBUrl.class, url.getId());
+        em.getTransaction().begin();
+        myUrl.setNvisits(url.getNvisits());
+        em.getTransaction().commit();
+        em.close();
+
+        return url;
     }
 }

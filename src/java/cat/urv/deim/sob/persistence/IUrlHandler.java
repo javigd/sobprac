@@ -19,6 +19,8 @@ public interface IUrlHandler {
     
     public String getShortenedUrl(UrlBean url) throws SOBException;
     
+    public String visit(String shortUrl) throws SOBException;
+    
     public List<UrlBean> getUserUrls(String userId) throws SOBException;
 
 }

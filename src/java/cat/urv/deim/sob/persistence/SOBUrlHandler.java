@@ -69,7 +69,26 @@ public class SOBUrlHandler implements IUrlHandler {
         Long combinedHashVal = URLConverter.getCombinedHashValue(longUrl, userId);
         String shortenedUrl = URLConverter.convert(Config.DEFAULT_CONVERT_BASE, combinedHashVal);
 
+        /* Make sure short URL provided is short enough, trim it otherwise */
+        if(shortenedUrl.length() > Config.MAX_SHORTENED_URL_LENGTH) {
+            shortenedUrl = shortenedUrl.substring(0, Config.MAX_SHORTENED_URL_LENGTH - 1);
+        }
+        
         return shortenedUrl;
+    }
+
+    @Override
+    public String visit(String shortUrl) throws SOBException {
+        shortUrl = shortUrl.replace("/", "");
+        //get the long url
+        SOBUrl url = urlDAO.getUrlFromShort(shortUrl);
+        //update number of visits
+        Long nvisits = url.getNvisits();
+        nvisits+=1;
+        url.setNvisits(nvisits);
+        urlDAO.updateVisits(url);
+        
+        return url.getLongUrl();
     }
 
 }

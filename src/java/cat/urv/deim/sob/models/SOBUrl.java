@@ -24,7 +24,6 @@ public class SOBUrl implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
     private String longUrl;
     private String shortUrl;
@@ -114,7 +113,7 @@ public class SOBUrl implements Serializable {
     public boolean isValid() {
         return !(longUrl == null || shortUrl == null || userId == null);
     }
-
+    
     private boolean containsWeirdChars(String str) {
         str = str.replaceAll("[a-zA-Z0-9]", "");
         return str.length() > 0;

@@ -19,7 +19,6 @@
                 }
             %>
         </pre>
-        <br>
         <form id="loginform" method="post" action="loginsubmit.do">
             <input type="hidden" name="form_action" value="login" />
             <table>

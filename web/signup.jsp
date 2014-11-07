@@ -17,7 +17,6 @@
                 }
             %>
         </pre>
-        <br>
         <form id="signupform" method="post" action="signupsubmit.do">
             <input type="hidden" name="form_action" value="signup" />
             <table>
