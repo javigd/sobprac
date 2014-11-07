@@ -8,6 +8,7 @@
         <title>
             GoShort!
         </title>
+        <link href="design/ion/css/style.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <%
