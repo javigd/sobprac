@@ -1,9 +1,10 @@
-sobprac
-=======
-
 Sistemes Oberts URV 2014 First Assignment. URL Shortener
 
 GoShort! A handy way to shorten your URLs
+=======
+
+
+Description
 -------------------------------------------------------------
  - a NetBeans web server project,
  - based on Java Servlet apps,
@@ -32,7 +33,6 @@ default on NetBeans, using the parameters set on META-INF/persistence.xml.
 If you experience any issue, check that your system parameters
 match the ones specified in persistence.xml and please let us know about it.
 
-Contact us: javigd.dtk@gmail.com gonzalezcorvini@gmail.com
 
 ----------------------------------------------------------
 
@@ -63,8 +63,11 @@ Main View States
 ![alt tag](http://i.imgur.com/CxJtd64.png)
 
 
+
 Architecture Overview
 ======
+
+![alt tag](http://i.imgur.com/0hQJICx.png)
 
 
 
@@ -74,5 +77,6 @@ UML Plain Class Diagram
 ![alt tag](http://i.imgur.com/g8DKZVu.png)
 
 
-
-more info coming very soon...
+Contact us: 
+ - Javi Garcia:          javigd.dtk@gmail.com
+ - Maximiliano González: gonzalezcorvini@gmail.com
