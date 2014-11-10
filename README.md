@@ -60,7 +60,7 @@ And other design decisions such as:
 Main View States
 ======
 
-![alt tag](http://i.imgur.com/CxJtd64.png)
+![alt tag](http://i.imgur.com/5r7ZKlc.png)
 
 
 
@@ -74,7 +74,7 @@ Architecture Overview
 UML Plain Class Diagram
 ======
 
-![alt tag](http://i.imgur.com/g8DKZVu.png)
+![alt tag](http://i.imgur.com/Y4EGKDJ.png)
 
 
 Contact us: 
