@@ -30,8 +30,6 @@ public class SignupCommand implements Command {
 
         String fw = "/signup.jsp";
 
-        String fw = "/signup.jsp";
-
         // 1 process the request
         String username = request.getParameter("username");
         String email = request.getParameter("email");
