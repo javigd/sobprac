@@ -9,8 +9,6 @@ import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.persistence.IUrlHandler;
 import cat.urv.deim.sob.util.Config;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -39,12 +37,11 @@ public class RedirectCommand implements Command {
             response.sendRedirect(redirUrl);
         } catch (SOBException ex) {
             request.setAttribute("resultMessage", ex.getError().getMessage());
-            request.setAttribute("prefix", Config.SERVER_PREFIX);
+            request.setAttribute("prefix", Config.SERVER_REDIR_PREFIX);
             request.setAttribute("shortUrl", reqUrl.replace("/", ""));
             // 3. produce the view with the web result
             ServletContext context = request.getSession().getServletContext();
             context.getRequestDispatcher("/badurl.jsp").forward(request, response);
         }
-        System.out.println(reqUrl + " redirecting to " + redirUrl);
     }
 }

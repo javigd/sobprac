@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cat.urv.deim.sob;
 
 import cat.urv.deim.sob.command.Command;
@@ -20,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * 
  * @author javigd
  */
 public class RedirectController extends HttpServlet {
@@ -31,7 +26,7 @@ public class RedirectController extends HttpServlet {
     @Override
     public void init() {
         /* Initialize a new Connection pool */
-        pool = new ConnectionPool();
+        pool = new ConnectionPool(true);
         /* Get a new URL Handler for URL management */
         dbUrlHandler = new SOBUrlHandler(pool);
         /* Initialize a new RedirectCommand */

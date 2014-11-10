@@ -10,8 +10,6 @@ import cat.urv.deim.sob.exceptions.SOBError;
 import cat.urv.deim.sob.exceptions.SOBException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -45,7 +43,6 @@ public class URLConverter {
             tempVal = CHARACTERS.substring((int) mod, (int) mod + 1) + tempVal;
             decimalNumber = decimalNumber / base;
         }
-
         return tempVal;
     }
 

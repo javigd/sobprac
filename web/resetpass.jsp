@@ -5,35 +5,36 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>GoShort! | Log in</title>
-        <link href="design/ion/css/style.css" type="text/css" rel="stylesheet">
+        <title>GoShort! | Reset Password</title>
     </head>
     <body>
         <br>
-        <h2>Login</h2>
+        <h2>Reset your password</h2>
         <pre>
             <%
-                request.setAttribute("action", "signupinit");
                 if (request.getAttribute("responseMessage") != null) {
                     out.print(request.getAttribute("responseMessage"));
                 }
             %>
         </pre>
-        <form id="loginform" method="post" action="loginsubmit.do">
-            <input type="hidden" name="form_action" value="login" />
+        <br>
+        <form id="resetform" method="post" action="resetpass.do?uid=<%=request.getParameter("uid")%>&ticket=<%=request.getParameter("ticket")%>">
+            <input type="hidden" name="form_action" value="resetpass" />
             <table>
                 <tr>
-                    <td>e-mail:</td>
                     <td>
-                        <input type="text" name="email" />
+                        Your new password:
+                    </td>
+                    <td>
+                        <input type="password" name="password" />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        password:
+                        Repeat password:
                     </td>
                     <td>
-                        <input type="password" name="password" />
+                        <input type="password" name="passwordRepeat" />
                     </td>
                 </tr>
                 <tr>
@@ -45,9 +46,5 @@
                 </tr>
             </table>
         </form>
-        <br>
-        <a href="signup.jsp">Register</a>
-        <br>
-        <a href="iforgot.jsp">I forgot my password</a>
     </body>
 </html>

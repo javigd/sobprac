@@ -42,7 +42,7 @@ public class NewUrlCommand implements Command {
             String shortenedURL = dbUrlHandler.getShortenedUrl(url);
             request.setAttribute("longUrl", longUrl);
             request.setAttribute("shortUrl", shortenedURL);
-            request.setAttribute("prefix", Config.SERVER_PREFIX);
+            request.setAttribute("prefix", Config.SERVER_REDIR_PREFIX);
         } catch (SOBException ex) {
             fw = "newurl";
             request.setAttribute("resultMessage", ex.getError().getMessage());

@@ -7,11 +7,13 @@ package cat.urv.deim.sob;
 
 import cat.urv.deim.sob.command.Command;
 import cat.urv.deim.sob.command.ConfUrlCommand;
+import cat.urv.deim.sob.command.ForgotPassCommand;
 import cat.urv.deim.sob.command.IndexCommand;
 import cat.urv.deim.sob.command.LoginCommand;
 import cat.urv.deim.sob.command.LogoutCommand;
 import cat.urv.deim.sob.command.NewUrlCommand;
 import cat.urv.deim.sob.command.RedirectCommand;
+import cat.urv.deim.sob.command.ResetPassCommand;
 import cat.urv.deim.sob.command.SignupCommand;
 import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.persistence.ConnectionPool;
@@ -45,7 +47,7 @@ public class SOBController extends HttpServlet {
     @Override
     public void init() {
         /* Initialize a new Connection pool */
-        pool = new ConnectionPool();
+        pool = new ConnectionPool(true);
         /* Get a new User Handler for User management */
         dbUsrHandler = new SOBUserHandler(pool);
         /* Get a new URL Handler for URL management */
@@ -58,6 +60,8 @@ public class SOBController extends HttpServlet {
         this.commands.put("index", new IndexCommand(dbUrlHandler));
         this.commands.put("logout", new LogoutCommand());
         this.commands.put("redir", new RedirectCommand(dbUrlHandler));
+        this.commands.put("iforgot", new ForgotPassCommand(dbUsrHandler));
+        this.commands.put("resetpass", new ResetPassCommand(dbUsrHandler));
     }
 
     protected void processCommand(

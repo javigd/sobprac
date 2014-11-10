@@ -8,37 +8,35 @@
         <title>
             GoShort!
         </title>
-        <link href="design/ion/css/style.css" type="text/css" rel="stylesheet">
     </head>
     <body>
         <%
-            //allow access only if session exists
-            String user = null;
+            // allow access only if session exists, redirect to controller if 
+            // accessed from external sources in order to load data
             if (session.getAttribute("user") == null) {
                 response.sendRedirect("login.jsp");
-            } else {
-                user = (String) session.getAttribute("user");
+            } else if (request.getAttribute("loadedUrls") == null &&
+                    request.getAttribute("responseMessage") == null) {
+                response.sendRedirect("index.do");
             }
             String userName = null;
-            String sessionID = null;
             Cookie[] cookies = request.getCookies();
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
                     if (cookie.getName().equals("user")) {
                         userName = cookie.getValue();
                     }
-                    if (cookie.getName().equals("JSESSIONID")) {
-                        sessionID = cookie.getValue();
-                    }
                 }
             }
         %>
 
-        <p>Welcome back, <%=userName%></p>
-        <h6>The handy way to shorten your URLs</h6>
-        <h2>GoShort!</h2>
-        <hr>
-        <h3>Your URLs</h3>
+        Welcome back, <%=userName%>
+        <br />
+        <h2>GoShort! The handy way to shorten your URLs</h2>
+        <br />
+        <h3>Your URLs:</h3>
+        <a href="newurl.jsp">Shorten a new URL!</a>
+        <br />
         <table>
             <tr>
                 <th>Long URL</th>
@@ -63,8 +61,6 @@
                 }
             %>
         </table>
-        <a href="newurl.jsp">Shorten a new URL!</a>
-        <br>
         <form id="logoutServlet" method="post" action="logout.do">
             <input type="hidden" name="form_action" value="logout" />
             <input type="submit" value="Logout" >

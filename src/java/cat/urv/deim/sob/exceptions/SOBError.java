@@ -13,9 +13,10 @@ public enum SOBError {
 
     /* DAO Errors Relate triggered errors to HTTP codes */
     // users
-    USER_NOT_FOUND(400, "Sorry, the user could not be found. You must register first."),
+    USER_NOT_FOUND(400, "Sorry, the user could not be found."),
     USER_ALREADY_EXISTS(409, "Sorry, this user already exists."),
     USER_NOT_VALID(410, "User or password incorrect. Please check required fields."),
+    TICKET_NOT_VALID(400, "Sorry, your password reset ticket is no longer valid. Try reset your password again."),
     // server
     INTERNAL_SERVER_ERROR(500, "Internal Server Error"),
     INTERNAL_PERSISTENCE_ERROR(500, "Attempt to close persistence factory failed."),
@@ -24,7 +25,7 @@ public enum SOBError {
     URL_NOT_VALID(1, "URL already exists!"),
     URL_TOO_SHORT(1, "Sorry, your URL is not long enough to be shortened!"),
     SHORT_URL_TOO_SHORT(1, "Sorry, your short URL cannot be shorter than 3 characters."),
-    SHORT_URL_TOO_LONG(1, "Sorry, your short URL cannot be longer than 6 characters."),
+    SHORT_URL_TOO_LONG(1, "Sorry, your short URL cannot be longer than 12 characters."),
     SHORT_URL_BAD_CHARS(1, "Sorry, your short URL should only contain characters combining a-z, A-Z and 0-9!"),
     URL_UNVALID(1, "URL not valid. Please check required fields."),
     URL_ALREADY_SHORTENED(1, "Sorry, this goShort! URL already exists, try with a new one please."),
