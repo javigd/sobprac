@@ -9,8 +9,6 @@ import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.persistence.IUrlHandler;
 import cat.urv.deim.sob.util.Config;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -45,6 +43,5 @@ public class RedirectCommand implements Command {
             ServletContext context = request.getSession().getServletContext();
             context.getRequestDispatcher("/badurl.jsp").forward(request, response);
         }
-        System.out.println(reqUrl + " redirecting to " + redirUrl);
     }
 }

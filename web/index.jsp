@@ -11,23 +11,20 @@
     </head>
     <body>
         <%
-            //allow access only if session exists
-            String user = null;
+            // allow access only if session exists, redirect to controller if 
+            // accessed from external sources in order to load data
             if (session.getAttribute("user") == null) {
                 response.sendRedirect("login.jsp");
-            } else {
-                user = (String) session.getAttribute("user");
+            } else if (request.getAttribute("loadedUrls") == null &&
+                    request.getAttribute("responseMessage") == null) {
+                response.sendRedirect("index.do");
             }
             String userName = null;
-            String sessionID = null;
             Cookie[] cookies = request.getCookies();
             if (cookies != null) {
                 for (Cookie cookie : cookies) {
                     if (cookie.getName().equals("user")) {
                         userName = cookie.getValue();
-                    }
-                    if (cookie.getName().equals("JSESSIONID")) {
-                        sessionID = cookie.getValue();
                     }
                 }
             }
@@ -57,7 +54,7 @@
                     for (UrlBean urlBean : myurls) {
                         out.print("<tr>");
                         out.print("<td>" + urlBean.getLongUrl() + "</td>");
-                        out.print("<td><a href=\"rt/" + urlBean.getShortUrl() + "\">" + request.getAttribute("prefix") + urlBean.getShortUrl() + "</a></td>");
+                        out.print("<td><a href=\"rt/" + urlBean.getShortUrl() + "\" target=\"_blank\">" + request.getAttribute("prefix") + urlBean.getShortUrl() + "</a></td>");
                         out.print("<td>" + urlBean.getNvisits() + "</td>");
                         out.print("</tr>");
                     }
