@@ -13,9 +13,10 @@ public enum SOBError {
 
     /* DAO Errors Relate triggered errors to HTTP codes */
     // users
-    USER_NOT_FOUND(400, "Sorry, the user could not be found. You must register first."),
+    USER_NOT_FOUND(400, "Sorry, the user could not be found."),
     USER_ALREADY_EXISTS(409, "Sorry, this user already exists."),
     USER_NOT_VALID(410, "User or password incorrect. Please check required fields."),
+    TICKET_NOT_VALID(400, "Sorry, your password reset ticket is no longer valid. Try reset your password again."),
     // server
     INTERNAL_SERVER_ERROR(500, "Internal Server Error"),
     INTERNAL_PERSISTENCE_ERROR(500, "Attempt to close persistence factory failed."),

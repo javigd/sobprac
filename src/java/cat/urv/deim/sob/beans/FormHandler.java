@@ -52,6 +52,15 @@ public class FormHandler {
         return true;
     }
     
+    public boolean validateReset() throws SOBException { 
+        if (!isValidReset()) {
+            throw new SOBException(SOBError.INCOMPLETE_FIELDS);
+        } else if (!password.equals(passwordRepeat)) {
+            throw new SOBException(SOBError.REPEAT_PASSWORD);
+        }
+        return true;
+    }
+    
     public byte[] encryptPassword () {
         MessageDigest md = null;
         
@@ -121,5 +130,9 @@ public class FormHandler {
     public boolean isValidLogin() {
         return !(email == null || password == null
                 || email.equals("") || password.equals(""));
+    }
+   
+    public boolean isValidReset() {
+        return !( password == null || password.equals(""));
     }
 }

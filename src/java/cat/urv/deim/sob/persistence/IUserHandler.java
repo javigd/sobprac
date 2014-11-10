@@ -15,9 +15,13 @@ import cat.urv.deim.sob.models.SOBUser;
 public interface IUserHandler {
 
     public SOBUser doSignUp(SOBUser user) throws SOBException;
-    
+
     public Integer numberUsers() throws SOBException;
-    
+
     public SOBUser doLogin(SOBUser user) throws SOBException;
-    
+
+    public SOBUser rememberPassword(String email) throws SOBException;
+
+    public SOBUser resetPassword(String userId, String ticket, String newPassword) throws SOBException;
+
 }

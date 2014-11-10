@@ -16,9 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author javigd
  */
-public class badCharsUrlTest {
+public class BadCharsUrlTest {
     
-    public badCharsUrlTest() {
+    public BadCharsUrlTest() {
     }
     
     @BeforeClass

@@ -1,10 +1,13 @@
 package cat.urv.deim.sob.models;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class SOBUser implements Serializable {
@@ -15,6 +18,9 @@ public class SOBUser implements Serializable {
     private String username;
     private String email;
     private String password;
+    private String resetTicket;
+    @Temporal(TemporalType.DATE)
+    private Date ticketEmission;
 
     public SOBUser() {
         super();
@@ -57,6 +63,23 @@ public class SOBUser implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+  
+
+    public String getResetTicket() {
+        return resetTicket;
+    }
+
+    public void setResetTicket(String resetTicket) {
+        this.resetTicket = resetTicket;
+    }
+    
+    public Date getTicketEmission() {
+        return ticketEmission;
+    }
+
+    public void setTicketEmission(Date ticketEmission) {
+        this.ticketEmission = ticketEmission;
     }
 
     public String getMessage() {

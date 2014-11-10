@@ -10,6 +10,7 @@ import cat.urv.deim.sob.db.UserDAO;
 import cat.urv.deim.sob.exceptions.SOBError;
 import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.models.SOBUser;
+import java.util.Random;
 
 /**
  *
@@ -47,4 +48,24 @@ public class SOBUserHandler implements IUserHandler {
         return loggedUser;
     }
 
+    @Override
+    public SOBUser rememberPassword(String email) throws SOBException {
+        Random random = new Random();
+        
+        // Check parameters
+        if(email == null){
+            throw new SOBException(SOBError.USER_NOT_FOUND);
+        }
+        // Generate a ticket
+        Long ticket = random.nextLong();
+        
+        // Save the generated ticket and return values back to Controller
+        return userDAO.setResetPassTicket(email, ticket);
+    }
+    
+    @Override
+    public SOBUser resetPassword(String userId, String ticket, String newPassword) throws SOBException {
+        // Forward this operation to the DAO so it executes the suitable tasks
+        return userDAO.checkResetTicket(userId, ticket, newPassword);
+    }
 }

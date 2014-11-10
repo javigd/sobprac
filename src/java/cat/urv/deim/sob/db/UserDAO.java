@@ -13,11 +13,15 @@ import cat.urv.deim.sob.exceptions.SOBException;
  * @author javigd
  */
 public interface UserDAO {
-    
+
     public SOBUser get(String email) throws SOBException;
-    
+
     public SOBUser add(SOBUser user) throws SOBException;
-    
+
     public Integer getNUsers() throws SOBException;
+
+    public SOBUser setResetPassTicket(String email, Long ticket) throws SOBException;
+    
+    public SOBUser checkResetTicket(String userId, String ticket, String newPassword) throws SOBException;
     
 }

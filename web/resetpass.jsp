@@ -5,11 +5,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>GoShort! | Log in</title>
+        <title>GoShort! | Reset Password</title>
     </head>
     <body>
         <br>
-        <h2>Login</h2>
+        <h2>Reset your password</h2>
         <pre>
             <%
                 if (request.getAttribute("responseMessage") != null) {
@@ -18,18 +18,20 @@
             %>
         </pre>
         <br>
-        <form id="loginform" method="post" action="loginsubmit.do">
-            <input type="hidden" name="form_action" value="login" />
+        <form id="resetform" method="post" action="resetpass.do">
+            <input type="hidden" name="form_action" value="resetpass" />
             <table>
                 <tr>
-                    <td>e-mail:</td>
                     <td>
-                        <input type="text" name="email" />
+                        Your new password:
+                    </td>
+                    <td>
+                        <input type="password" name="password" />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        password:
+                        Repeat password:
                     </td>
                     <td>
                         <input type="password" name="password" />
@@ -44,9 +46,5 @@
                 </tr>
             </table>
         </form>
-        <br>
-        <a href="signup.jsp">Register</a>
-        <br>
-        <a href="iforgot.jsp">I forgot my password</a>
     </body>
 </html>

@@ -36,5 +36,7 @@ public class Config {
     public static final int SESSION_MAX_TIME = 30 * 60;
     public static final int MIN_SHORTENED_URL_LENGTH = 3;
     public static final int MAX_SHORTENED_URL_LENGTH = 6;
+    // Ten days will be the maximum default time for a reset pass ticket to be valid
+    public static final long MAX_TICKET_TIME = 10 * 24 * 60 * 60 * 1000;
 
 }

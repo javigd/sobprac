@@ -1,24 +1,33 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package cat.urv.deim.sob.command;
 
-import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.beans.FormHandler;
+import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.models.SOBUser;
 import cat.urv.deim.sob.persistence.IUserHandler;
 import cat.urv.deim.sob.session.SOBCookie;
 import cat.urv.deim.sob.util.Config;
+import java.io.IOException;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.ServletException;
-import javax.servlet.ServletContext;
-import java.io.IOException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
-public class SignupCommand implements Command {
+/**
+ *
+ * @author javigd
+ */
+public class ResetPassCommand implements Command {
 
     private final IUserHandler dbUsrHandler;
 
-    public SignupCommand(IUserHandler dbHandler) {
+    public ResetPassCommand(IUserHandler dbHandler) {
         dbUsrHandler = dbHandler;
     }
 
@@ -28,39 +37,36 @@ public class SignupCommand implements Command {
             HttpServletResponse response)
             throws ServletException, IOException {
 
-        String fw = "/signup.jsp";
-
         // 1 process the request
-        String username = request.getParameter("username");
-        String email = request.getParameter("email");
+        String userId = request.getParameter("userId");
+        String ticket = request.getParameter("ticket");
         String password = request.getParameter("password");
         String passwordRepeat = request.getParameter("passwordRepeat");
 
         // 1.1 Validate form
-        FormHandler fh = new FormHandler(username, email, password, passwordRepeat);
+        FormHandler fh = new FormHandler(null, null, password, passwordRepeat);
 
         try {
-            fh.validate();
+            fh.validateReset();
             // Encrypt password
             String encryptedPassword = new String(fh.encryptPassword());
-            // 2. Save user to Database
-            SOBUser user = new SOBUser(null, username, email, encryptedPassword);
-            SOBUser signedUser = dbUsrHandler.doSignUp(user);
-            //set session attributes
+            // 2. Check ticket in database
+            SOBUser u = dbUsrHandler.resetPassword(userId, ticket, encryptedPassword);
             HttpSession session = request.getSession(true);
             session.setMaxInactiveInterval(Config.SESSION_MAX_TIME);
-            session.setAttribute("user", username);
-            session.setAttribute("userid", signedUser.getId().toString());
-            Cookie userCookie = new SOBCookie("user", username);
+            session.setAttribute("user", u.getUsername());
+            session.setAttribute("userid", userId);
+            Cookie userCookie = new SOBCookie("user", u.getUsername());
             response.addCookie(userCookie);
             request.setAttribute("form_action", null);
             request.setAttribute("action", null);
             response.sendRedirect("index.do");
         } catch (SOBException ex) {
-            request.setAttribute("responseMessage", ex.getError().getMessage());
             // 3. produce the view with the web result
+            request.setAttribute("responseMessage", ex.getError().getMessage());
             ServletContext context = request.getSession().getServletContext();
-            context.getRequestDispatcher(fw).forward(request, response);
+            context.getRequestDispatcher("/resetpass.jsp").forward(request, response);
         }
     }
+
 }
