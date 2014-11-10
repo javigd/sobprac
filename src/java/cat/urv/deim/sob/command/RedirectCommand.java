@@ -39,7 +39,7 @@ public class RedirectCommand implements Command {
             response.sendRedirect(redirUrl);
         } catch (SOBException ex) {
             request.setAttribute("resultMessage", ex.getError().getMessage());
-            request.setAttribute("prefix", Config.SERVER_PREFIX);
+            request.setAttribute("prefix", Config.SERVER_REDIR_PREFIX);
             request.setAttribute("shortUrl", reqUrl.replace("/", ""));
             // 3. produce the view with the web result
             ServletContext context = request.getSession().getServletContext();

@@ -17,16 +17,19 @@ import javax.persistence.Persistence;
  * @author javigd
  */
 public class ConnectionPool {
-    protected final EntityManagerFactory factory;
-    
-    public ConnectionPool() {
-        factory = Persistence.createEntityManagerFactory(Config.PERSISTENCE_UNIT_NAME);
-        // Open persistence provider
-        if(!factory.isOpen()) {
-            factory.createEntityManager();
+
+    protected EntityManagerFactory factory;
+
+    public ConnectionPool(boolean create) {
+        if (create) {
+            factory = Persistence.createEntityManagerFactory(Config.PERSISTENCE_UNIT_NAME);
+            // Initialize persistence provider
+            if (!factory.isOpen()) {
+                factory.createEntityManager();
+            }
         }
     }
-    
+
     public EntityManager getConnection() throws SOBException {
         try {
             return factory.createEntityManager();
@@ -35,7 +38,7 @@ public class ConnectionPool {
             throw new SOBException(SOBError.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
     public void closeConnectionFactory() throws SOBException {
         try {
             factory.close();
@@ -43,9 +46,18 @@ public class ConnectionPool {
             throw new SOBException(SOBError.INTERNAL_PERSISTENCE_ERROR);
         }
     }
-    
-    public boolean isOpen () {
+
+    public boolean isOpen() {
         return factory.isOpen();
     }
-    
+
+    /* Testing purposes */
+    public void setEntityManagerFactory(EntityManagerFactory emf) throws SOBException {
+        try {
+            this.factory = emf;
+        } catch (IllegalStateException e) {
+            throw new SOBException(SOBError.INTERNAL_PERSISTENCE_ERROR);
+        }
+    }
+
 }

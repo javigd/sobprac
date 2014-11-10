@@ -10,7 +10,6 @@ import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.models.SOBUser;
 import cat.urv.deim.sob.persistence.ConnectionPool;
 import cat.urv.deim.sob.util.Config;
-import java.sql.Date;
 import java.util.Calendar;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -110,7 +109,7 @@ public class SOBUserDAO extends SOBPersistence implements UserDAO {
     }
 
     @Override
-    public SOBUser checkResetTicket(String userId, String ticket, String newPassword) throws SOBException {
+    public SOBUser checkResetTicket(Long userId, String ticket, String newPassword) throws SOBException {
         //Create a new Entity Manager
         EntityManager em = pool.getConnection();
         // Execute a query to get the user
@@ -134,8 +133,8 @@ public class SOBUserDAO extends SOBPersistence implements UserDAO {
             em.getTransaction().commit();
             em.close();
             return usr;
-        } catch (NoResultException e) {
-            throw new SOBException(SOBError.USER_NOT_FOUND);
+        } catch (NoResultException | NullPointerException e) {
+            throw new SOBException(SOBError.TICKET_NOT_VALID);
         }
     }
 }

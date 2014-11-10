@@ -57,7 +57,7 @@ public class SOBUserHandler implements IUserHandler {
             throw new SOBException(SOBError.USER_NOT_FOUND);
         }
         // Generate a ticket
-        Long ticket = random.nextLong();
+        Long ticket = Math.abs(random.nextLong());
         
         // Save the generated ticket and return values back to Controller
         return userDAO.setResetPassTicket(email, ticket);
@@ -66,6 +66,6 @@ public class SOBUserHandler implements IUserHandler {
     @Override
     public SOBUser resetPassword(String userId, String ticket, String newPassword) throws SOBException {
         // Forward this operation to the DAO so it executes the suitable tasks
-        return userDAO.checkResetTicket(userId, ticket, newPassword);
+        return userDAO.checkResetTicket(Long.parseLong(userId), ticket, newPassword);
     }
 }

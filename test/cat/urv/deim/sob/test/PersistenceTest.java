@@ -10,8 +10,11 @@ import cat.urv.deim.sob.models.SOBUser;
 import cat.urv.deim.sob.persistence.ConnectionPool;
 import cat.urv.deim.sob.persistence.IUserHandler;
 import cat.urv.deim.sob.persistence.SOBUserHandler;
+import cat.urv.deim.sob.util.Config;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,16 +22,29 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
- *
+ * WARNING. The following test class will only work when web app context provided.
+ * Not implemented due to extra out-of-topic code required (on this course).
+ * This testing class will hence be held only for code references.
+ * 
  * @author javigd
  */
 public class PersistenceTest {
     
+    static EntityManagerFactory emf;
+    static ConnectionPool pool;
+
     public PersistenceTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory(Config.PERSISTENCE_UNIT_NAME);
+        pool = new ConnectionPool(false);
+        try {
+            pool.setEntityManagerFactory(emf);
+        } catch (SOBException ex) {
+            Logger.getLogger(ResetPassURLTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @AfterClass
@@ -48,7 +64,6 @@ public class PersistenceTest {
      */
     @Test
     public void simpleDatabaseTestScenario() {
-        ConnectionPool pool = new ConnectionPool();
         IUserHandler dbHandler = new SOBUserHandler(pool);
         SOBUser testUser = new SOBUser(null, "username", "javi@urv.cat", "password");
         try {

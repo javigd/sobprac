@@ -18,7 +18,7 @@
             %>
         </pre>
         <br>
-        <form id="resetform" method="post" action="resetpass.do">
+        <form id="resetform" method="post" action="resetpass.do?uid=<%=request.getParameter("uid")%>&ticket=<%=request.getParameter("ticket")%>">
             <input type="hidden" name="form_action" value="resetpass" />
             <table>
                 <tr>
@@ -34,7 +34,7 @@
                         Repeat password:
                     </td>
                     <td>
-                        <input type="password" name="password" />
+                        <input type="password" name="passwordRepeat" />
                     </td>
                 </tr>
                 <tr>

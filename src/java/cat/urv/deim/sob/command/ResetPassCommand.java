@@ -38,8 +38,9 @@ public class ResetPassCommand implements Command {
             throws ServletException, IOException {
 
         // 1 process the request
-        String userId = request.getParameter("userId");
+        String userId = request.getParameter("uid");
         String ticket = request.getParameter("ticket");
+        System.out.println("Data rcvd from GET: uid " + userId + " : ticket " + ticket);
         String password = request.getParameter("password");
         String passwordRepeat = request.getParameter("passwordRepeat");
 

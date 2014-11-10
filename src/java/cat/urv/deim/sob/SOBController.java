@@ -46,7 +46,7 @@ public class SOBController extends HttpServlet {
     @Override
     public void init() {
         /* Initialize a new Connection pool */
-        pool = new ConnectionPool();
+        pool = new ConnectionPool(true);
         /* Get a new User Handler for User management */
         dbUsrHandler = new SOBUserHandler(pool);
         /* Get a new URL Handler for URL management */

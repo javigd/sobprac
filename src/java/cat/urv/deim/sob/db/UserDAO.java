@@ -22,6 +22,6 @@ public interface UserDAO {
 
     public SOBUser setResetPassTicket(String email, Long ticket) throws SOBException;
     
-    public SOBUser checkResetTicket(String userId, String ticket, String newPassword) throws SOBException;
+    public SOBUser checkResetTicket(Long userId, String ticket, String newPassword) throws SOBException;
     
 }

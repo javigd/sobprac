@@ -55,7 +55,7 @@ public class ConfUrlCommand implements Command {
         } catch (SOBException ex) {
             request.setAttribute("longUrl", longUrl);
             request.setAttribute("shortUrl", shortUrl);
-            request.setAttribute("prefix", Config.SERVER_PREFIX);
+            request.setAttribute("prefix", Config.SERVER_REDIR_PREFIX);
             request.setAttribute("resultMessage", ex.getError().getMessage());
             // 3. produce the view with the web result
             ServletContext context = request.getSession().getServletContext();

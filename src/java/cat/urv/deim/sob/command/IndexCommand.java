@@ -44,7 +44,7 @@ public class IndexCommand implements Command {
             try {
                 List<UrlBean> urls = dbUrlHandler.getUserUrls(userId);
                 request.setAttribute("loadedUrls", urls);
-                request.setAttribute("prefix", Config.SERVER_PREFIX);
+                request.setAttribute("prefix", Config.SERVER_REDIR_PREFIX);
             } catch (SOBException ex) {
                 request.setAttribute("responseMessage", SOBError.URLS_NOT_LOADED.getMessage());
             }
