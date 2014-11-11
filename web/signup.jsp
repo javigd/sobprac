@@ -6,54 +6,38 @@
     <head>
         <title>GoShort! | Sign up</title>
         <link href="design/ion/css/style.css" type="text/css" rel="stylesheet">
+        <link href="design/Form/formcss.css" type="text/css" rel="stylesheet">
+
     </head>
     <body>
-        <br>
-        <h2>Sign up</h2>
-        <pre>
-            <%
+        <form id="signupform" method="post" action="signupsubmit.do">
+            <input type="hidden" name="form_action" value="signup" />
+            <div class="testbox">
+                <h2>Sign up</h2>
+                <hr>
+
+                <input type="text" name="username" placeholder="Username" />
+
+                <input type="text" name="email" placeholder="E-mail"/>
+
+                <input type="password" name="password" placeholder="Password"/>
+
+                <input type="password" name="passwordRepeat" placeholder="Repeat the password"/>
+
+                <input type="submit" name="enter_button" value="Enter" />
+
+        </form>
+        <br><br>
+    <herror>
+         <%
                 if (request.getAttribute("responseMessage") != null) {
                     out.print(request.getAttribute("responseMessage"));
                 }
             %>
-        </pre>
-        <form id="signupform" method="post" action="signupsubmit.do">
-            <input type="hidden" name="form_action" value="signup" />
-            <table>
-                <tr>
-                    <td>username:</td>
-                    <td> 
-                        <input type="text" name="username" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>e-mail:</td>
-                    <td>
-                        <input type="text" name="email" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        password:
-                    </td>
-                    <td>
-                        <input type="password" name="password" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>repeat your password:</td>
-                    <td>
-                        <input type="password" name="passwordRepeat" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" name="enter_button" value="Enter" />
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-            </table>
-        </form>
+            <br>
+    </herror>
+    
+    <a href='login.jsp'> Back to Login page </a>
+</div>
     </body>
 </html>
