@@ -7,10 +7,12 @@
     <head>
         <title>GoShort! | Log in</title>
         <link href="design/ion/css/style.css" type="text/css" rel="stylesheet">
+        <link href="design/Form/formcss.css" type="text/css" rel="stylesheet">
+
     </head>
     <body>
         <br>
-        <h2>Login</h2>
+     
         <pre>
             <%
                 request.setAttribute("action", "signupinit");
@@ -21,11 +23,15 @@
         </pre>
         <form id="loginform" method="post" action="loginsubmit.do">
             <input type="hidden" name="form_action" value="login" />
+            <div class="testbox">
+                
             <table>
+                <h1> LOGIN </h1>
                 <tr>
-                    <td>e-mail:</td>
                     <td>
-                        <input type="text" name="email" />
+                        e-mail:<br>
+                    <input type="text" name="email" /><br>
+                                        
                     </td>
                 </tr>
                 <tr>
@@ -41,13 +47,15 @@
                         <input type="submit" name="enter_button" value="Enter" />
                     </td>
                     <td>
+                        <a href="signup.jsp">Register</a>
+                    </td>
+                    <td>
+                        <a href="iforgot.jsp">I forgot my password</a>
                     </td>
                 </tr>
             </table>
         </form>
-        <br>
-        <a href="signup.jsp">Register</a>
-        <br>
-        <a href="iforgot.jsp">I forgot my password</a>
+      </div>
+        
     </body>
 </html>
