@@ -21,7 +21,7 @@
         <form id="loginform" method="post" action="loginsubmit.do">
             <input type="hidden" name="form_action" value="login" />
             <div class="testbox">
-                <h1 > GoShort! Login</h1>
+                <h1 > GoShort! Log in</h1>
                 <hr>
                 <input type="text" name="email"  placeholder="Email"/>
                 <input type="password" name="password" placeholder="Password"/>
@@ -31,6 +31,6 @@
         <hr>
     </div>
 <h5> Altres opcions</h5>
-        <button  href="signup.jsp" class="button">Register </button>
+<a href="signup.jsp" ><button  class="button">Register </button></a>
 </body>
 </html>
