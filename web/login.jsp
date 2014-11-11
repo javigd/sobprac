@@ -8,11 +8,8 @@
         <title>GoShort! | Log in</title>
         <link href="design/ion/css/style.css" type="text/css" rel="stylesheet">
         <link href="design/Form/formcss.css" type="text/css" rel="stylesheet">
-
     </head>
     <body>
-        <br>
-     
         <pre>
             <%
                 request.setAttribute("action", "signupinit");
@@ -24,38 +21,16 @@
         <form id="loginform" method="post" action="loginsubmit.do">
             <input type="hidden" name="form_action" value="login" />
             <div class="testbox">
-                
-            <table>
-                <h1> LOGIN </h1>
-                <tr>
-                    <td>
-                        e-mail:<br>
-                    <input type="text" name="email" /><br>
-                                        
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        password:
-                    </td>
-                    <td>
-                        <input type="password" name="password" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" name="enter_button" value="Enter" />
-                    </td>
-                    <td>
-                        <a href="signup.jsp">Register</a>
-                    </td>
-                    <td>
-                        <a href="iforgot.jsp">I forgot my password</a>
-                    </td>
-                </tr>
-            </table>
+                <h1 > GoShort! Login</h1>
+                <hr>
+                <input type="text" name="email"  placeholder="Email"/>
+                <input type="password" name="password" placeholder="Password"/>
+                <a href="iforgot.jsp">Did you forget your password..?</a><br>
+                <button class="button" action="submit">Enter</button>
         </form>
-      </div>
-        
-    </body>
+        <hr>
+    </div>
+<h5> Altres opcions</h5>
+        <button  href="signup.jsp" class="button">Register</button>
+</body>
 </html>
