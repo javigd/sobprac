@@ -31,6 +31,6 @@
         <hr>
     </div>
 <h5> Altres opcions</h5>
-        <button  href="signup.jsp" class="button">Register</button>
+        <button  href="signup.jsp" class="button">Register </button>
 </body>
 </html>
