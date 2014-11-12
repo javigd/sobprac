@@ -6,8 +6,12 @@
     <head>
         <title>GoShort! | New URL</title>
         <link href="design/ion/css/style.css" type="text/css" rel="stylesheet">
+        <link href="design/Form/formcss.css" type="text/css" rel="stylesheet">
+
     </head>
     <body>
+        <%@ include file="header.html"%>
+
         <%
             //allow access only if session exists
             String user = null;
@@ -18,7 +22,7 @@
             }
         %>
         <br>
-        <h2>Make your URL goShort!</h2>
+        <div class="testboxUrl">
         <pre>
             <%
                 if (request.getAttribute("resultMessage") != null) {
@@ -46,5 +50,6 @@
             </table>
         </form>
         <a href="index.do">Cancel</a>
+        </div>
     </body>
 </html>
