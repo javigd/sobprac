@@ -23,33 +23,23 @@
         %>
         <br>
         <div class="testboxUrl">
-        <pre>
+           
+
+        <form id="urlform" method="post" action="urlsubmit.do">
+            <input type="hidden" name="form_action" value="newurl" />
+                        <input class="longUrlText" type="text" name="longUrl" placeholder="Introduce your long URL"/>
+                        <input type="submit" name="enter_button" value="Enter" />
+                        <a href="index.do" class="button">Cancel</a>
+                        <br><br><br>
+        </form>
+        <br><br>
+         <herror>
             <%
                 if (request.getAttribute("resultMessage") != null) {
                     out.print(request.getAttribute("resultMessage"));
                 }
             %>
-        </pre>
-        <br>
-        <form id="urlform" method="post" action="urlsubmit.do">
-            <input type="hidden" name="form_action" value="newurl" />
-            <table>
-                <tr>
-                    <td>Your Long URL:</td>
-                    <td> 
-                        <input type="text" name="longUrl" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" name="enter_button" value="Enter" />
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-            </table>
-        </form>
-        <a href="index.do">Cancel</a>
+                    </herror>
         </div>
     </body>
 </html>

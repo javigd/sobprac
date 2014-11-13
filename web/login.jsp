@@ -10,27 +10,28 @@
         <link href="design/Form/formcss.css" type="text/css" rel="stylesheet">
     </head>
     <body>
-        <pre>
-            <%
-                request.setAttribute("action", "signupinit");
-                if (request.getAttribute("responseMessage") != null) {
-                    out.print(request.getAttribute("responseMessage"));
-                }
-            %>
-        </pre>
+        <%@ include file="header.html"%>
         <form id="loginform" method="post" action="loginsubmit.do">
             <input type="hidden" name="form_action" value="login" />
             <div class="testbox">
-                <h1 > GoShort! Log in</h1>
+                <h2 > GoShort! Log in</h2>
                 <hr>
                 <input type="text" name="email"  placeholder="Email"/>
                 <input type="password" name="password" placeholder="Password"/>
                 <a href="iforgot.jsp">Did you forget your password..?</a><br>
                 <button class="button" action="submit">Enter</button>
         </form>
-        <hr>
-    </div>
+        <br><br>
+    <herror>
+        <%
+            request.setAttribute("action", "signupinit");
+            if (request.getAttribute("responseMessage") != null) {
+                out.print(request.getAttribute("responseMessage"));
+            }
+        %>
+    </herror>
+</div>
+</body>
 <h5> Altres opcions</h5>
 <a href="signup.jsp" ><button  class="button">Register </button></a>
-</body>
 </html>

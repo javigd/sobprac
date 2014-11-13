@@ -1,7 +1,7 @@
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, 
+/*body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, 
 pre, form, fieldset, input, textarea, p, blockquote, th, td { 
     padding:0;
-    margin:3;}
+    margin:0;}*/
 
 fieldset, img {border:0}
 
@@ -38,8 +38,8 @@ html{
 }
 
 .testbox {
-    margin: 20px auto;
-    width: 343px; 
+    margin: auto auto;
+    width: 350px; 
     height: 464px; 
     -webkit-border-radius: 8px/7px; 
     -moz-border-radius: 8px/7px; 
@@ -48,8 +48,24 @@ html{
     -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
     -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
     box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
-    border: solid 1px #cbc9c9;
+    border: solid 3px #cbc9c9;
 }
+
+.testboxUrl{
+   
+    margin: auto auto;
+    width: auto; 
+    height: auto; 
+    -webkit-border-radius: 8px/7px; 
+    -moz-border-radius: 8px/7px; 
+    border-radius: 8px/7px; 
+    background-color: #ebebeb; 
+    -webkit-box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
+    -moz-box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
+    box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
+    border: solid 3px #cbc9c9;
+}
+
 
 input[type=radio] {
     visibility: hidden;
@@ -109,7 +125,7 @@ hr{
 }
 
 input[type=text],input[type=password]{
-    width: 200px; 
+    width: 300px; 
     height: 39px; 
     -webkit-border-radius: 0px 4px 4px 0px/5px 5px 4px 4px; 
     -moz-border-radius: 0px 4px 4px 0px/0px 0px 4px 4px; 
@@ -125,7 +141,7 @@ input[type=text],input[type=password]{
 }
 
 input[type=password]{
-    margin-bottom: 25px;
+    margin-bottom: 10px;
 }
 
 #icon {
@@ -154,34 +170,4 @@ input[type=password]{
     margin-top: 20px;
 }
 
-a.button {
-    font-size: 14px;
-    font-weight: 600;
-    color: white;
-    padding: 6px 25px 0px 20px;
-    margin: 10px 8px 20px 0px;
-    display: inline-block;
-    float: right;
-    text-decoration: none;
-    width: 50px; height: 27px; 
-    -webkit-border-radius: 5px; 
-    -moz-border-radius: 5px; 
-    border-radius: 5px; 
-    background-color: #3a57af; 
-    -webkit-box-shadow: 0 3px rgba(58,87,175,.75); 
-    -moz-box-shadow: 0 3px rgba(58,87,175,.75); 
-    box-shadow: 0 3px rgba(58,87,175,.75);
-    transition: all 0.1s linear 0s; 
-    top: 0px;
-    position: relative;
-}
-
-a.button:hover {
-    top: 3px;
-    background-color:#2e458b;
-    -webkit-box-shadow: none; 
-    -moz-box-shadow: none; 
-    box-shadow: none;
-
-}
 

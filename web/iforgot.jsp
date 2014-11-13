@@ -8,6 +8,8 @@
 
     </head>
     <body>
+        <%@ include file="header.html"%>
+
         <form id="iforgotform" method="post" action="iforgot.do">
             <input type="hidden" name="form_action" value="iforgot" />
             <div class="testbox">

@@ -7,6 +7,8 @@
         <link href="design/ion/css/style.css" type="text/css" rel="stylesheet">
     </head>
     <body>
+        <%@ include file="header.html"%>
+
         <br>
         <h2>goShort!</h2>
         <h3><%=request.getAttribute("resultMessage")%></h3>

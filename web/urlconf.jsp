@@ -8,6 +8,8 @@
         <link href="design/ion/css/style.css" type="text/css" rel="stylesheet">
     </head>
     <body>
+        <%@ include file="header.html"%>
+
         <%
             //allow access only if session exists
             String user = null;
