@@ -14,14 +14,14 @@
         <form id="loginform" method="post" action="loginsubmit.do">
             <input type="hidden" name="form_action" value="login" />
             <div class="testbox">
-                <h2 > GoShort! Log in</h2>
+                <h2>LOGIN</h2>
                 <hr>
                 <input type="text" name="email"  placeholder="Email"/>
                 <input type="password" name="password" placeholder="Password"/>
                 <a href="iforgot.jsp">Did you forget your password..?</a><br>
-                <button class="button" action="submit">Enter</button>
+                <button class="button" action="submit" margin-left="40px%">Enter</button>
         </form>
-        <br><br>
+        <br>
     <herror>
         <%
             request.setAttribute("action", "signupinit");
@@ -30,8 +30,9 @@
             }
         %>
     </herror>
+    <hr>
+    <h5> Other options</h5>
+    <a  href="signup.jsp" class="button">Register</a>
 </div>
 </body>
-<h5> Altres opcions</h5>
-<a href="signup.jsp" ><button  class="button">Register </button></a>
 </html>
