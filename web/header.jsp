@@ -1,8 +1,3 @@
-<%-- 
-    Document   : header
-    Created on : 18-nov-2014, 10:44:03
-    Author     : Max
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
