@@ -24,5 +24,9 @@ public interface UrlDAO {
     public SOBUrl getUrlFromShort(String urlId) throws SOBException;
     
     public List<SOBUrl> getUrlsByUserId(Long userId) throws SOBException;
+    
+    public List<SOBUrl> getUrlsByOffset(Long userId, int offset, int setSize) throws SOBException;
+
+    public Long getUrlCountByUser(Long userId) throws SOBException;
        
 }

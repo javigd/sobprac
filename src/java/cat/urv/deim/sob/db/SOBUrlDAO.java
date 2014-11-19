@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
 
 /**
@@ -77,6 +78,7 @@ public class SOBUrlDAO extends SOBPersistence implements UrlDAO {
             }
         } else {
             // Trigger SOBException if no url has been found with the given user id
+            em.close();
             throw new SOBException(SOBError.URL_NOT_FOUND);
         }
         em.close();
@@ -94,7 +96,7 @@ public class SOBUrlDAO extends SOBPersistence implements UrlDAO {
             SOBUrl url = (SOBUrl) q.getSingleResult();
             em.close();
             return (url);
-        } catch (NoResultException e) {
+        } catch (NoResultException | NonUniqueResultException e) {
             em.close();
             throw new SOBException(SOBError.BAD_GOSHORT_URL);
         }
@@ -112,5 +114,55 @@ public class SOBUrlDAO extends SOBPersistence implements UrlDAO {
         em.close();
 
         return url;
+    }
+
+    @Override
+    public List<SOBUrl> getUrlsByOffset(Long userId, int offset, int setSize) throws SOBException {
+        List<SOBUrl> urlList = new ArrayList<SOBUrl>(setSize);
+        //Create a new Entity Manager
+        EntityManager em = pool.getConnection();
+        //Simple query to get a URL from de DB given his ID
+        Query q = em.createQuery("SELECT url FROM SOBUrl url "
+                + "WHERE url.userId = :id "
+                + "ORDER BY url.id DESC ")
+                .setFirstResult(offset * setSize)
+                .setMaxResults(setSize);
+        // Set the proper parameters for the query
+        q.setParameter("id", userId);
+        
+        if (!q.getResultList().isEmpty()) {
+            for (SOBUrl url : (List<SOBUrl>) q.getResultList()) {
+                urlList.add(url);
+            }
+        } else {
+            // Trigger SOBException if no url has been found
+            em.close();
+            throw new SOBException(SOBError.INVALID_URL_PAGE);
+        }
+        em.close();
+        return (urlList);
+    }
+
+    @Override
+    public Long getUrlCountByUser(Long userId) throws SOBException {
+        Long urlCount = 0L;
+        //Create a new Entity Manager
+        EntityManager em = pool.getConnection();
+        //Simple query to get a URL from de DB given his ID
+        Query q = em.createQuery("SELECT COUNT(url) FROM SOBUrl url "
+                + "WHERE url.userId = :id ");
+        // Set the proper parameters for the query
+        q.setParameter("id", userId);
+        
+        try {
+            urlCount = (Long) q.getSingleResult();
+        } catch (NoResultException e) {
+            // Trigger SOBException if no url has been found with the given user id
+            em.close();
+            throw new SOBException(SOBError.URL_NOT_FOUND);
+        }
+        em.close();
+        return (urlCount);
+
     }
 }

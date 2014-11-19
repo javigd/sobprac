@@ -25,7 +25,7 @@ public class LogoutCommand implements Command {
         if (session != null) {
             session.invalidate();
         }
-        response.sendRedirect("index.do");
+        response.sendRedirect("index.jsp");
     }
 
 }

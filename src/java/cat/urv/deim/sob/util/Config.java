@@ -44,6 +44,9 @@ public class Config {
     public static final int MIN_SHORTENED_URL_LENGTH = 3;
     public static final int MAX_SHORTENED_URL_LENGTH = 6;
     public static final int MAX_URL_DISPLAYED = 10;
+    public static final int DEFAULT_URL_SET_SIZE = 10;
+    public static final int DEFAULT_URL_PAGES = 5;
+
     // Five days will be the maximum default time for a reset pass ticket to be valid
     public static final long MAX_TICKET_TIME = 5 * 24 * 60 * 60 * 1000;
 

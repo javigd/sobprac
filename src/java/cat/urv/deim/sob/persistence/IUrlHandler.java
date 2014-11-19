@@ -22,5 +22,8 @@ public interface IUrlHandler {
     public String visit(String shortUrl) throws SOBException;
     
     public List<UrlBean> getUserUrls(String userId) throws SOBException;
-
+    
+    public List<UrlBean> getUserUrlsByPage(String userId, int page) throws SOBException;
+    
+    public Integer getUrlCountByUser(String userId) throws SOBException;
 }
