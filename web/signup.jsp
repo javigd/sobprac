@@ -10,29 +10,33 @@
         <link href="design/Form/formcss.css" type="text/css" rel="stylesheet">
     </head>
     <body>
-        <%@ include file="header.html"%>
-
-        <form id="signupform" method="post" action="signupsubmit.do">
-            <input type="hidden" name="form_action" value="signup" />
-            <div class="testbox">
-                <h2>Sign up</h2>
-                <hr>
-                <input type="text" name="username" placeholder="Username" />
-                <input type="text" name="email" placeholder="E-mail"/>
-                <input type="password" name="password" placeholder="Password"/>
-                <input type="password" name="passwordRepeat" placeholder="Repeat the password"/>
-                <input type="submit" name="enter_button" value="Enter" />
-        </form>
-        <br><br>
-    <herror>
-        <%
-            if (request.getAttribute("responseMessage") != null) {
-                out.print(request.getAttribute("responseMessage"));
-            }
-        %>
-        <br>
-    </herror>
-    <a href='login.jsp'> Back to Login page </a>
-</div>
+        <%@ include file="header.jsp"%>
+        <div id="page-wrap">
+            <form id="signupform" method="post" action="signupsubmit.do">
+                <input type="hidden" name="form_action" value="signup" />
+                <div class="testbox">
+                    <h2>Sign up</h2>
+                    <hr>
+                    <input type="text" name="username" placeholder="Username" />
+                    <input type="text" name="email" placeholder="E-mail"/>
+                    <input type="password" name="password" placeholder="Password"/>
+                    <input type="password" name="passwordRepeat" placeholder="Repeat the password"/>
+                    <input type="submit" name="enter_button" value="Enter" />
+            </form>
+            <br><br>
+            <herror>
+                <%
+                    if (request.getAttribute("responseMessage") != null) {
+                        out.print(request.getAttribute("responseMessage"));
+                    }
+                %>
+                <br>
+            </herror>
+            <a href='login.jsp'> Back to Login page </a>
+        </div>
+    </div>
+    <div id="footerfix">
+        <%@ include file="footer.html"%>
+    </div>
 </body>
 </html>
