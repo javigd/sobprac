@@ -56,15 +56,37 @@
                             }
                         }
                     %>
-                    
                     </herror>
                     </div>
                 </table>
+                <span>
+                    <%
+                        if (request.getAttribute("npages") != null && request.getAttribute("currentPage") != null) {
+                            Integer npages = (Integer) request.getAttribute("npages");
+                            Integer currentpg = (Integer) request.getAttribute("currentPage");
+                            Integer showpg = (Integer) request.getAttribute("showPages");
+                            if (currentpg >= showpg) out.print("... ");
+                            if (currentpg > 1) out.print("<a href=index.do?page=" + (currentpg - 1) + "> < </a> ");
+                            int inipg = (currentpg < showpg ? 1 : currentpg - showpg + 2);
+                            for (int i = inipg; i < inipg + showpg; i++) {
+                                if (i > npages) break;
+                                if (i == currentpg) {
+                                    out.print(i + " ");
+                                } else {
+                                    out.print("<a href=index.do?page=" + i + ">" + i + "</a> ");
+                                }
+                            }
+                            if (currentpg != npages) {
+                                out.print("<a href=index.do?page=" + (currentpg + 1) + "> > </a> ");
+                                if (npages > showpg && currentpg < showpg) out.print("...");
+                            }
+                        }%>
+                </span>
+
                 <form id="logoutServlet" method="post" action="logout.do">
                     <input type="hidden" name="form_action" value="logout" />
-
+                    
                     <a class="button" href="newurl.jsp">Shorten a new URL!</a>
-
                     
                     </div>
                 </form>
