@@ -13,6 +13,7 @@ import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.models.SOBUrl;
 import cat.urv.deim.sob.util.Config;
 import cat.urv.deim.sob.util.URLConverter;
+import java.nio.BufferOverflowException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,5 +91,34 @@ public class SOBUrlHandler implements IUrlHandler {
         
         return url.getLongUrl();
     }
+
+    @Override
+    public List<UrlBean> getUserUrlsByPage(String userId, int page) throws SOBException {
+        Long id = Long.parseLong(userId);
+        List<SOBUrl> urls = urlDAO.getUrlsByOffset(id, page, Config.DEFAULT_URL_SET_SIZE);
+        // Translate SOBUrl model objects to simple bean objects to be managed by the controller
+        List<UrlBean> urlBeans = new ArrayList<UrlBean>();
+        for (SOBUrl url : urls) {
+            urlBeans.add(new UrlBean(url.getLongUrl(), url.getShortUrl(), null, url.getNvisits()));
+        }
+        return urlBeans;
+    }
+
+    @Override
+    public Integer getUrlCountByUser(String userId) throws SOBException {
+        Integer count;
+        Long id = Long.parseLong(userId);
+        // Get the count of URLs introduced by the given user and filter the result
+        Long urlCount = urlDAO.getUrlCountByUser(id);
+        try {
+            count = urlCount != null ? urlCount.intValue() : null;
+        } catch (BufferOverflowException e) {
+            count = Integer.MAX_VALUE;
+        }
+        if (count == 0) throw new SOBException(SOBError.URLS_NOT_LOADED);
+        return count;
+    }
+    
+    
 
 }

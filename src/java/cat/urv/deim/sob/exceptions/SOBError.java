@@ -25,12 +25,13 @@ public enum SOBError {
     URL_NOT_VALID(1, "URL already exists!"),
     URL_TOO_SHORT(1, "Sorry, your URL is not long enough to be shortened!"),
     SHORT_URL_TOO_SHORT(1, "Sorry, your short URL cannot be shorter than 3 characters."),
-    SHORT_URL_TOO_LONG(1, "Sorry, your short URL cannot be longer than 12 characters."),
+    SHORT_URL_TOO_LONG(1, "Sorry, your short URL cannot be longer than 6 characters."),
     SHORT_URL_BAD_CHARS(1, "Sorry, your short URL should only contain characters combining a-z, A-Z and 0-9!"),
     URL_UNVALID(1, "URL not valid. Please check required fields."),
     URL_ALREADY_SHORTENED(1, "Sorry, this goShort! URL already exists, try with a new one please."),
-    URLS_NOT_LOADED(1, "Sorry, no URLs could be loaded. Try adding a new one!"),
+    URLS_NOT_LOADED(1, "You haven't shortened any URL yet, try adding a new one!"),
     BAD_GOSHORT_URL(1, "Sorry, the goShort! URL you tried to reach is either not available or no longer exists!"),
+    INVALID_URL_PAGE(1, "The requested page contains no URLs"),
     /* Utils Errors */
     BASE_NOT_SUPPORTED(500, "Base not Supported"),
     /* Client-side feedback Errors */

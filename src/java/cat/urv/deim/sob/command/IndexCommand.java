@@ -22,13 +22,13 @@ import javax.servlet.http.HttpServletResponse;
  * @author javigd
  */
 public class IndexCommand implements Command {
-    
+
     private final IUrlHandler dbUrlHandler;
 
     public IndexCommand(IUrlHandler dbUrlHandler) {
         this.dbUrlHandler = dbUrlHandler;
     }
-    
+
     @Override
     public void execute(
             HttpServletRequest request,
@@ -39,17 +39,37 @@ public class IndexCommand implements Command {
         String userId = (String) request.getSession().getAttribute("userid");
 
         request.setAttribute("responseMessage", null);
-        
-        if(userId != null) {
+
+        // Get the page value, set it as default if no page has been specified
+        int page;
+        String pageParam = request.getParameter("page");
+        if (pageParam == null) {
+            page = 1;
+        } else {
+            page = Integer.parseInt(pageParam);
+        }
+
+        if (userId != null) {
             try {
-                List<UrlBean> urls = dbUrlHandler.getUserUrls(userId);
+                // Compute the number of pages (user urls / urls per page)
+                int urlcount = dbUrlHandler.getUrlCountByUser(userId);
+                int npages = urlcount / Config.DEFAULT_URL_SET_SIZE;
+                if (urlcount % Config.DEFAULT_URL_SET_SIZE > 0) npages ++;
+                // In case the requesting page is invalid (hardcoded GETs), display message.
+                if (page < 1 || page > npages) throw new SOBException(SOBError.INVALID_URL_PAGE);
+                // Get a set of URLs to show, given the page
+                List<UrlBean> urls = dbUrlHandler.getUserUrlsByPage(userId, page - 1);
+                // Set the proper attributes for the view
+                request.setAttribute("npages", npages);
+                request.setAttribute("currentPage", page);
+                request.setAttribute("showPages", Config.DEFAULT_URL_PAGES);
                 request.setAttribute("loadedUrls", urls);
                 request.setAttribute("prefix", Config.SERVER_REDIR_PREFIX);
             } catch (SOBException ex) {
-                request.setAttribute("responseMessage", SOBError.URLS_NOT_LOADED.getMessage());
+                request.setAttribute("responseMessage", ex.getError().getMessage());
             }
         }
-        
+
         // 3. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
         context.getRequestDispatcher("/index.jsp").forward(request, response);
