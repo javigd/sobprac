@@ -7,28 +7,29 @@
         <title>GoShort! | New URL</title>
         <link href="design/ion/css/style.css" type="text/css" rel="stylesheet">
         <link href="design/Form/formcss.css" type="text/css" rel="stylesheet">
+        <link rel="shortcut icon" href="img/favicon.png" />
 
     </head>
     <body>
-        <%@ include file="header.html"%>
+        <%@ include file="header.jsp"%>
         <div id="page-wrap">
-            <%
-                //allow access only if session exists
-                String user = null;
-                if (session.getAttribute("user") == null) {
-                    response.sendRedirect("login.jsp");
-                } else {
-                    user = (String) session.getAttribute("user");
-                }
-            %>
-            <br>
-            <pre>
+            <herror>
+                <%                //allow access only if session exists
+                    String user = null;
+                    if (session.getAttribute("user") == null) {
+                        response.sendRedirect("login.jsp");
+                    } else {
+                        user = (String) session.getAttribute("user");
+                    }
+                %>
+
+
                 <%
                     if (request.getAttribute("resultMessage") != null) {
                         out.print(request.getAttribute("resultMessage"));
                     }
                 %>
-            </pre>
+            </herror>
             <br>
             <div class="testboxUrl">
 
@@ -38,28 +39,28 @@
                         <tr>
                             <td width="20%">Your Long URL:</td>
                             <td width="80%"> 
-                                <input class="longUrlText" type="text" name="longUrl" value="<%=request.getAttribute("longUrl")%>" />
+                                <div>
+                                    <input style="width: 100%" type="text" name="longUrl" value="<%=request.getAttribute("longUrl")%>" />
+                                </div>
                             </td>
                         </tr>
                         <tr>
-                            <td >Your proposed short URL:</td>
-                            <td >
-                                <span>
-                                    <%=request.getAttribute("prefix")%><input class="longUrlText" type="text" name="shortUrl" value="<%=request.getAttribute("shortUrl")%>" />
-                                </span>
+                            <td>Your proposed short URL:</td>
+                            <td>
+                               <%=request.getAttribute("prefix")%><input style="width: 50%" type="text" name="shortUrl" value="<%=request.getAttribute("shortUrl")%>" />
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <input type="submit" name="enter_button" value="Enter" />
+                                <a href="index.do" class="button">Cancel</a>    
                             </td>
-                            <td>
-                            </td>
+
                         </tr>
                     </table>
                 </form>
             </div>
-            <a href="index.do">Cancel</a>
+
         </div>  
         <div id="footerfix">
             <%@ include file="footer.html"%>
