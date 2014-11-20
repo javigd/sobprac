@@ -4,21 +4,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>GoShort! | Bad URL</title>
-        <link href="design/ion/css/style.css" type="text/css" rel="stylesheet">
-    
-
-
     </head>
     <body>
-        <%@ include file="header.jsp"%>
-        <div id="page-wrap">
-            <h2>goShort!</h2>
-            <h3><%=request.getAttribute("resultMessage")%></h3>
-            <br>
-            <h1><%=request.getAttribute("prefix")%><%=request.getAttribute("shortUrl")%></h1>
-        </div>
-        <div id="footerfix">
-            <%@ include file="footer.html"%>
-        </div>
+        <br>
+        <h2>goShort!</h2>
+        <h3><%=request.getAttribute("resultMessage")%></h3>
+        <br>
+        <h1><%=request.getAttribute("prefix")%><%=request.getAttribute("shortUrl")%></h1>
     </body>
 </html>

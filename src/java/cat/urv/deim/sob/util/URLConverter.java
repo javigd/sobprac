@@ -5,7 +5,6 @@
  */
 package cat.urv.deim.sob.util;
 
-import cat.urv.deim.sob.beans.FormHandler;
 import cat.urv.deim.sob.exceptions.SOBError;
 import cat.urv.deim.sob.exceptions.SOBException;
 import java.security.MessageDigest;

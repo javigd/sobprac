@@ -6,39 +6,47 @@
 <html>
     <head>
         <title>GoShort! | Log in</title>
-        <link rel="icon" href="img/favicon.png"/>
-        <link href="design/ion/css/style.css" type="text/css" rel="stylesheet">
-        <link href="design/Form/formcss.css" type="text/css" rel="stylesheet">
     </head>
     <body>
-        <%@ include file="header.jsp"%>
-        <div id="page-wrap">
-            <form id="loginform" method="post" action="loginsubmit.do">
-                <input type="hidden" name="form_action" value="login" />
-                <div class="testbox">
-                    <h2>LOGIN</h2>
-                    <hr>
-                    <input type="text" name="email"  placeholder="Email"/>
-                    <input type="password" name="password" placeholder="Password"/>
-                    <a href="iforgot.jsp">Did you forget your password..?</a><br>
-                    <button class="button" action="submit" margin-left="40px%">Enter</button>
-            </form>
-            <br>
-            <herror>
-                <%
-                    request.setAttribute("action", "signupinit");
-                    if (request.getAttribute("responseMessage") != null) {
-                        out.print(request.getAttribute("responseMessage"));
-                    }
-                %>
-            </herror>
-            <hr>
-            <h5> Other options</h5>
-            <a  href="signup.jsp" class="button">Register</a>
-        </div>
-    </div>
-    <div id="footerfix">
-        <%@ include file="footer.html"%>
-    </div>
-</body>
+        <br>
+        <h2>Login</h2>
+        <pre>
+            <%
+                if (request.getAttribute("responseMessage") != null) {
+                    out.print(request.getAttribute("responseMessage"));
+                }
+            %>
+        </pre>
+        <br>
+        <form id="loginform" method="post" action="loginsubmit.do">
+            <input type="hidden" name="form_action" value="login" />
+            <table>
+                <tr>
+                    <td>e-mail:</td>
+                    <td>
+                        <input type="text" name="email" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        password:
+                    </td>
+                    <td>
+                        <input type="password" name="password" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" name="enter_button" value="Enter" />
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <br>
+        <a href="signup.jsp">Register</a>
+        <br>
+        <a href="iforgot.jsp">I forgot my password</a>
+    </body>
 </html>
