@@ -5,8 +5,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>GoShort! | Log in</title>
-        
+        <title>GoShort! | Reset password</title>
+        <%@include file="header.html" %>
     </head>
     <body>
         <div class="container" >
@@ -44,7 +44,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <input type="submit" class="btn btn-lg btn-primary btn-block" value="Remember my password!">
+                                                <input type="submit" class="btn btn-lg btn-primary btn-block" value="Reset my password!">
                                             </div>
                                         </div>
                                         <herror>

@@ -6,11 +6,7 @@
 <html>
     <head>
         <title>GoShort! | Sign Up</title>
-        <link rel="stylesheet" type="text/css" href="design/css/bootstrap-theme.css"/>
-        <link rel="stylesheet" type="text/css" href="design/css/bootstrap.css"/>
-        <link rel="stylesheet" type="text/css" href="design/css/bootstrap.min.css"/>
-        <link rel="stylesheet" type="text/css" href="design/css/OwnCss.css"/>
-
+        <%@include file="header.html" %>
     </head>
     <body>
         <div class="container" style="margin-top: 40px">
