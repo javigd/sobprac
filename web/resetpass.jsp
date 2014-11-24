@@ -5,6 +5,70 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>GoShort! | Log in</title>
+        
+    </head>
+    <body>
+        <div class="container" >
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-md-offset-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <strong> Reset my password! </strong>
+                        </div>
+                        <div class="panel-body">
+                            <form id="resetform" method="post" action="resetpass.do?uid=<%=request.getParameter("uid")%>&ticket=<%=request.getParameter("ticket")%>">
+                                <input type="hidden" name="form_action" value="resetpass" />
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="center-block">
+                                            <img class="profile-img" src="img/IconLogo.png" alt=" ">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-10 col-md-offset-1">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-lock"></i>
+                                                    </span> 
+                                                    <input class="form-control" placeholder="New password" name="password" type="text" autofocus="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-lock"></i>
+                                                    </span>
+                                                    <input class="form-control" placeholder="Repeat password" name="passwordRepeat" type="password" autofocus="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" class="btn btn-lg btn-primary btn-block" value="Remember my password!">
+                                            </div>
+                                        </div>
+                                        <herror>
+                                            <%
+                                                if (request.getAttribute("responseMessage") != null) {
+                                                    out.print(request.getAttribute("responseMessage"));
+                                                }
+                                            %>
+                                        </herror>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+
+<!--
+<!DOCTYPE html>
+<html>
+    <head>
         <title>GoShort! | Reset Password</title>
     </head>
     <body>
@@ -18,33 +82,33 @@
             %>
         </pre>
         <br>
-        <form id="resetform" method="post" action="resetpass.do?uid=<%=request.getParameter("uid")%>&ticket=<%=request.getParameter("ticket")%>">
-            <input type="hidden" name="form_action" value="resetpass" />
-            <table>
-                <tr>
-                    <td>
-                        Your new password:
-                    </td>
-                    <td>
-                        <input type="password" name="password" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Repeat password:
-                    </td>
-                    <td>
-                        <input type="password" name="passwordRepeat" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" name="enter_button" value="Enter" />
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </body>
+
+        <table>
+            <tr>
+                <td>
+                    Your new password:
+                </td>
+                <td>
+                    <input type="password" name="password" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Repeat password:
+                </td>
+                <td>
+                    <input type="password" name="passwordRepeat" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" name="enter_button" value="Enter" />
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
 </html>
+-->
