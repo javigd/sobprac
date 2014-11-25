@@ -40,6 +40,7 @@
                                                 <input type="submit" class="btn btn-lg btn-primary btn-block" value="Remember my password!">
                                             </div>
                                         </div>
+
                                         <herror>
                                             <%
                                                 if (request.getAttribute("responseMessage") != null) {
@@ -47,6 +48,12 @@
                                                 }
                                             %>
                                         </herror>
+                                    </div>
+                                    <div class="panel-footer">
+                                        Do you get lost..?
+                                        <a href="login.jsp" style="text-decoration: none">
+                                            <input type="button" class="btn btn-lg btn-primary btn-block" value="Back to login page" >
+                                        </a>
                                     </div>
                                 </fieldset>
                             </form>

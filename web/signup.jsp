@@ -72,9 +72,12 @@
                                         </herror>
                                 </fieldset>
                             </form>
-                            <a href="login.jsp" style="text-decoration: none">
-                                <input type="submit" class="btn btn-lg btn-primary btn-block" value="Back to login page" >
-                            </a>
+                            <div class="panel-footer">
+                                Are you already a member?   
+                                <a href="login.jsp">
+                                    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Back to login page" >
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

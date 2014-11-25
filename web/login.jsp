@@ -9,7 +9,9 @@
         <%@include file="header.html" %>
     </head>
     <body>
-        <%@include file="navbar.html" %>
+      
+     <%@include file="navbar.html" %> 
+    
         <div class="container" >
             <div class="row">
                 <div class="col-sm-6 col-md-4 col-md-offset-4">
@@ -62,16 +64,16 @@
                                 <a href="signup.jsp">
                                     <input type="button" class="btn btn-lg btn-primary btn-block" value="Register!" >
                                 </a><br>
-                                 Did you forget your GoShort password? 
-                                 <a href="iforgot.jsp">
+                                Did you forget your GoShort password? 
+                                <a href="iforgot.jsp">
                                     <input type="button" class="btn btn-lg btn-info btn-block" value="Remember my password!" >
-                            </div>
-                            
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
     </body>
 </html>
 
