@@ -4,9 +4,12 @@
 
 <html>
     <head>
-        <title>GoShort! | New URL</title>
+        <title>GoShort! | New Url</title>
+        <%@include file="header.html" %>
     </head>
     <body>
+        <%@include file="navbar.html" %> 
+
         <%
             //allow access only if session exists
             String user = null;
@@ -16,34 +19,91 @@
                 user = (String) session.getAttribute("user");
             }
         %>
-        <br>
-        <h2>Make your URL goShort!</h2>
-        <pre>
-            <%
-                if (request.getAttribute("resultMessage") != null) {
-                    out.print(request.getAttribute("resultMessage"));
-                }
-            %>
-        </pre>
-        <br>
-        <form id="urlform" method="post" action="urlsubmit.do">
-            <input type="hidden" name="form_action" value="newurl" />
-            <table>
-                <tr>
-                    <td>Your Long URL:</td>
-                    <td> 
-                        <input type="text" name="longUrl" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" name="enter_button" value="Enter" />
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-            </table>
-        </form>
-        <a href="index.do">Cancel</a>
+
+        <div class="container" >
+            <div class="row">
+                <div class="col-sm-1 col-lg-12 col-sm-1">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <strong> Add a new URL and make it GoShort! </strong>
+                        </div>
+                        <div class="panel-body">
+                            <form id="urlform" method="post" action="urlsubmit.do">
+                                <input type="hidden" name="form_action" value="newurl" />
+                                <fieldset>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-10 col-md-offset-1">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="glyphicon glyphicon-link"></i>
+                                                    </span> 
+                                                    <input class="form-control" placeholder="Your long URL" name="longUrl" type="text" autofocus="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" class="btn btn-lg btn-primary btn-block" value="GoShort - it!">
+                                            </div>
+                                        </div>
+                                        <herror>
+                                            <%
+                                                if (request.getAttribute("resultMessage") != null) {
+                                                    out.print(request.getAttribute("resultMessage"));
+                                                }
+                                            %>
+                                        </herror>
+
+                                </fieldset>
+                            </form>
+                            <div class="panel-footer">
+                                I will add a new one later!
+                                <a href="index.jsp">
+                                <input type="button" class="btn btn-lg btn-info btn-block" value="Return to my URL's!" >
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
+
+
+
+
+<!--<html>
+    <head>
+        <title>GoShort! | New URL</title>
+    </head>
+    <body>
+
+<br>
+<h2>Make your URL goShort!</h2>
+<pre>
+
+</pre>
+<br>
+<form id="urlform" method="post" action="urlsubmit.do">
+<input type="hidden" name="form_action" value="newurl" />
+<table>
+    <tr>
+        <td>Your Long URL:</td>
+        <td> 
+            <input type="text" name="longUrl" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="submit" name="enter_button" value="Enter" />
+        </td>
+        <td>
+        </td>
+    </tr>
+</table>
+</form>
+<a href="index.do">Cancel</a>
+</body>
+</html>
+-->
