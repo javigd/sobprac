@@ -19,9 +19,6 @@
                 user = (String) session.getAttribute("user");
             }
         %>
-
-
-
         <div class="container" >
             <div class="row">
                 <div class="col-sm-1 col-lg-12 col-sm-1">
@@ -33,25 +30,26 @@
                             <form id="urlform" method="post" action="urlconf.do">
                                 <input type="hidden" name="form_action" value="urlconf" />
                                 <fieldset>
-                                    <%
-                                        if (request.getAttribute("responseMessage") != null) {
-                                            out.print("<div class=\"form-group\">"
-                                                    + "<div class=\"input-group\">"
-                                                    + "<span class=\"input-group\">"
-                                                    + "<div class=\"alert alert-danger text-left\">"
-                                                    + "<i class=\"glyphicon glyphicon-exclamation-sign\"></i>"
-                                                    + "</span> " + request.getAttribute("responseMessage")
-                                                    + "</div>"
-                                                    + "</div>"
-                                                    + "</div>");
-                                        }
-                                    %>
                                     <div class="row">
                                         <div class="col-sm-12 col-md-10 col-md-offset-1">
                                             <div class="alert alert-info text-center" >
                                                 <strong>Remember!</strong><br>You can edit your long URL and the shortened one as well!
                                             </div>
-                                            <hr>
+                                            <%
+                                                if (request.getAttribute("resultMessage") != null) {
+                                                    out.print("<hr>"
+                                                            + "<div class=\"form-group\">"
+                                                            + "<div class=\"input-group\">"
+                                                            + "<span class=\"input-group text-center\">"
+                                                            + "<div class=\"alert alert-danger text-center\">"
+                                                            + "<i class=\"glyphicon glyphicon-exclamation-sign\"></i>"
+                                                            + "</span> " + request.getAttribute("resultMessage")
+                                                            + "</div>"
+                                                            + "</div>"
+                                                            + "</div>"
+                                                            + "<hr>");
+                                                }
+                                            %>
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">

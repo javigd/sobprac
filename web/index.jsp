@@ -11,7 +11,6 @@
         <%@include file="navbar.html" %>
     </head>
     <body>
-
         <%
             // allow access only if session exists, redirect to controller if 
             // accessed from external sources in order to load data
@@ -31,8 +30,6 @@
                 }
             }
         %>
-
-
         <div class="container" >
             <div class="row">
                 <div class="col-sm-1 col-lg-12 col-sm-1">
@@ -74,7 +71,7 @@
                                                 out.print("<div class=\"form-group\">"
                                                         + "<div class=\"input-group\">"
                                                         + "<span class=\"input-group\">"
-                                                        + "<div class=\"alert alert-danger text-left\">"
+                                                        + "<div class=\"alert alert-success  text-left\">"
                                                         + "<i class=\"glyphicon glyphicon-exclamation-sign\"></i>"
                                                         + "</span> " + request.getAttribute("responseMessage")
                                                         + "</div>"
@@ -85,34 +82,28 @@
                                         <a href="newurl.jsp">
                                             <input type="button" class="btn  btn-lg btn-primary btn-block" value="Shorten a new URL!">
                                         </a>
-
-
-
                                     </div>
                                 </div>
                             </div>
-
-                                        
-                                <%
-                                    if (request.getAttribute("npages") != null && request.getAttribute("currentPage") != null) {
-                                        Integer npages = (Integer) request.getAttribute("npages");
-                                        Integer currentpg = (Integer) request.getAttribute("currentPage");
-                                        Integer showpg = (Integer) request.getAttribute("showPages");
-                                        int i;
-                                        out.print("<nav class=\"text-center\">"
-                                                + "<ul class=\"pagination\">");
-                                        for (i = 1; i <= npages; i++) {
-                                            out.print("<li><a href=\"index.do?page=" + i + "\">" + i + "</a></li>");
-                                        }
-                                        out.print("</ul>"
-                                                + "</nav>");
-                                    }%>
-                            
+                            <%
+                                if (request.getAttribute("npages") != null && request.getAttribute("currentPage") != null) {
+                                    Integer npages = (Integer) request.getAttribute("npages");
+                                    Integer currentpg = (Integer) request.getAttribute("currentPage");
+                                    Integer showpg = (Integer) request.getAttribute("showPages");
+                                    int i;
+                                    out.print("<nav class=\"text-center\">"
+                                            + "<ul class=\"pagination\">");
+                                    for (i = 1; i <= npages; i++) {
+                                        out.print("<li><a href=\"index.do?page=" + i + "\">" + i + "</a></li>");
+                                    }
+                                    out.print("</ul>"
+                                            + "</nav>");
+                                }%>
                             <div class="panel-footer">
                                 <form id="logoutServlet" method="post" action="logout.do">
                                     I finished my work here!
                                     <input type="hidden" name="form_action" value="logout" />
-                                    <input  class="btn btn-lg btn-info btn-block"type="submit" value="Logout" >
+                                    <input  class="btn btn-lg btn-info btn-block" type="submit" value="Logout" >
                                 </form>
                             </div>
                         </div>

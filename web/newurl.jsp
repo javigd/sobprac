@@ -32,18 +32,20 @@
                                 <input type="hidden" name="form_action" value="newurl" />
                                 <fieldset>
                                     <%
-                                        if (request.getAttribute("responseMessage") != null) {
-                                            out.print("<div class=\"form-group\">"
+                                        if (request.getAttribute("resultMessage") != null) {
+                                            out.print("<hr>"
+                                                    + "<div class=\"form-group \">"
                                                     + "<div class=\"input-group\">"
                                                     + "<span class=\"input-group\">"
-                                                    + "<div class=\"alert alert-danger text-left\">"
+                                                    + "<div class=\"alert alert-danger\">"
                                                     + "<i class=\"glyphicon glyphicon-exclamation-sign\"></i>"
-                                                    + "</span> " + request.getAttribute("responseMessage")
+                                                    + "</span> " + request.getAttribute("resultMessage")
                                                     + "</div>"
                                                     + "</div>"
-                                                    + "</div>");
+                                                    + "</div>"
+                                                    + "<hr>"  );
                                         }
-                                    %>
+                                    %>         
                                     <div class="row">
                                         <div class="col-sm-12 col-md-10 col-md-offset-1">
                                             <div class="form-group">
@@ -57,8 +59,9 @@
                                             <div class="form-group">
                                                 <input type="submit" class="btn btn-lg btn-primary btn-block" value="GoShort - it!">
                                             </div>
+                                            <div class="text-center">
+                                            </div>
                                         </div>
-                                    </div>
                                 </fieldset>
                             </form>
                             <div class="panel-footer">
