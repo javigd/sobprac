@@ -31,7 +31,6 @@
                             <form id="urlform" method="post" action="urlsubmit.do">
                                 <input type="hidden" name="form_action" value="newurl" />
                                 <fieldset>
-
                                     <div class="row">
                                         <div class="col-sm-12 col-md-10 col-md-offset-1">
                                             <div class="form-group">
@@ -53,13 +52,13 @@
                                                 }
                                             %>
                                         </herror>
-
+                                    </div>
                                 </fieldset>
                             </form>
                             <div class="panel-footer">
                                 I will add a new one later!
                                 <a href="index.jsp">
-                                <input type="button" class="btn btn-lg btn-info btn-block" value="Return to my URL's!" >
+                                    <input type="button" class="btn btn-lg btn-info btn-block" value="Return to my URL's!" >
                                 </a>
                             </div>
                         </div>

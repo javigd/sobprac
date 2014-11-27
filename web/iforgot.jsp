@@ -52,7 +52,7 @@
                                     <div class="panel-footer">
                                         Do you get lost..?
                                         <a href="login.jsp" style="text-decoration: none">
-                                            <input type="button" class="btn btn-lg btn-primary btn-block" value="Back to login page" >
+                                            <input type="button" class="btn btn-lg btn-info btn-block" value="Back to login page" >
                                         </a>
                                     </div>
                                 </fieldset>

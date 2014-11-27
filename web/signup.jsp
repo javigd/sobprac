@@ -20,6 +20,20 @@
                             <form id="signupform" method="post" action="signupsubmit.do">
                                 <input type="hidden" name="form_action" value="signup" />
                                 <fieldset>
+                                    <%
+                                        if (request.getAttribute("responseMessage") != null) {
+                                            out.print("<div class=\"row\">"
+                                                    + "<div class=\"form-group \">"
+                                                    + "<div class=\"center-block\"> "
+                                                    + "<div class=\"alert alert-danger text-center\">"
+                                                    + "<i class=\"glyphicon glyphicon-exclamation-sign\"></i> "
+                                                    + request.getAttribute("responseMessage")
+                                                    + "</div>"
+                                                    + "</div>"
+                                                    + "</div>"
+                                                    + "</div>");
+                                        }
+                                    %>
                                     <div class="row">
                                         <div class="center-block">
                                             <img class="profile-img" src="img/IconLogo.png" alt=" ">
@@ -63,13 +77,6 @@
                                                 <input type="submit" class="btn btn-lg btn-primary btn-block" value="Register!">
                                             </div>
                                         </div>
-                                        <herror>
-                                            <%
-                                                if (request.getAttribute("responseMessage") != null) {
-                                                    out.print(request.getAttribute("responseMessage"));
-                                                }
-                                            %>
-                                        </herror>
                                 </fieldset>
                             </form>
                             <div class="panel-footer">
