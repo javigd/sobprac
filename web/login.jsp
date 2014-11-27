@@ -9,9 +9,6 @@
         <%@include file="header.html" %>
     </head>
     <body>
-
-        <%@include file="navbar.html" %> 
-
         <div class="container" >
             <div class="row">
                 <div class="col-sm-6 col-md-4 col-md-offset-4">
@@ -23,8 +20,7 @@
                             <form id="loginform" method="post" action="loginsubmit.do">
                                 <input type="hidden" name="form_action" value="login" />
                                 <fieldset>
-                                    <%
-                                        if (request.getAttribute("responseMessage") != null) {
+                                    <%                                        if (request.getAttribute("responseMessage") != null) {
                                             out.print("<div class=\"row\">"
                                                     + "<div class=\"form-group \">"
                                                     + "<div class=\"center-block\"> "

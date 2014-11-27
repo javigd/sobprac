@@ -8,7 +8,7 @@
         <%@include file="header.html" %>
     </head>
     <body>
-        <%@include file="navbar.html" %> 
+        
 
         <%
             //allow access only if session exists

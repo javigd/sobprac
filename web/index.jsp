@@ -8,7 +8,6 @@
     <head>
         <title>GoShort!</title>
         <%@include file="header.html" %>
-        <%@include file="navbar.html" %>
     </head>
     <body>
         <%

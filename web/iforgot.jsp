@@ -18,9 +18,23 @@
                             <form id="iforgotform" method="post" action="iforgot.do">
                                 <input type="hidden" name="form_action" value="iforgot" />
                                 <fieldset>
+                                    
                                     <div class="row">
                                         <div class="alert alert-info text-center" ><strong>Don't worry!</strong><br>An email will be sent to your e-mail to remember your password! </div>
                                     </div>
+                                    <%                                        if (request.getAttribute("responseMessage") != null) {
+                                            out.print("<div class=\"row\">"
+                                                    + "<div class=\"form-group \">"
+                                                    + "<div class=\"center-block\"> "
+                                                    + "<div class=\"alert alert-danger text-center\">"
+                                                    + "<i class=\"glyphicon glyphicon-exclamation-sign\"></i> "
+                                                    + request.getAttribute("responseMessage")
+                                                    + "</div>"
+                                                    + "</div>"
+                                                    + "</div>"
+                                                    + "</div>");
+                                        }
+                                    %>
                                     <div class="row">
                                         <div class="center-block">
                                             <img class="profile-img" src="img/IconLogo.png" alt=" ">
@@ -41,13 +55,9 @@
                                             </div>
                                         </div>
 
-                                        <herror>
-                                            <%
-                                                if (request.getAttribute("responseMessage") != null) {
-                                                    out.print(request.getAttribute("responseMessage"));
-                                                }
-                                            %>
-                                        </herror>
+
+
+
                                     </div>
                                     <div class="panel-footer">
                                         Do you get lost..?

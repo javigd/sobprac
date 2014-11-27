@@ -20,6 +20,19 @@
                             <form id="resetform" method="post" action="resetpass.do?uid=<%=request.getParameter("uid")%>&ticket=<%=request.getParameter("ticket")%>">
                                 <input type="hidden" name="form_action" value="resetpass" />
                                 <fieldset>
+                                    <%                                        if (request.getAttribute("responseMessage") != null) {
+                                            out.print("<div class=\"row\">"
+                                                    + "<div class=\"form-group \">"
+                                                    + "<div class=\"center-block\"> "
+                                                    + "<div class=\"alert alert-danger text-center\">"
+                                                    + "<i class=\"glyphicon glyphicon-exclamation-sign\"></i> "
+                                                    + request.getAttribute("responseMessage")
+                                                    + "</div>"
+                                                    + "</div>"
+                                                    + "</div>"
+                                                    + "</div>");
+                                        }
+                                    %>
                                     <div class="row">
                                         <div class="center-block">
                                             <img class="profile-img" src="img/IconLogo.png" alt=" ">
@@ -47,13 +60,6 @@
                                                 <input type="submit" class="btn btn-lg btn-primary btn-block" value="Reset my password!">
                                             </div>
                                         </div>
-                                        <herror>
-                                            <%
-                                                if (request.getAttribute("responseMessage") != null) {
-                                                    out.print(request.getAttribute("responseMessage"));
-                                                }
-                                            %>
-                                        </herror>
                                 </fieldset>
                             </form>
                         </div>
@@ -75,40 +81,40 @@
         <br>
         <h2>Reset your password</h2>
         <pre>
-            <%
-                if (request.getAttribute("responseMessage") != null) {
-                    out.print(request.getAttribute("responseMessage"));
-                }
-            %>
-        </pre>
-        <br>
+<%
+    if (request.getAttribute("responseMessage") != null) {
+        out.print(request.getAttribute("responseMessage"));
+    }
+%>
+</pre>
+<br>
 
-        <table>
-            <tr>
-                <td>
-                    Your new password:
-                </td>
-                <td>
-                    <input type="password" name="password" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Repeat password:
-                </td>
-                <td>
-                    <input type="password" name="passwordRepeat" />
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="submit" name="enter_button" value="Enter" />
-                </td>
-                <td>
-                </td>
-            </tr>
-        </table>
-    </form>
+<table>
+<tr>
+    <td>
+        Your new password:
+    </td>
+    <td>
+        <input type="password" name="password" />
+    </td>
+</tr>
+<tr>
+    <td>
+        Repeat password:
+    </td>
+    <td>
+        <input type="password" name="passwordRepeat" />
+    </td>
+</tr>
+<tr>
+    <td>
+        <input type="submit" name="enter_button" value="Enter" />
+    </td>
+    <td>
+    </td>
+</tr>
+</table>
+</form>
 </body>
 </html>
 -->
