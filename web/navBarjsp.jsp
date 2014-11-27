@@ -1,47 +1,35 @@
-<%-- 
-    Document   : navBarjsp
-    Created on : 24-nov-2014, 16:33:21
-    Author     : Max
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>NavBar</title>
+        <%@include file="header.html"%>
     </head>
     <body>
-        <%
-            // allow access only if session exists, redirect to controller if 
-            // accessed from external sources in order to load data
-            if (session.getAttribute("user") == null) {
-                response.sendRedirect("login.jsp");
-            } else if (request.getAttribute("loadedUrls") == null
-                    && request.getAttribute("responseMessage") == null) {
-                response.sendRedirect("index.do");
-            }
-            String userName = null;
-            Cookie[] cookies = request.getCookies();
-            if (cookies != null) {
-                for (Cookie cookie : cookies) {
-                    if (cookie.getName().equals("user")) {
-                        userName = cookie.getValue();
-                    }
-                }
-            }
-        %>
-        
-        
-        <nav class="navbar navbar-default" role="navigation">
+        <nav class="navbar navbar-default navbar-fixed-top nav" role="navigation">
             <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    
-                    <a class="navbar-brand" href="#"><%=userName%></a>
+                    <%
+                        String userName = null;
+                        Cookie[] cookies = request.getCookies();
+                        if (cookies != null) {
+                            for (Cookie cookie : cookies) {
+                                if (cookie.getName().equals("user")) {
+                                    userName = cookie.getValue();
+                                }
+                            }
+                        }
+                    %>
+                    <a class="navbar-brand " href="index.do"> <span><img alt="GoShort!" src="img/IconLogoNavBar.png"></span>
+                        GoShort!
+                    </a>
                 </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
+                <p class="navbar-text navbar-right">   </p>
+                <p class="navbar-text navbar-right">Welcome, <a href="#" class="navbar-link col-"><%=userName%></a></p>
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href="https://github.com/javigd/sobprac"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> What's GoShort?</a></li>
+                </ul>
             </div>
         </nav>
     </body>

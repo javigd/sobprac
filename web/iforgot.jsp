@@ -54,10 +54,6 @@
                                                 <input type="submit" class="btn btn-lg btn-primary btn-block" value="Remember my password!">
                                             </div>
                                         </div>
-
-
-
-
                                     </div>
                                     <div class="panel-footer">
                                         Do you get lost..?

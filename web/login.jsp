@@ -7,6 +7,7 @@
     <head>
         <title>GoShort! | Log in</title>
         <%@include file="header.html" %>
+        <%@include file="navBarjsp.jsp" %>
     </head>
     <body>
         <div class="container" >
