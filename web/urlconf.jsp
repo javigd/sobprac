@@ -33,6 +33,19 @@
                             <form id="urlform" method="post" action="urlconf.do">
                                 <input type="hidden" name="form_action" value="urlconf" />
                                 <fieldset>
+                                    <%
+                                        if (request.getAttribute("responseMessage") != null) {
+                                            out.print("<div class=\"form-group\">"
+                                                    + "<div class=\"input-group\">"
+                                                    + "<span class=\"input-group\">"
+                                                    + "<div class=\"alert alert-danger text-left\">"
+                                                    + "<i class=\"glyphicon glyphicon-exclamation-sign\"></i>"
+                                                    + "</span> " + request.getAttribute("responseMessage")
+                                                    + "</div>"
+                                                    + "</div>"
+                                                    + "</div>");
+                                        }
+                                    %>
                                     <div class="row">
                                         <div class="col-sm-12 col-md-10 col-md-offset-1">
                                             <div class="alert alert-info text-center" >
@@ -58,13 +71,7 @@
                                                 <input type="submit" class="btn btn-lg btn-primary btn-block" value="Validate">
                                             </div>
                                         </div>
-                                        <herror>
-                                            <%
-                                                if (request.getAttribute("responseMessage") != null) {
-                                                    out.print(request.getAttribute("responseMessage"));
-                                                }
-                                            %>
-                                        </herror>
+
                                     </div>
                                 </fieldset>
                             </form>

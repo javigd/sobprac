@@ -59,7 +59,7 @@
                                                             String LongUrl = urlBean.getLongUrl();
                                                             out.print("<tr>");
                                                             out.print("<td>" + num + " </td>");
-                                                            out.print("<td><input class=\"form-control\" value=\"" + LongUrl + "\" type=\"text\" disabled></td>");
+                                                            out.print("<td><input class=\"form-control\" value=\"" + LongUrl + "\" type=\"text\" readonly></td>");
                                                             out.print("<td><a href=\"rt/" + urlBean.getShortUrl() + "\" target=\"_blank\">" + request.getAttribute("prefix") + urlBean.getShortUrl() + "</a></td>");
                                                             out.print("<td>" + urlBean.getNvisits() + "</td>");
                                                             out.print("</tr>");
@@ -70,27 +70,44 @@
                                                 %>
                                         </table>
                                         <%
-                                                if (request.getAttribute("responseMessage") != null) {
-                                                    out.print("<div class=\"form-group\">"
-                                                            + "<div class=\"input-group\">"
-                                                            + "<span class=\"input-group\">"
-                                                            + "<div class=\"alert alert-danger text-left\">"
-                                                            + "<i class=\"glyphicon glyphicon-exclamation-sign\"></i>"
-                                                            + "</span> " + request.getAttribute("responseMessage")
-                                                            + "</div>"
-                                                            + "</div>"
-                                                            + "</div>");
-                                                }
-                                            %>
+                                            if (request.getAttribute("responseMessage") != null) {
+                                                out.print("<div class=\"form-group\">"
+                                                        + "<div class=\"input-group\">"
+                                                        + "<span class=\"input-group\">"
+                                                        + "<div class=\"alert alert-danger text-left\">"
+                                                        + "<i class=\"glyphicon glyphicon-exclamation-sign\"></i>"
+                                                        + "</span> " + request.getAttribute("responseMessage")
+                                                        + "</div>"
+                                                        + "</div>"
+                                                        + "</div>");
+                                            }
+                                        %>
                                         <a href="newurl.jsp">
-                                            <input class="btn btn-block btn-lg btn-primary" type="text" value="Shorten a new URL!">
+                                            <input type="button" class="btn  btn-lg btn-primary btn-block" value="Shorten a new URL!">
                                         </a>
-                                        
-                                        <br>
-                                       
+
+
+
                                     </div>
                                 </div>
                             </div>
+
+                                        
+                                <%
+                                    if (request.getAttribute("npages") != null && request.getAttribute("currentPage") != null) {
+                                        Integer npages = (Integer) request.getAttribute("npages");
+                                        Integer currentpg = (Integer) request.getAttribute("currentPage");
+                                        Integer showpg = (Integer) request.getAttribute("showPages");
+                                        int i;
+                                        out.print("<nav class=\"text-center\">"
+                                                + "<ul class=\"pagination\">");
+                                        for (i = 1; i <= npages; i++) {
+                                            out.print("<li><a href=\"index.do?page=" + i + "\">" + i + "</a></li>");
+                                        }
+                                        out.print("</ul>"
+                                                + "</nav>");
+                                    }%>
+                            
                             <div class="panel-footer">
                                 <form id="logoutServlet" method="post" action="logout.do">
                                     I finished my work here!
@@ -103,63 +120,65 @@
                 </div>
             </div>
         </div>
+    </body>
+</html>
+<!--
+//   /*Welcome back, <%//=userName%>*/
+<br />
+<br />
+<h3>Your URLs:</h3>
+<a href="newurl.jsp">Shorten a new URL!</a>
+<br />
+<table>
+    <tr>
+        <th>Long URL</th>
+        <th>goShort! URL</th>
+        <th>Visits</th>
+    </tr>
+<%/*
+        // if (request.getAttribute ( 
+        //   "responseMessage") != null) {
+        // out.print(request.getAttribute("responseMessage"));
+    }
+%>
 
-
-        <!--
-        Welcome back, <%=userName%>
-        <br />
-        <br />
-        <h3>Your URLs:</h3>
-        <a href="newurl.jsp">Shorten a new URL!</a>
-        <br />
-        <table>
-            <tr>
-                <th>Long URL</th>
-                <th>goShort! URL</th>
-                <th>Visits</th>
-            </tr>
-        <%
-            if (request.getAttribute("responseMessage") != null) {
-                out.print(request.getAttribute("responseMessage"));
-            }
-        %>
-     
-    </table>
-    <span>
-        <%
-            if (request.getAttribute("npages") != null && request.getAttribute("currentPage") != null) {
-                Integer npages = (Integer) request.getAttribute("npages");
-                Integer currentpg = (Integer) request.getAttribute("currentPage");
-                Integer showpg = (Integer) request.getAttribute("showPages");
-                if (currentpg >= showpg) {
-                    out.print("... ");
-                }
-                if (currentpg > 1) {
-                    out.print("<a href=index.do?page=" + (currentpg - 1) + "> < </a> ");
-                }
-                int inipg = (currentpg < showpg ? 1 : currentpg - showpg + 2);
-                for (int i = inipg; i < inipg + showpg; i++) {
-                    if (i > npages) {
-                        break;
-                    }
-                    if (i == currentpg) {
-                        out.print(i + " ");
-                    } else {
-                        out.print("<a href=index.do?page=" + i + ">" + i + "</a> ");
-                    }
-                }
-                if (currentpg != npages) {
-                    out.print("<a href=index.do?page=" + (currentpg + 1) + "> > </a> ");
-                    if (npages > showpg && currentpg < showpg) {
-                        out.print("...");
-                    }
-                }
-            }%>
-    </span>
-    <form id="logoutServlet" method="post" action="logout.do">
-        <input type="hidden" name="form_action" value="logout" />
-        <input type="submit" value="Logout" >
-    </form>
+</table>
+<span>
+<%/*
+     if (request.getAttribute ( 
+     "npages") != null && request.getAttribute("currentPage") != null) {
+     Integer npages = (Integer) request.getAttribute("npages");
+     Integer currentpg = (Integer) request.getAttribute("currentPage");
+     Integer showpg = (Integer) request.getAttribute("showPages");
+     if (currentpg >= showpg) {
+     out.print("... ");
+     }
+     if (currentpg > 1) {
+     out.print("<a href=index.do?page=" + (currentpg - 1) + "> < </a> ");
+     }
+     int inipg = (currentpg < showpg ? 1 : currentpg - showpg + 2);
+     for (int i = inipg; i < inipg + showpg; i++) {
+     if (i > npages) {
+     break;
+     }
+     if (i == currentpg) {
+     out.print(i + " ");
+     } else {
+     out.print("<a href=index.do?page=" + i + ">" + i + "</a> ");
+     }
+     }
+     if (currentpg != npages) {
+     out.print("<a href=index.do?page=" + (currentpg + 1) + "> > </a> ");
+     if (npages > showpg && currentpg < showpg) {
+     out.print("...");
+     }
+     }
+     }*/%>
+</span>
+<form id="logoutServlet" method="post" action="logout.do">
+<input type="hidden" name="form_action" value="logout" />
+<input type="submit" value="Logout" >
+</form>
 </body>
 </html>
-        -->
+-->

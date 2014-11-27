@@ -22,7 +22,6 @@
                         <div class="panel-body">
                             <form id="loginform" method="post" action="loginsubmit.do">
                                 <input type="hidden" name="form_action" value="login" />
-                                
                                 <fieldset>
                                     <%
                                         if (request.getAttribute("responseMessage") != null) {
