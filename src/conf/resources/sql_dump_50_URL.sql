@@ -1,6 +1,5 @@
 INSERT INTO sobuser (email, password, resetticket, ticketemission, username)
-        VALUES ('sob@sob.com', '´‰ÞÑ,<æ
-ÕíaÐïä', null, null, 'sob');
+        VALUES ('test@sob.com', '	�k�F!�s��N�&''��', null, null, 'sob');
 
 INSERT INTO soburl (longurl, nvisits, shorturl, userid)
     VALUES ('http://www.urbandictionary.com/define.php?term=asdasd',0, 'cj2Sd', 1), 
