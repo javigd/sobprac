@@ -83,7 +83,7 @@
                             <div class="panel-footer">
                                 Are you already a member?   
                                 <a href="login.jsp">
-                                    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Back to login page" >
+                                    <input type="submit" class="btn btn-lg btn-info btn-block" value="Back to login page" >
                                 </a>
                             </div>
                         </div>

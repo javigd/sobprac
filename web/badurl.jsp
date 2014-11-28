@@ -5,7 +5,7 @@
     <head>
         <title>GoShort! | Bad Url!</title>
         <%@include file="header.html" %>
-        <%@include file="navBarjsp.jsp"%>
+       
     </head>
     <body>
         <div class="container" >
