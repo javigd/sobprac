@@ -47,7 +47,7 @@
                                                     <span class="input-group-addon">
                                                         <i class="glyphicon glyphicon-lock"></i>
                                                     </span> 
-                                                    <input class="form-control" placeholder="New password" name="password" type="text" autofocus="">
+                                                    <input class="form-control" placeholder="New password" name="password" type="password" autofocus="">
                                                 </div>
                                             </div>
                                             <div class="form-group">
