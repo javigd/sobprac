@@ -92,11 +92,11 @@ public class SOBUrlDAO extends SOBPersistence implements UrlDAO {
         //Simple query to get a URL from de DB given his ID
         Query q = em.createQuery("SELECT url FROM SOBUrl url WHERE url.shortUrl = :urlId");
         q.setParameter("urlId", shortUrlId);
-        try {
-            SOBUrl url = (SOBUrl) q.getSingleResult();
+        if (!q.getResultList().isEmpty()) {
+            SOBUrl url = (SOBUrl) q.getResultList().get(0);
             em.close();
             return (url);
-        } catch (NoResultException | NonUniqueResultException e) {
+        } else {
             em.close();
             throw new SOBException(SOBError.BAD_GOSHORT_URL);
         }

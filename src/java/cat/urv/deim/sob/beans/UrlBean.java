@@ -7,6 +7,7 @@ package cat.urv.deim.sob.beans;
 
 import cat.urv.deim.sob.exceptions.SOBError;
 import cat.urv.deim.sob.exceptions.SOBException;
+import cat.urv.deim.sob.util.Config;
 
 /**
  *
@@ -43,7 +44,7 @@ public class UrlBean {
     public void setShortUrl(String shortUrl) {
         this.shortUrl = shortUrl;
     }
-    
+
     public Long getUserId() {
         return userId;
     }
@@ -51,8 +52,8 @@ public class UrlBean {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
-    
-    public String getMessage(){
+
+    public String getMessage() {
         return toString();
     }
 
@@ -63,16 +64,18 @@ public class UrlBean {
     public void setNvisits(Long nvisits) {
         this.nvisits = nvisits;
     }
-    
+
     public void validate() throws SOBException {
-        if(longUrl == null || userId == null || longUrl.equals("")) {
+        if (longUrl == null || userId == null || longUrl.equals("")) {
             throw new SOBException(SOBError.URL_UNVALID);
+        } else if (longUrl.length() >= Config.MAX_LONG_URL_LENGTH) {
+            throw new SOBException(SOBError.URL_TOO_LONG);
         }
     }
 
     @Override
     public String toString() {
-        
+
         return "\nLongUrl:\t\t" + getLongUrl() + "\n"
                 + "ShortUrl:" + getShortUrl() + "\n";
     }

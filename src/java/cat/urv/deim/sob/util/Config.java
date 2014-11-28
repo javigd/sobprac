@@ -43,6 +43,7 @@ public class Config {
     public static final int SESSION_MAX_TIME = 30 * 60;
     public static final int MIN_SHORTENED_URL_LENGTH = 3;
     public static final int MAX_SHORTENED_URL_LENGTH = 6;
+    public static final int MAX_LONG_URL_LENGTH = 255;
     public static final int MAX_URL_DISPLAYED = 10;
     public static final int DEFAULT_URL_SET_SIZE = 10;
     public static final int DEFAULT_URL_PAGES = 5;
