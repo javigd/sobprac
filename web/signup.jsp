@@ -7,9 +7,10 @@
     <head>
         <title>GoShort! | Sign Up</title>
         <%@include file="header.html" %>
+        <%@include file="navBarjsp.jsp"%>
     </head>
     <body>
-        <div class="container" style="margin-top: 40px">
+        <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-md-4 col-md-offset-4">
                     <div class="panel panel-default">

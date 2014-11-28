@@ -7,6 +7,7 @@
     <head>
         <title>GoShort! | Reset password</title>
         <%@include file="header.html" %>
+        <%@include file="navBarjsp.jsp"%>
     </head>
     <body>
         <div class="container" >
@@ -20,7 +21,8 @@
                             <form id="resetform" method="post" action="resetpass.do?uid=<%=request.getParameter("uid")%>&ticket=<%=request.getParameter("ticket")%>">
                                 <input type="hidden" name="form_action" value="resetpass" />
                                 <fieldset>
-                                    <%                                        if (request.getAttribute("responseMessage") != null) {
+                                    <%                
+                                    if (request.getAttribute("responseMessage") != null) {
                                             out.print("<div class=\"row\">"
                                                     + "<div class=\"form-group \">"
                                                     + "<div class=\"center-block\"> "

@@ -5,6 +5,7 @@
     <head>
         <title>GoShort! | Remember password</title>
         <%@include file="header.html" %>
+        <%@include file="navBarjsp.jsp"%>
     </head>
     <body>
         <div class="container" >
@@ -18,7 +19,6 @@
                             <form id="iforgotform" method="post" action="iforgot.do">
                                 <input type="hidden" name="form_action" value="iforgot" />
                                 <fieldset>
-                                    
                                     <div class="row">
                                         <div class="alert alert-info text-center" ><strong>Don't worry!</strong><br>An email will be sent to your e-mail to remember your password! </div>
                                     </div>
@@ -71,37 +71,3 @@
     </body>
 </html>
 
-<!--
-<html>
-    <head>
-        <title>GoShort! | Reset your password</title>
-    </head>
-    <body>
-        <br>
-        <h2>Reset your password</h2>
-        <pre>
-          
-        </pre>
-        <br>
-        <form id="iforgotform" method="post" action="iforgot.do">
-            <input type="hidden" name="form_action" value="iforgot" />
-            <table>
-                <tr>
-                    <td>Your e-mail:</td>
-                    <td>
-                        <input type="text" name="email"/>
-                    </td>
-                </tr>
-                An e-mail will be sent to you with proper instructions in order to reset your password
-                <tr>
-                    <td>
-                        <input type="submit" name="enter_button" value="Enter" />
-                    </td>
-                    <td>
-                    </td>
-                </tr>
-            </table>
-        </form>
-    </body>
-</html>
--->

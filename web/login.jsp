@@ -7,7 +7,7 @@
     <head>
         <title>GoShort! | Log in</title>
         <%@include file="header.html" %>
-        <%@include file="navBarjsp.jsp" %>
+        <%@include file="navBarjsp.jsp"%>
     </head>
     <body>
         <div class="container" >
@@ -21,7 +21,8 @@
                             <form id="loginform" method="post" action="loginsubmit.do">
                                 <input type="hidden" name="form_action" value="login" />
                                 <fieldset>
-                                    <%                                        if (request.getAttribute("responseMessage") != null) {
+                                    <%                                     
+                                        if (request.getAttribute("responseMessage") != null) {
                                             out.print("<div class=\"row\">"
                                                     + "<div class=\"form-group \">"
                                                     + "<div class=\"center-block\"> "
@@ -39,47 +40,46 @@
                                             <img class="profile-img" src="img/IconLogo.png" alt=" ">
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-10 col-md-offset-1">
-
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <i class="glyphicon glyphicon-envelope"></i>
-                                                    </span> 
-                                                    <input class="form-control" placeholder="Email" name="email" type="text" autofocus="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <i class="glyphicon glyphicon-lock"></i>
-                                                    </span>
-                                                    <input class="form-control" placeholder="Password" name="password" type="password" autofocus="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="submit" class="btn btn-lg btn-primary btn-block" value="Log In">
-                                            </div>
-                                            </fieldset>
-                                            </form>
-                                            <div class="panel-footer ">
-                                                Not GoShort user yet? 
-                                                <a href="signup.jsp">
-                                                    <input type="button" class="btn btn-lg btn-primary btn-block" value="Register!" >
-                                                </a><br>
-                                                Did you forget your GoShort password? 
-                                                <a href="iforgot.jsp">
-                                                    <input type="button" class="btn btn-lg btn-info btn-block" value="Remember my password!" >
-                                                </a>
+                                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-envelope"></i>
+                                                </span> 
+                                                <input class="form-control" placeholder="Email" name="email" type="text" autofocus="">
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="glyphicon glyphicon-lock"></i>
+                                                </span>
+                                                <input class="form-control" placeholder="Password" name="password" type="password" autofocus="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Log In">
+                                        </div>
                                     </div>
-                                    </div>
-                                    </div>
-                                    </div>
-                                    </body>
-                                    </html>
+                                </fieldset>
+                            </form>
+                            <div class="panel-footer ">
+                                Not GoShort user yet? 
+                                <a href="signup.jsp">
+                                    <input type="button" class="btn btn-lg btn-primary btn-block" value="Register!" >
+                                </a><br>
+                                Did you forget your GoShort password? 
+                                <a href="iforgot.jsp">
+                                    <input type="button" class="btn btn-lg btn-info btn-block" value="Remember my password!" >
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
 
 
 

@@ -6,10 +6,9 @@
     <head>
         <title>GoShort! | New Url</title>
         <%@include file="header.html" %>
+        <%@include file="navBarjsp.jsp"%>
     </head>
     <body>
-        
-
         <%
             //allow access only if session exists
             String user = null;
@@ -19,7 +18,6 @@
                 user = (String) session.getAttribute("user");
             }
         %>
-
         <div class="container" >
             <div class="row">
                 <div class="col-sm-1 col-lg-12 col-sm-1">
@@ -77,41 +75,3 @@
         </div>
     </body>
 </html>
-
-
-
-
-<!--<html>
-    <head>
-        <title>GoShort! | New URL</title>
-    </head>
-    <body>
-
-<br>
-<h2>Make your URL goShort!</h2>
-<pre>
-
-</pre>
-<br>
-<form id="urlform" method="post" action="urlsubmit.do">
-<input type="hidden" name="form_action" value="newurl" />
-<table>
-    <tr>
-        <td>Your Long URL:</td>
-        <td> 
-            <input type="text" name="longUrl" />
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <input type="submit" name="enter_button" value="Enter" />
-        </td>
-        <td>
-        </td>
-    </tr>
-</table>
-</form>
-<a href="index.do">Cancel</a>
-</body>
-</html>
--->
