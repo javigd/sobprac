@@ -34,7 +34,6 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-10 col-md-offset-1">
                                         <div class="alert alert-info text-left" >Here you have all your <strong>GoShort!</strong> Url's</div>
-                                        <!-- Table -->
                                         <table class="table table-striped  ">
                                             <th class="col-sm-offset-2"> # </th>
                                             <th class="col-lg-9" >Long Url</th>
@@ -59,14 +58,9 @@
                                         </table>
                                         <%
                                             if (request.getAttribute("responseMessage") != null) {
-                                                out.print("<div class=\"form-group\">"
-                                                        + "<div class=\"input-group\">"
-                                                        + "<span class=\"input-group\">"
-                                                        + "<div class=\"alert alert-success  text-left\">"
+                                                out.print("<div class=\"alert alert-success  text-center\">"
                                                         + "<i class=\"glyphicon glyphicon-exclamation-sign\"></i>"
                                                         + "</span> " + request.getAttribute("responseMessage")
-                                                        + "</div>"
-                                                        + "</div>"
                                                         + "</div>");
                                             }
                                         %>

@@ -23,12 +23,19 @@
                     %>
                     <a class="navbar-brand " href="index.do"> <span><img alt="GoShort!" src="img/IconLogoNavBar.png"></span>
                         GoShort!
-                    </a>
+                    </a> 
                 </div>
-                <p class="navbar-text navbar-right">   </p>
-                <p class="navbar-text navbar-right">Welcome, <a href="#" class="navbar-link col-"><%=userName%></a></p>
-                <ul class="nav navbar-nav navbar-left">
-                    <li><a href="https://github.com/javigd/sobprac"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> What's GoShort?</a></li>
+                <%
+                    if (userName != null) {
+                        out.print("<p class=\"navbar-text \">"
+                                + "Welcome, "
+                                + "<a href=\"index.do\" class=\"navbar-link\">"
+                                + "<strong>" + userName +"</strong>"
+                                + "</a></p>");
+                    }
+                %>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="https://github.com/javigd/sobprac" target="_blank"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> What's GoShort!?     </a></li>
                 </ul>
             </div>
         </nav>

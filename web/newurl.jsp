@@ -9,8 +9,7 @@
         <%@include file="navBarjsp.jsp"%>
     </head>
     <body>
-        <%
-            //allow access only if session exists
+        <%            //allow access only if session exists
             String user = null;
             if (session.getAttribute("user") == null) {
                 response.sendRedirect("login.jsp");
@@ -29,21 +28,19 @@
                             <form id="urlform" method="post" action="urlsubmit.do">
                                 <input type="hidden" name="form_action" value="newurl" />
                                 <fieldset>
-                                    <%
-                                        if (request.getAttribute("resultMessage") != null) {
-                                            out.print("<hr>"
-                                                    + "<div class=\"form-group \">"
-                                                    + "<div class=\"input-group\">"
-                                                    + "<span class=\"input-group\">"
-                                                    + "<div class=\"alert alert-danger\">"
-                                                    + "<i class=\"glyphicon glyphicon-exclamation-sign\"></i>"
-                                                    + "</span> " + request.getAttribute("resultMessage")
-                                                    + "</div>"
-                                                    + "</div>"
-                                                    + "</div>"
-                                                    + "<hr>"  );
-                                        }
-                                    %>         
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-10 col-md-offset-1">
+                                            <%
+                                                if (request.getAttribute("resultMessage") != null) {
+                                                    out.print("<div class=\"alert alert-danger text-center\">"
+                                                            + "<i class=\"glyphicon glyphicon-exclamation-sign\"></i> "
+                                                            + request.getAttribute("resultMessage")
+                                                            + "</div>"
+                                                    );
+                                                }
+                                            %> 
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="col-sm-12 col-md-10 col-md-offset-1">
                                             <div class="form-group">

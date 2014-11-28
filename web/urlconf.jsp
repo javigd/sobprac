@@ -35,19 +35,14 @@
                                             </div>
                                             <%
                                                 if (request.getAttribute("resultMessage") != null) {
-                                                    out.print("<hr>"
-                                                            + "<div class=\"form-group\">"
-                                                            + "<div class=\"input-group\">"
-                                                            + "<span class=\"input-group text-center\">"
-                                                            + "<div class=\"alert alert-danger text-center\">"
-                                                            + "<i class=\"glyphicon glyphicon-exclamation-sign\"></i>"
-                                                            + "</span> " + request.getAttribute("resultMessage")
+                                                    out.print("<div class=\"alert alert-danger text-center\">"
+                                                            + "<i class=\"glyphicon glyphicon-exclamation-sign\"></i> "
+                                                            + request.getAttribute("resultMessage")
                                                             + "</div>"
-                                                            + "</div>"
-                                                            + "</div>"
-                                                            + "<hr>");
+                                                            );
                                                 }
                                             %>
+                                            
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <span class="input-group-addon">
