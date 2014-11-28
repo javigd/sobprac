@@ -110,8 +110,8 @@ public class FormHandlerTest {
 
         fh.setEmail("myemail@email.com");
         fh.setUsername("myusername");
-        fh.setPassword("mypass");
-        fh.setPasswordRepeat("mypass");
+        fh.setPassword("sob");
+        fh.setPasswordRepeat("sob");
         
         try {
             fh.validate();

@@ -25,7 +25,7 @@
                                         <input class="form-control" value="<%=request.getAttribute("prefix")%><%=request.getAttribute("shortUrl")%>" type="text" readonly>
                                         <br>
                                         <a href="index.jsp">
-                                            <input type="button" class="btn  btn-lg btn-primary btn-block" value="Give me back to GoShort!">
+                                            <input type="button" class="btn  btn-lg btn-primary btn-block" value="Get me back to GoShort!">
                                         </a>
                                     </div>
                                 </div>
