@@ -137,4 +137,22 @@ public class SOBUserDAO extends SOBPersistence implements UserDAO {
             throw new SOBException(SOBError.TICKET_NOT_VALID);
         }
     }
+
+    @Override
+    public SOBUser getUserByEmail(String email) throws SOBException {
+        EntityManager em = pool.getConnection();
+        // Perform a simple query for all the SOBUser entities
+        Query q = em.createQuery("SELECT u FROM SOBUser u WHERE u.email = :userEmail");
+        // User will be referenced by id
+        q.setParameter("userEmail", email);
+        try {
+            // Look for the user in Database
+            SOBUser u = (SOBUser) q.getSingleResult();
+            em.close();
+            return u;
+        } catch (NoResultException e) {
+            em.close();
+            throw new SOBException(SOBError.USER_NOT_FOUND);
+        }
+    }
 }

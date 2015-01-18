@@ -5,6 +5,7 @@
  */
 package cat.urv.deim.sob;
 
+import cat.urv.deim.sob.command.AjaxEmailCommand;
 import cat.urv.deim.sob.command.Command;
 import cat.urv.deim.sob.command.ConfUrlCommand;
 import cat.urv.deim.sob.command.ForgotPassCommand;
@@ -61,6 +62,7 @@ public class SOBController extends HttpServlet {
         this.commands.put("redir", new RedirectCommand(dbUrlHandler));
         this.commands.put("iforgot", new ForgotPassCommand(dbUsrHandler));
         this.commands.put("resetpass", new ResetPassCommand(dbUsrHandler));
+        this.commands.put("emailUserAjax", new AjaxEmailCommand (dbUsrHandler));
     }
 
     protected void processCommand(

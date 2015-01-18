@@ -19,6 +19,8 @@ public interface IUserHandler {
     public Integer numberUsers() throws SOBException;
 
     public SOBUser doLogin(SOBUser user) throws SOBException;
+    
+    public SOBUser getUserByEmail(String email) throws SOBException;
 
     public SOBUser rememberPassword(String email) throws SOBException;
 

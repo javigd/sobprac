@@ -20,6 +20,8 @@ public interface UserDAO {
 
     public Integer getNUsers() throws SOBException;
 
+    public SOBUser getUserByEmail(String email) throws SOBException;
+
     public SOBUser setResetPassTicket(String email, Long ticket) throws SOBException;
     
     public SOBUser checkResetTicket(Long userId, String ticket, String newPassword) throws SOBException;

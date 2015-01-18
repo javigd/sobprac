@@ -68,4 +68,9 @@ public class SOBUserHandler implements IUserHandler {
         // Forward this operation to the DAO so it executes the suitable tasks
         return userDAO.checkResetTicket(Long.parseLong(userId), ticket, newPassword);
     }
+
+    @Override
+    public SOBUser getUserByEmail(String email) throws SOBException {
+        return userDAO.getUserByEmail(email);
+    }
 }
