@@ -9,6 +9,14 @@
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
+    
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>webresources</web-resource-name>
+            <url-pattern>/webresources/*</url-pattern>
+        </web-resource-collection>
+    </security-constraint>
+    
     <servlet>
         <servlet-name>sobcontroller</servlet-name>
         <servlet-class>cat.urv.deim.sob.SOBController</servlet-class>
