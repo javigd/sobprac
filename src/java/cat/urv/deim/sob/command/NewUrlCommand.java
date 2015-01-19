@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 import javax.servlet.ServletContext;
 import java.io.IOException;
+import javax.ws.rs.client.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 public class NewUrlCommand implements Command {
 
@@ -23,9 +26,9 @@ public class NewUrlCommand implements Command {
             HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String fw = "urlconf";
-        
+
         UrlBean url = new UrlBean();
 
         // 1 process the request
@@ -35,11 +38,18 @@ public class NewUrlCommand implements Command {
         url.setLongUrl(longUrl);
         Long usrId = Long.parseLong((String) request.getSession().getAttribute("userid"));
         url.setUserId(usrId);
+        
+        String userId = url.getUserId().toString();
 
         try {
             url.validate();
-            // 2. Shorten and Save url to Database
-            String shortenedURL = dbUrlHandler.getShortenedUrl(url);
+            // 2. Shorten long URL
+            /* Call the REST web service method in order to shorten the long URL */
+            Client client = ClientBuilder.newClient();
+            //TODO: change sobpracsvces to sobprac
+            WebTarget target = client.target("http://localhost:8080/sobpracsvces/webresources/shorten?longUrl=" + longUrl + "&userId=" + userId);
+            String shortenedURL = target.request(MediaType.TEXT_PLAIN).get(String.class);
+            //String shortenedURL = dbUrlHandler.getShortenedUrl(url);
             request.setAttribute("longUrl", longUrl);
             request.setAttribute("shortUrl", shortenedURL);
             request.setAttribute("prefix", Config.SERVER_REDIR_PREFIX);
@@ -47,7 +57,7 @@ public class NewUrlCommand implements Command {
             fw = "newurl";
             request.setAttribute("resultMessage", ex.getError().getMessage());
         }
-        
+
         // 3. produce the view with the web result
         ServletContext context = request.getSession().getServletContext();
         context.getRequestDispatcher("/" + fw + ".jsp").forward(request, response);
