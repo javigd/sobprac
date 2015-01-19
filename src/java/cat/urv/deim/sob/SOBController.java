@@ -6,6 +6,7 @@
 package cat.urv.deim.sob;
 
 import cat.urv.deim.sob.command.AjaxEmailCommand;
+import cat.urv.deim.sob.command.AjaxShortUrlCommand;
 import cat.urv.deim.sob.command.Command;
 import cat.urv.deim.sob.command.ConfUrlCommand;
 import cat.urv.deim.sob.command.ForgotPassCommand;
@@ -62,7 +63,8 @@ public class SOBController extends HttpServlet {
         this.commands.put("redir", new RedirectCommand(dbUrlHandler));
         this.commands.put("iforgot", new ForgotPassCommand(dbUsrHandler));
         this.commands.put("resetpass", new ResetPassCommand(dbUsrHandler));
-        this.commands.put("emailUserAjax", new AjaxEmailCommand (dbUsrHandler));
+        this.commands.put("emailUserAjax", new AjaxEmailCommand(dbUsrHandler));
+        this.commands.put("shortUrlAjax", new AjaxShortUrlCommand(dbUrlHandler));
     }
 
     protected void processCommand(
@@ -73,7 +75,7 @@ public class SOBController extends HttpServlet {
         // 1. choose action
         String action = request.getParameter("action");
 //        String res = request.getPathInfo();
-        
+
         // Execute the corresponding form_action if no action has been defined
         // trigger the default action otherwise
         if (null == action) {

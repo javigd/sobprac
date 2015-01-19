@@ -34,7 +34,7 @@ public class ShortenUrlService {
     public String shortenUrl(@QueryParam("longUrl") String longUrl, @QueryParam("userId") String userId) {
         /* Make sure URL is long enough, raise exception notifying user otherwise */
         if (longUrl.length() < Config.DEFAULT_MIN_URL_LENGTH) {
-            return " ";
+            return null;
         }
         /* Get a Long value resulting from a combined hash between long URL and user ID */
         Long combinedHashVal;
@@ -45,10 +45,9 @@ public class ShortenUrlService {
             if (shortenedUrl.length() > Config.MAX_SHORTENED_URL_LENGTH) {
                 shortenedUrl = shortenedUrl.substring(0, Config.MAX_SHORTENED_URL_LENGTH - 1);
             }
-            System.out.println(shortenedUrl);
             return shortenedUrl;
         } catch (SOBException ex) {
-            return " ";
+            return null;
         }
     }
 }

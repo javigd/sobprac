@@ -20,7 +20,7 @@
                     req = new ActiveXObject("Microsoft.XMLHTTP");
                 }
             }
-            function validateUserId() {
+            function validateUserEmail() {
                 if (!target)
                     target = document.getElementById("emailUser");
                 var url = "signup.do?form_action=emailUserAjax&emailUser=" + escape(target.value);
@@ -56,35 +56,16 @@
                     }
                 }
             }
-            function setMessageUsingInline(message) {
-                mdiv = document.getElementById("userIdMessage");
-                if (message == "false") {
-                    mdiv.innerHTML = "<div style=\"color:red\">Invalid User Id</div>";
-                } else {
-                    mdiv.innerHTML = "<div style=\"color:green\">Valid User Id</div>";
-                }
-            }
             // Function in which message indicating the validity of the data gets displayed
-            // through the "userIdMessage" <div> element.
             function setMessageUsingDOM(message) {
-                var userMessageElement = document.getElementById("userIdMessage");
-                var messageText;
+                var userMessageElement = document.getElementById("emailUser");
                 if (message == "false") {
-                    userMessageElement.style.color = "red";
-                    messageText = "user already exists";
+                    userMessageElement.style.borderColor = "red";
                 } else {
-                    userMessageElement.style.color = "green";
-                    messageText = "user email available";
-                }
-                var messageBody = document.createTextNode(messageText);
-                // if the messageBody element has been created simple replace it otherwise
-                // append the new element
-                if (userMessageElement.childNodes[0]) {
-                    userMessageElement.replaceChild(messageBody, userMessageElement.childNodes[0]);
-                } else {
-                    userMessageElement.appendChild(messageBody);
+                    userMessageElement.style.borderColor = "green";
                 }
             }
+            
             function disableSubmitBtn() {
                 var submitBtn = document.getElementById("submit_btn");
                 submitBtn.disabled = true;
@@ -138,7 +119,7 @@
                                                         <i class="glyphicon glyphicon-envelope"></i>
                                                     </span> 
                                                     <div id="userIdMessage"></div>
-                                                    <input id="emailUser" class="form-control" placeholder="Email" name="email" type="text" autofocus="" onkeyup="validateUserId()">
+                                                    <input id="emailUser" class="form-control" placeholder="Email" name="email" type="text" autofocus="" onkeyup="validateUserEmail()">
                                                 </div>
                                             </div>
                                             <div class="form-group">

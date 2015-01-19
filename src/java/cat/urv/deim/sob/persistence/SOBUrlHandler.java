@@ -118,7 +118,9 @@ public class SOBUrlHandler implements IUrlHandler {
         if (count == 0) throw new SOBException(SOBError.URLS_NOT_LOADED);
         return count;
     }
-    
-    
 
+    @Override
+    public SOBUrl getUrlFromShort(String shortUrl) throws SOBException {
+        return urlDAO.getUrlFromShort(shortUrl);
+    }
 }

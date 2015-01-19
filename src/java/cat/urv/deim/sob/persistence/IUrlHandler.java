@@ -7,6 +7,7 @@ package cat.urv.deim.sob.persistence;
 
 import cat.urv.deim.sob.beans.UrlBean;
 import cat.urv.deim.sob.exceptions.SOBException;
+import cat.urv.deim.sob.models.SOBUrl;
 import java.util.List;
 
 /**
@@ -18,6 +19,8 @@ public interface IUrlHandler {
     public String newUrl(UrlBean url) throws SOBException;
     
     public String getShortenedUrl(UrlBean url) throws SOBException;
+    
+    public SOBUrl getUrlFromShort(String shortUrl) throws SOBException;
     
     public String visit(String shortUrl) throws SOBException;
     

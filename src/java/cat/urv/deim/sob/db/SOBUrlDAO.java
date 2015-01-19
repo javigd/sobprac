@@ -163,6 +163,5 @@ public class SOBUrlDAO extends SOBPersistence implements UrlDAO {
         }
         em.close();
         return (urlCount);
-
     }
 }
