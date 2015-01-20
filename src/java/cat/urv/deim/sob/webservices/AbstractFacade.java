@@ -8,12 +8,16 @@ package cat.urv.deim.sob.webservices;
 import cat.urv.deim.sob.models.SOBUrl;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
+import javax.persistence.Query;
 
 /**
  *
  * @author javigd
  */
 public abstract class AbstractFacade<T> {
+
     private Class<T> entityClass;
 
     public AbstractFacade(Class<T> entityClass) {
@@ -67,5 +71,22 @@ public abstract class AbstractFacade<T> {
         u.setNvisits(nvisits);
         getEntityManager().merge(u);
     }
+
+    public List<SOBUrl> findUrlsByUser(Long userId) {
+        Query query = getEntityManager().createQuery("select u from SOBUrl u where u.userId = :userId", SOBUrl.class);
+        query.setParameter("userId", userId);
+        return (List<SOBUrl>) query.getResultList();
+    }
     
+    public String findByShort(String shortUrl) {
+        Query query = getEntityManager().createQuery("select u from SOBUrl u where u.shortUrl = :shortUrl", SOBUrl.class);
+        query.setParameter("shortUrl", shortUrl);
+        try {
+            SOBUrl myUrl = (SOBUrl) query.getSingleResult();
+            return myUrl.getLongUrl();
+        } catch (NonUniqueResultException | NoResultException e) {
+            return "";
+        }
+    }
+
 }

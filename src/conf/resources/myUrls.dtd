@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+    TODO define vocabulary identification
+    PUBLIC ID: -//vendor//vocabulary//EN
+    SYSTEM ID: http://server/path/myUrls.dtd
+
+-->
+
+<!--
+    An example how to use this DTD from your XML document:
+
+    <?xml version="1.0"?>
+
+    <!DOCTYPE sOBUrls SYSTEM "myUrls.dtd">
+
+    <sOBUrls>
+    ...
+    </sOBUrls>
+-->
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT sOBUrls (sobUrl)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT sobUrl (id|longUrl|nvisits|shortUrl|userId)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT id (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT longUrl (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT nvisits (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT shortUrl (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT userId (#PCDATA)>

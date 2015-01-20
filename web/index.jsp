@@ -11,8 +11,7 @@
         <%@include file="navBarjsp.jsp"%>
     </head>
     <body>
-        <%
-            // allow access only if session exists, redirect to controller if 
+        <%            // allow access only if session exists, redirect to controller if 
             // accessed from external sources in order to load data
             if (session.getAttribute("user") == null) {
                 response.sendRedirect("login.jsp");
@@ -90,6 +89,11 @@
                                     <input type="hidden" name="form_action" value="logout" />
                                     <input  class="btn btn-lg btn-info btn-block" type="submit" value="Logout" >
                                 </form>
+                                <br>
+                                <a href="https://localhost:8181/sobpracsvces/webresources/url/geturls/<%=session.getAttribute("userid")%>">
+                                    <input type="button" class="btn  btn-lg btn-primary btn-block" value="Get my URLs in XML format">
+                                </a>
+
                             </div>
                         </div>
                     </div>

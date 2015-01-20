@@ -5,8 +5,6 @@
  */
 package service;
 
-import cat.urv.deim.sob.exceptions.SOBError;
-import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.models.SOBUser;
 import cat.urv.deim.sob.util.Config;
 import java.util.Calendar;

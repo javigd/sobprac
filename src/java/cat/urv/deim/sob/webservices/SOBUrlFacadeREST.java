@@ -18,6 +18,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
@@ -28,6 +29,7 @@ import javax.ws.rs.Produces;
 public class SOBUrlFacadeREST extends AbstractFacade<SOBUrl> {
     @PersistenceContext(unitName = "")
     private EntityManager em;
+    private static final String SOB_MEDIA_TYPE = "application/com.deim.sob.v1+xml";
 
     public SOBUrlFacadeREST() {
         super(SOBUrl.class);
@@ -66,13 +68,28 @@ public class SOBUrlFacadeREST extends AbstractFacade<SOBUrl> {
     public void visit(@PathParam("id") Long id) {
         super.visit(id);
     }
-
+    
+    @GET
+    @Path("geturls/{id}")
+    @Produces(SOB_MEDIA_TYPE)
+    @Override
+    public List<SOBUrl> findUrlsByUser(@PathParam("id") Long id) {
+        return super.findUrlsByUser(id);
+    }
     
     @GET
     @Override
     @Produces({"application/xml", "application/json"})
     public List<SOBUrl> findAll() {
         return super.findAll();
+    }
+    
+    @GET
+    @Path("rt/{shortUrl}")
+    @Produces(MediaType.TEXT_PLAIN)
+    @Override
+    public String findByShort(@PathParam("shortUrl") String shortUrl) {
+        return super.findByShort(shortUrl);
     }
 
     @GET
