@@ -8,6 +8,7 @@ import cat.urv.deim.sob.util.Config;
 import cat.urv.deim.sob.util.ResetMailer;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.*;
@@ -17,6 +18,12 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -26,7 +33,7 @@ public class ForgotPassCommand implements Command {
 
     private final IUserHandler dbUsrHandler;
     private final ResetMailer resetMailer;
-    
+
     public ForgotPassCommand(IUserHandler dbHandler) {
         dbUsrHandler = dbHandler;
         resetMailer = new ResetMailer();
@@ -42,8 +49,14 @@ public class ForgotPassCommand implements Command {
         String email = request.getParameter("email");
 
         try {
-            // 2. Generate, save and get a ticket
-            SOBUser u = dbUsrHandler.rememberPassword(email);
+            SOBUser u = dbUsrHandler.getUserByEmail(email);
+            /* Call the REST web service method in order to store the new  URL */
+            Client client = ClientBuilder.newClient();
+            //TODO: change sobpracsvces to sobprac
+            WebTarget target = client.target("http://localhost:8080/sobpracsvces/webresources/user/ticket?id=" + u.getId());
+            Response userResponse = target.request(MediaType.APPLICATION_JSON).get();
+            SOBUser user = userResponse.readEntity(SOBUser.class);
+            u.setResetTicket(user.getResetTicket());
             // Generate the password reset URL using uid and ticket values
             String url = Config.SERVER_MAIL_PREFIX + "resetpass.jsp"
                     + "?uid=" + u.getId()
@@ -88,7 +101,7 @@ public class ForgotPassCommand implements Command {
             Logger.getLogger(ForgotPassCommand.class.getName()).log(Level.SEVERE, null, ex);
             throw new SOBException(SOBError.INTERNAL_SERVER_ERROR);
         }
-        
+
         return response;
     }
 }

@@ -29,7 +29,9 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(cat.urv.deim.sob.webservices.SOBUrlFacadeREST.class);
         resources.add(cat.urv.deim.sob.webservices.ShortenUrlService.class);
+        resources.add(service.SOBUserFacadeREST.class);
     }
     
 }

@@ -22,7 +22,7 @@ public class Config {
     public static final String SERVER_REDIR_PREFIX = "http://gosho/rt/";
     public static final String SERVER_PREFIX = "http://gosho/";
     // NOTE that this variable will have to be properly set when deployed in a real environment
-    public static final String SERVER_MAIL_PREFIX = "https://localhost:8181/sobprac/";
+    public static final String SERVER_MAIL_PREFIX = "https://localhost:8181/sobpracsvces/";
     public static final String DEFAULT_MAIL_ADDR = "goshortnoreply@gmail.com";
     public static final String DEFAULT_MAIL_PASSWD = "$sobadmin$";
     public static final String DEFAULT_MAIL_PORT = "465";

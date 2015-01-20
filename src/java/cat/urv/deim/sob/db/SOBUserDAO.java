@@ -56,10 +56,10 @@ public class SOBUserDAO extends SOBPersistence implements UserDAO {
         // Email does not exist in DB
         if (q.getResultList().isEmpty()) {
             // Add new user to database
-            em.getTransaction().begin();
+//            em.getTransaction().begin();
             em.persist(user);
-            em.getTransaction().commit();
-            em.close();
+//            em.getTransaction().commit();
+//            em.close();
         } else {
             // Throw new DAOException otherwise
             throw new SOBException(SOBError.USER_ALREADY_EXISTS);

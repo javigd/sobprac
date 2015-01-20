@@ -2,6 +2,7 @@ package cat.urv.deim.sob.command;
 
 import cat.urv.deim.sob.exceptions.SOBException;
 import cat.urv.deim.sob.beans.FormHandler;
+import cat.urv.deim.sob.models.SOBUrl;
 import cat.urv.deim.sob.models.SOBUser;
 import cat.urv.deim.sob.persistence.IUserHandler;
 import cat.urv.deim.sob.session.SOBCookie;
@@ -13,6 +14,12 @@ import javax.servlet.ServletContext;
 import java.io.IOException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 public class SignupCommand implements Command {
 
@@ -45,7 +52,13 @@ public class SignupCommand implements Command {
             String encryptedPassword = new String(fh.encryptPassword());
             // 2. Save user to Database
             SOBUser user = new SOBUser(null, username, email, encryptedPassword);
-            SOBUser signedUser = dbUsrHandler.doSignUp(user);
+            //SOBUser signedUser = dbUsrHandler.doSignUp(user);
+            /* Call the REST web service method in order to store the new  URL */
+            Client client = ClientBuilder.newClient();
+            //TODO: change sobpracsvces to sobprac
+            WebTarget target = client.target("http://localhost:8080/sobpracsvces/webresources/user/");
+            Response userResponse = target.request(MediaType.APPLICATION_JSON).post(Entity.entity(user, MediaType.APPLICATION_JSON));
+            SOBUser signedUser = userResponse.readEntity(SOBUser.class);
             //set session attributes
             HttpSession session = request.getSession(true);
             session.setMaxInactiveInterval(Config.SESSION_MAX_TIME);

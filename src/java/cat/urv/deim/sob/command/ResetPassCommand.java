@@ -18,6 +18,12 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  *
@@ -52,7 +58,15 @@ public class ResetPassCommand implements Command {
             // Encrypt password
             String encryptedPassword = new String(fh.encryptPassword());
             // 2. Check ticket in database
-            SOBUser u = dbUsrHandler.resetPassword(userId, ticket, encryptedPassword);
+            //SOBUser u = dbUsrHandler.resetPassword(userId, ticket, encryptedPassword);
+                        /* Call the REST web service method in order to store the new  URL */
+            SOBUser user = new SOBUser(Long.parseLong(userId), null, null, encryptedPassword);
+            user.setResetTicket(ticket);
+            Client client = ClientBuilder.newClient();
+            //TODO: change sobpracsvces to sobprac
+            WebTarget target = client.target("http://localhost:8080/sobpracsvces/webresources/user/resetpass");
+            Response userResponse = target.request(MediaType.APPLICATION_JSON).post(Entity.entity(user, MediaType.APPLICATION_JSON));
+            SOBUser u = userResponse.readEntity(SOBUser.class);
             HttpSession session = request.getSession(true);
             session.setMaxInactiveInterval(Config.SESSION_MAX_TIME);
             session.setAttribute("user", u.getUsername());
